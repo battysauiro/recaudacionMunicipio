@@ -1,0 +1,4 @@
+.skeleton-content{
+    min-height: calc(100vh - 60px - 60px);
+    background-color: rgb(215, 215, 240);
+}

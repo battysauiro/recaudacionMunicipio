@@ -1,0 +1,11 @@
+.btn-general{
+    
+    background-color: rgb(75, 69, 198);
+    color: white !important;
+    
+}
+
+.btn-general:hover{
+    background-color:rgb(77, 68, 244);
+    color: yellow !important;
+}
