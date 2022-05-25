@@ -1,0 +1,31 @@
+<div class="container-fluid  mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class=" col-lg-8 col-md-9 col-11 text-center">
+            <div class="card">
+                <h5 class="text-center mb-4">AGREGAR CONTRIBUYENTE</h5>
+                
+                <form class="form-card">
+                
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">RFC<span class="text-danger"> *</span></label> <input type="text"  name="rfc" placeholder="RFC" [(ngModel)]="contribuyenteMoral.rfc_contribuyente"> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Razon social<span class="text-danger"> *</span></label> <input type="text"  name="razon" placeholder="razón social" [(ngModel)]="contribuyenteMoral.razon_social" > </div>
+                    </div>
+
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Calle<span class="text-danger"> *</span></label> <input type="text" name="calle" placeholder="Calle" [(ngModel)]="contribuyenteMoral.calle"> </div>
+                        <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3">#<span class="text-danger"> *</span></label> <input type="text" name="numero" placeholder="#" [(ngModel)]="contribuyenteMoral.numero"> </div>
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Colonia<span class="text-danger"> *</span></label> <input type="text" name="colonia" placeholder="Colonia" [(ngModel)]="contribuyenteMoral.colonia"> </div>
+                        <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3">CP<span class="text-danger"> *</span></label> <input type="text" name="cp" placeholder="Cp" [(ngModel)]="contribuyenteMoral.codigo_postal"> </div>
+                    </div> 
+
+                    <button type="submit" class="btn-block btn-primary" (click)='createMoral(false)' *ngIf="!contribuyenteMoral.id_contribuyente_moral else elseBlockM">Agregar</button>
+                    <ng-template #elseBlockM>
+                        <button type="submit" class="btn-block btn-primary" (click)='updateM(false)' >Actualizar</button>
+                        <button type="button" class="btn-block btn-primary" (click)='irContribuyentes(false)' >Cancelar</button>
+                    </ng-template>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

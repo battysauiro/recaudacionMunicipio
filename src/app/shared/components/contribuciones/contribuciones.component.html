@@ -1,0 +1,49 @@
+<!-- <div *ngIf="contribuciones?.length==0" class="alert alert-info">
+    No hay registros en esta tabla
+</div>-->
+<div class="my-2 text-left">
+  <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['formContribuciones']" >  Añadir Contribucion</button>
+  </ng-container>
+
+</div>
+<table class="table  table-Light table-bordered table-striped" >
+    <thead class="table-estilo text-white">
+      <tr >
+          <th>Nombre</th>
+          <th>Codigo</th>
+          <th>Concepto</th>   
+          <th>Tipo</th>
+          <th>Descripcion</th>
+          <th>Detalles</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-white " *ngFor="let contribucion of contribuciones">
+          <td>{{contribucion.nombre_tipo_contribucion}} </td>
+          <td>{{contribucion.codigo_contribucion}} </td>
+          <td>{{contribucion.concepto_contribucion}}</td>
+          <td>{{contribucion.catalogo_contribucion}}</td>
+          <td>{{contribucion.descripcion}}</td>
+          <td>
+            <button type="button" name="editar" [routerLink]="" class="btn btn-primary btn-sm">Detalles</button>
+          </td> 
+          <td>
+            <button type="button" name="editar" [routerLink]="" class="btn btn-primary btn-sm">Editar</button>
+          </td> 
+          <td>  
+            <button type="button" name="eliminar"  class="btn btn-danger btn-sm" >Eliminar</button>
+          </td>
+      </tr>
+     <!--<tr>
+        <td colspan="2">
+          <span *ngFor="let p of totalPaginas; let i =index ">
+            <a (click)="setPage(i)">{{i+1}}</a>
+          </span>
+        </td>
+      </tr> -->
+    </tbody>
+  </table> 
+  <app-paginador *ngIf="paginador" [paginador]="paginador"></app-paginador>

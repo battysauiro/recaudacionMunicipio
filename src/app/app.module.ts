@@ -9,21 +9,34 @@ import { SharedModule } from './shared/shared.module';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+import { LoginComponent } from './usuarios/login/login.component';
+import { ContribuyenteService } from '@shared/components/contribuyentes/contribuyente.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ContribuyentesComponent } from '@shared/components/contribuyentes/contribuyentes.component';
+import { ContribucionesServiceService } from '@shared/components/contribuciones/contribuciones-service.service';
 
+//registerLocaleData(localeEs,'es-MX')
 @NgModule({
   declarations: [
     AppComponent,
     SkeletonComponent,
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    LoginComponent,
+    
   ],
   imports: [//aqui van los modulos
     BrowserModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
+    ContribuyenteService,
+    ContribucionesServiceService,
     {
       provide: LocationStrategy,
       useClass:PathLocationStrategy
@@ -33,3 +46,11 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function registerLocaleData(localeEs: any, arg1: string) {
+  throw new Error('Function not implemented.');
+}
+
+function localeEs(localeEs: any, arg1: string) {
+  throw new Error('Function not implemented.');
+}
+

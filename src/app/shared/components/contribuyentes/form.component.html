@@ -1,0 +1,118 @@
+<div class="container-fluid  mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class=" col-lg-8 col-md-9 col-11 text-center">
+            <div class="card">
+                <h5 class="text-center mb-4">AGREGAR CONTRIBUYENTE</h5>
+                
+                <form class="form-card">
+                  
+                    <div  class="form-check form-switch ">
+                        <input  class="form-check-input" type="checkbox" role="switch" id="tipoContribuyente" (change)="onChange($event)" checked="checked"> 
+                        <label  *ngIf="isChecked" class="form-check-label" for="flexSwitchCheckDefault">Fisica</label>
+                        <label *ngIf="!isChecked" class="form-check-label" for="flexSwitchCheckDefault">Moral</label>
+                      </div>
+                    
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Curp<span class="text-danger"> *</span></label> <input type="text"  name="curp" placeholder="CURP" [(ngModel)]="contribuyenteFisica.curp" required minlength="18" #curpv="ngModel"> 
+                            <div class="alert alert-danger" *ngIf="curpv.invalid && (curpv.dirty || curpv.touched)">
+                                <div *ngIf="curpv.errors.required">
+                                    la CURP es requerida
+                                </div>
+                                <div *ngIf="curpv.errors.minlength">
+                                    la CURP debe tener 18 caracteres
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">RFC<span class="text-danger"> *</span></label> <input type="text"  name="rfc" placeholder="RFC" [(ngModel)]="contribuyenteFisica.rfc_contribuyente" required minlength="13"  #rfc="ngModel">
+                            <div class="alert alert-danger" *ngIf="rfc.invalid && (rfc.dirty || rfc.touched)">
+                                <div *ngIf="rfc.errors.required">
+                                    El RFC es requerido
+                                </div>
+                                <div *ngIf="rfc.errors.minlength">
+                                    El RFC debe tener 13 caracteres
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Nombre<span class="text-danger"> *</span></label> <input type="text"  name="nombre" placeholder="Nombre" [(ngModel)]="contribuyenteFisica.nombre" required #nombre="ngModel">
+                            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <div *ngIf="nombre.errors.required">
+                                    El Nombre es requerido
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Apellido Paterno<span class="text-danger"> *</span></label> <input type="text"  name="apellidoP" placeholder="Apellido Paterno" [(ngModel)]="contribuyenteFisica.apellido_p" required #apellidoP="ngModel">
+                            <div class="alert alert-danger" *ngIf="apellidoP.invalid && (apellidoP.dirty || apellidoP.touched)">
+                                <div *ngIf="apellidoP.errors.required">
+                                    El Apellido Paterno es requerido
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Apellido Materno<span class="text-danger"> *</span></label> <input type="text"  name="apellidoM" placeholder="Apellido Materno" [(ngModel)]="contribuyenteFisica.apellido_m" required #apellidoM="ngModel">
+                            <div class="alert alert-danger" *ngIf="apellidoM.invalid && (apellidoM.dirty || apellidoM.touched)">
+                                <div *ngIf="apellidoM.errors.required">
+                                    El Apellido Materno es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Calle<span class="text-danger"> *</span></label> <input type="text" name="calle" placeholder="Calle" [(ngModel)]="contribuyenteFisica.calle" required #calle="ngModel">
+                            <div class="alert alert-danger" *ngIf="calle.invalid && (calle.dirty || calle.touched)">
+                                <div *ngIf="calle.errors.required">
+                                    El nombre de la calle es requerida
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3">Numero<span class="text-danger"> *</span></label> <input type="text" name="numero" placeholder="#" [(ngModel)]="contribuyenteFisica.numero" > </div>
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Colonia<span class="text-danger"> *</span></label> <input type="text" name="colonia" placeholder="Colonia" [(ngModel)]="contribuyenteFisica.colonia" required #colonia="ngModel">
+                            <div class="alert alert-danger" *ngIf="colonia.invalid && (colonia.dirty || colonia.touched)">
+                                <div *ngIf="colonia.errors.required">
+                                    El nombre de la colonia es requerida
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3">CP<span class="text-danger"> *</span></label> <input type="text" name="cp" placeholder="Cp" [(ngModel)]="contribuyenteFisica.codigo_postal" required #cp="ngModel">
+                            <div class="alert alert-danger" *ngIf="cp.invalid && (cp.dirty || cp.touched)">
+                                <div *ngIf="cp.errors.required">
+                                    El Codigo postal es requerido
+                                </div>
+                            </div> 
+                        </div>
+                    </div>  
+                   
+                    <div class="row justify-content-between text-left"> 
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Fecha de nacimiento<span class="text-danger"> *</span></label> <input type="date" id="lname" name="lname" placeholder="fecha de nacimiento" [(ngModel)]="contribuyenteFisica.fecha" required> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create(true)' *ngIf="!contribuyenteFisica.id_contribuyente else elseBlock">Agregar</button> </div>
+                        <ng-template #elseBlock>
+                            <button type="submit" class="btn-block btn-primary" (click)='update(true)' >Actualizar</button>
+                            <button type="button" class="btn-block btn-primary" (click)='irContribuyentes(true)' >Cancelar</button>
+                        </ng-template>
+                    </div>
+                  
+                 <!-- <ng-template #blockMoral>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">RFC<span class="text-danger"> *</span></label> <input type="text"  name="rfc" placeholder="RFC" [(ngModel)]="contribuyenteMoral.rfc_contribuyente"> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Razon social<span class="text-danger"> *</span></label> <input type="text"  name="razon" placeholder="razón social" [(ngModel)]="contribuyenteMoral.razon_social" > </div>
+                    </div>
+
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Calle<span class="text-danger"> *</span></label> <input type="text" name="calle" placeholder="Calle" [(ngModel)]="contribuyenteMoral.calle"> </div>
+                        <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3">#<span class="text-danger"> *</span></label> <input type="text" name="numero" placeholder="#" [(ngModel)]="contribuyenteMoral.numero"> </div>
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Colonia<span class="text-danger"> *</span></label> <input type="text" name="colonia" placeholder="Colonia" [(ngModel)]="contribuyenteMoral.colonia"> </div>
+                        <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3">CP<span class="text-danger"> *</span></label> <input type="text" name="cp" placeholder="Cp" [(ngModel)]="contribuyenteMoral.codigo_postal"> </div>
+                    </div> 
+
+                    <button type="submit" class="btn-block btn-primary" (click)='createMoral()' *ngIf="!contribuyenteMoral.id_contribuyente_moral else elseBlockM">Agregar</button>
+                    <ng-template #elseBlockM>
+                        <button type="submit" class="btn-block btn-primary" (click)='updateM()' >Actualizar</button>
+                    </ng-template>
+
+                  </ng-template>-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

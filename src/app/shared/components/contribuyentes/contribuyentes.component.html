@@ -1,0 +1,75 @@
+<div class="my-2 text-left">
+  <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+    <button class="btn btn-rounded btn-primary" type="button" routerLink="contribuyenteF/form" *ngIf="isChecked else blockBotonMoral" >  Añadir contribuyente Fisica</button>
+  </ng-container>
+  
+  <ng-template #blockBotonMoral>
+    <button class="btn btn-rounded btn-primary" type="button" routerLink="contribuyenteM/form" >Añadir contribuyente Moral</button>  
+</ng-template>
+</div>
+<div  class="form-check form-switch" >
+  <input  class="form-check-input" type="checkbox" role="switch" id="tipoContribuyente" (change)="onChange($event)" checked="checked" [checked]="isChecked"> 
+  <label  *ngIf="isChecked" class="form-check-label" for="flexSwitchCheckDefault">Mostrando Personas Fisicas</label>
+  <label *ngIf="!isChecked" class="form-check-label" for="flexSwitchCheckDefault">Mostrando personas Morales</label>
+</div> 
+
+  <table class="table  table-Light table-bordered table-striped" *ngIf="isChecked else blockTablaMoral" >
+    <thead class="table-estilo text-white">
+      <tr >
+          <th>RMC</th>
+          <th>CURP</th>
+          <th>Direccion</th>  
+          <th>Nombre</th>
+          <th>Fecha Nacimiento</th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Editar</th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-white " *ngFor="let contribuyente of contribuyentes">
+          
+          <td class="">{{contribuyente.rfc_contribuyente}}</td>
+          <td class="">{{contribuyente.curp}}</td>
+          <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>
+          <td>{{contribuyente.nombre}} {{contribuyente.apellido_p}} {{contribuyente.apellido_m}}</td>
+          <td>{{contribuyente.fecha}}</td>
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+            <button type="button" name="editar" [routerLink]="['contribuyenteF/form',contribuyente.id_contribuyente]" class="btn btn-primary btn-sm">Editar</button>
+          </td> 
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+            <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribuyente(contribuyente)'>Eliminar</button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="isChecked">
+    <app-paginador-contribuyentes *ngIf="paginador" [paginador]="paginador"></app-paginador-contribuyentes>
+</div>  
+
+<ng-template #blockTablaMoral>
+  <table class="table  table-Light table-bordered table-striped">
+    <thead class="table-estilo text-white">
+      <tr >
+          <th>RMC</th>
+          <th>Direccion</th>  
+          <th>Razón Social</th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Editar</th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-white " *ngFor="let contribuyente of contribuyentesM">
+          <td class="">{{contribuyente.rfc_contribuyente}}</td>
+          <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>
+          <td>{{contribuyente.razon_social}}</td>
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+            <button type="button" name="editar" [routerLink]="['contribuyenteM/form',contribuyente.id_contribuyente]" class="btn btn-primary btn-sm">Editar</button>
+          </td> 
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+            <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribuyenteM(contribuyente)'>Eliminar</button>
+          </td>
+      </tr> 
+    </tbody> 
+  </table>
+  <app-paginador-contribuyentes *ngIf="paginador" [paginador]="paginador"></app-paginador-contribuyentes>
+</ng-template>

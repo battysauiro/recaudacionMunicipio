@@ -1,0 +1,56 @@
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AuthService } from 'app/usuarios/auth.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Empleado } from './empleado';
+import { PalacioMunicipal } from './palacio-municipal';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EmpleadosServiceService {
+  private baseURL="http://localhost:8080/api/empleado";
+  private baseURLP="http://localhost:8080/api/palacioMunicipal";
+  private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
+  constructor(private httpClient:HttpClient,private authService:AuthService) { }
+
+  private agregarAuthorizationHeader(){
+    let token= this.authService.token;
+    if(token!=null){ 
+      return this.httpHeaders.append('Authorization','Bearer '+token);
+    }
+    return this.httpHeaders;
+  }
+
+  ObtenerListaPalaciosMunicipales():Observable<PalacioMunicipal[]>{
+    return this.httpClient.get<PalacioMunicipal[]>(`${this.baseURLP}`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    ObtenerListaEmpleados(pageNo:number):Observable<any>{
+      return this.httpClient.get(`${this.baseURL}/page/${pageNo}`,{headers:this.agregarAuthorizationHeader()}).pipe(
+  
+        map((response:any)=>{
+          
+          console.log(response.contenido);
+          return response
+        }))
+      }
+
+    crearEmpleado(empleado:Empleado):Observable<Empleado>{
+      return this.httpClient.post<Empleado>(`${this.baseURL}`,empleado,{headers:this.agregarAuthorizationHeader()});
+    }
+
+    ObtenerEmpleado(id):Observable<Empleado>{
+      return this.httpClient.get<Empleado>(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
+    }
+
+    update(empleado:Empleado):Observable<Empleado>{
+      return this.httpClient.put<Empleado>(`${this.baseURL}/${empleado.id}`,empleado,{headers:this.agregarAuthorizationHeader()});
+    }
+
+
+    delete(id:number):Observable<Object>{
+      return this.httpClient.delete(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
+    }
+}  

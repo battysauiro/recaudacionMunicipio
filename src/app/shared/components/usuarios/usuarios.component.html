@@ -1,0 +1,31 @@
+<div class="my-2 text-left">
+    <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['formEmpleados']" >  Añadir Usuario</button>
+    </ng-container>
+  
+     </div>
+    <table class="table  table-Light table-bordered table-striped" >
+      <thead class="table-estilo text-white">
+        <tr >
+            <th>Username</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Puesto</th>  
+            <th>Estado</th>
+            <th>Empleado</th>  
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-white " *ngFor="let usuario of usuarios">
+            <td>{{usuario.nombre_usuario}} </td>
+            <td>{{usuario.password}} </td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.puesto}}</td> 
+            <td>{{usuario.estado}}</td> 
+            <td>{{usuario.nombre_empleado}}</td> 
+            
+        </tr>
+      </tbody>
+    </table>

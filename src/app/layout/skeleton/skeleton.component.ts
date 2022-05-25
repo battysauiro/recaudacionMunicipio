@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'app/usuarios/auth.service';
 
 @Component({
   selector: 'app-skeleton',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SkeletonComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService:AuthService) { }
 
   ngOnInit(): void {
+    //this.authService.isAuthenticated()
   }
-
+  
 }
