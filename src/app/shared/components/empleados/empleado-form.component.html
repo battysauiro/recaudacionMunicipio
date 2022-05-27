@@ -7,7 +7,7 @@
                 <form class="form-card">
                     
                     <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Curp<span class="text-danger"> *</span></label> <input type="text"  name="curp" placeholder="CURP" [(ngModel)]="empleado.curp" required minlength="18" #curpv="ngModel"> 
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Curp<span class="text-danger"> *</span></label> <input [disabled]="idFound?true:false" type="text"  name="curp" placeholder="CURP" [(ngModel)]="empleado.curp" required minlength="18" #curpv="ngModel"> 
                             <div class="alert alert-danger" *ngIf="curpv.invalid && (curpv.dirty || curpv.touched)">
                                 <div *ngIf="curpv.errors.required">
                                     la CURP es requerida
@@ -18,9 +18,9 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Palacio Municipal<span class="text-danger"> *</span></label> 
-                            <select  [compareWith]="compararPalacio" name="palacio" [(ngModel)]="empleado.palacio"  style="height: 30px;">
+                            <select  [compareWith]="compararPalacio" name="palacio" [(ngModel)]="empleado.nombre_palacio"  style="height: 30px;">
                                 <option [ngValue]="undefined">-- Seleccionar Palacio --</option>
-                                <option *ngFor="let palacio of palacios" [ngValue]="palacio.id">{{palacio.nombre_municipio}}</option>
+                                <option *ngFor="let palacio of palacios" [ngValue]="palacio.nombre_municipio">{{palacio.nombre_municipio}}</option>
                             </select>
                         </div>
                     </div>
@@ -50,10 +50,10 @@
                    
                     <div class="row justify-content-between text-left"> 
                         
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!empleado.id else elseBlock">Agregar</button> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Agregar</button> </div>
                         <ng-template #elseBlock>
                             <button type="submit" class="btn-block btn-primary" (click)='update()' >Actualizar</button>
-                            <button type="button" class="btn-block btn-primary"  >Cancelar</button>
+                            <button type="button" class="btn-block btn-primary" (click)="irEmpleados()" >Cancelar</button>
                         </ng-template>
                     </div>  
                   

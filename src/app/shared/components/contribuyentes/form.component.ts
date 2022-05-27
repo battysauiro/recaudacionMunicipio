@@ -18,10 +18,11 @@ export class FormComponent implements OnInit {
  
    
   contribuyenteFisica= new ContribuyenteFisica();
-  //contribuyenteMoral= new ContribuyenteMoral();
+  contribuyenteMoral= new ContribuyenteMoral();
   titulo:string ="Crear Contribuyente Fisica";
   tipoContribuyente="Fisica";
   isChecked:boolean=true;
+  idFound=false;
   constructor(private contribuyenteService:ContribuyenteService,private router:Router,private activatedRouter:ActivatedRoute) {
       
      }
@@ -39,6 +40,7 @@ export class FormComponent implements OnInit {
       console.log(params)
       let id=params['id'];
       if(id){
+        this.idFound=true;
         this.contribuyenteService.ObtenerContribuente(id).subscribe(contribuyenteF=>this.contribuyenteFisica=contribuyenteF)
       }
     });
@@ -59,7 +61,7 @@ export class FormComponent implements OnInit {
                   console.log(response);
                   this.irContribuyentes(estado);
                   //this.router.navigate(['/inicio/contribuyentes'])
-                  swal('Contribuyente Fisica Agregado',`contribuyente ${this.contribuyenteFisica.curp} creado con éxito`,'success');
+                  swal('Persona Fisica Agregado',`contribuyente ${this.contribuyenteFisica.curp} creado con éxito`,'success');
                 }//this.router.navigate(['/inicio/contribuyentes'])          
     );
     console.log("clicked");
@@ -116,6 +118,6 @@ export class FormComponent implements OnInit {
     this.contribuyenteService.setTipo(estado);
     console.log("estamos en el ir ",estado)
    //this.contribuyenteService.setTipo(tipo);
-    this.router.navigate(['/inicio/contribuyentes']);
+    this.router.navigate(['/contribuyentes']);
   }
 }

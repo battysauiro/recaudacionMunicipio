@@ -13,11 +13,13 @@ import { PalacioMunicipal } from './palacio-municipal';
 export class EmpleadoFormComponent implements OnInit {
    empleado= new Empleado();
    palacios:PalacioMunicipal[];
+   idFound=false;
   constructor(private empleadoService:EmpleadosServiceService,private router:Router,private activatedRouter:ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.obtenerListaPalaciosM();
+  ngOnInit(){
+    
     this.cargarEmpleado();
+    this.obtenerListaPalaciosM();
   }
 
   public create():void{  
@@ -32,15 +34,17 @@ export class EmpleadoFormComponent implements OnInit {
     this.empleadoService.ObtenerListaPalaciosMunicipales().subscribe(
       
       response=> {this.palacios= response 
+        console.log(this.palacios);
       }
       
-    );;
+    );
   }
   cargarEmpleado(){
     this.activatedRouter.params.subscribe(params=>{
       console.log(params)
       let id=params['id'];
       if(id){
+        this.idFound=true;
         this.empleadoService.ObtenerEmpleado(id).subscribe(empleado=>this.empleado=empleado)
       }
     });
@@ -56,14 +60,16 @@ export class EmpleadoFormComponent implements OnInit {
   }
 
   irEmpleados(){
-    this.router.navigate(['/inicio/empleados']);
+    this.router.navigate(['/empleados']);
   }
 
   compararPalacio(o1:PalacioMunicipal,o2:PalacioMunicipal){
     if(o1===undefined && o2===undefined){
+      console.log("anda aqui en el comparar");
       return true;
     }
-    return o1==null || o2==null? false:o1.id===o2.id;
+    console.log(o2+" obj 2")
+    return o1===null || o2===null || o1===undefined || o2===undefined? false:o1.id===o2.id;
   }
 
 }

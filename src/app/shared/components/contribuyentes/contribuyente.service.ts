@@ -100,11 +100,11 @@ export class ContribuyenteService {
     return this.httpClient.put<ContribuyenteMoral>(`${this.baseURLM}/${contribuyenteMoral.id_contribuyente_moral}`,contribuyenteMoral,{headers:this.agregarAuthorizationHeader()});
   }
 
-  delete(id:number):Observable<Object>{
+  delete(id:string):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
   }
   //eliminar a un contribuyente moral
-  deleteM(id:number):Observable<Object>{
+  deleteM(id:string):Observable<Object>{
     return this.httpClient.delete(`${this.baseURLM}/${id}`,{headers:this.agregarAuthorizationHeader()});
   }
 

@@ -21,7 +21,7 @@ export class ContribuyentesComponent implements OnInit {
   paginador:any;
   
   contribuyentes:ContribuyenteFisica[];
-  contribuyentesM:ContribuyenteMoral[];
+  //contribuyentesM:ContribuyenteMoral[];
   constructor(private contribuyenteService:ContribuyenteService,
     public authService:AuthService,
     private activatedRoute:ActivatedRoute) { 
@@ -54,7 +54,7 @@ export class ContribuyentesComponent implements OnInit {
     }
     else{
       console.log("entra en obtenerMoral 1");
-      this.obtenerContribuyentesM(page);
+      //this.obtenerContribuyentesM(page);
       console.log(this._isChecked,"ya al final");
     }
     }else{
@@ -68,7 +68,7 @@ export class ContribuyentesComponent implements OnInit {
       }
       else{
         console.log("entra en obtenerMoral 1 pero del no vaciio");
-        this.obtenerContribuyentesM(page);
+        //this.obtenerContribuyentesM(page);
         console.log(this._isChecked,"ya al final pero del no vaciio");
       }
      
@@ -100,13 +100,13 @@ export class ContribuyentesComponent implements OnInit {
     );
   }
   //obtenemos la lista de contribuyentes morales
-  private obtenerContribuyentesM(pagina:number){
+  /**private obtenerContribuyentesM(pagina:number){
     this.contribuyenteService.ObtenerListaContribuentesM(pagina).subscribe(
       response=> {this.contribuyentesM=response.contenido as ContribuyenteMoral[];
         this.paginador=response;
       }
     );
-  }
+  }*/
  
    eliminarContribuyente(contribuyenteF:ContribuyenteFisica){
     swal({
@@ -118,7 +118,7 @@ export class ContribuyentesComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.value) {
-        this.contribuyenteService.delete(contribuyenteF.id_contribuyente_fisica).subscribe(response=>{
+        this.contribuyenteService.delete(contribuyenteF.rfc_contribuyente).subscribe(response=>{
         this.obtenerContribuyentes(this.pagina);
           swal(
             'Contribuyente Eliminado!',
@@ -140,7 +140,7 @@ export class ContribuyentesComponent implements OnInit {
     })*/
   }
 
-  eliminarContribuyenteM(contribuyenteM:ContribuyenteMoral){
+  /**eliminarContribuyenteM(contribuyenteM:ContribuyenteMoral){
     swal({
       title: 'Estas seguro?',
       text: `¿Seguro que desea eliminar al contribuyente con razón social: ${contribuyenteM.rfc_contribuyente}?!`,
@@ -150,7 +150,7 @@ export class ContribuyentesComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.value) {
-        this.contribuyenteService.deleteM(contribuyenteM.id_contribuyente_moral).subscribe(response=>{
+        this.contribuyenteService.deleteM(contribuyenteM.rfc_contribuyente).subscribe(response=>{
         this.obtenerContribuyentesM(this.pagina);
           swal(
             'Contribuyente Eliminado!',
@@ -169,8 +169,8 @@ export class ContribuyentesComponent implements OnInit {
     this.contribuyenteService.delete(id).subscribe(response=>{
       console.log(response);
     this.obtenerContribuyentes();
-    })*/
-  }
+    })
+  }*/
 
   onChange(event :Event){
     this._isChecked = (event.target as HTMLInputElement).checked;//Eventelement.checked as HTMLInputElement;
@@ -180,7 +180,7 @@ export class ContribuyentesComponent implements OnInit {
     console.log(this._isChecked,"a ver 1")
   }
   else{
-    this.obtenerContribuyentesM(this.pagina);
+    //this.obtenerContribuyentesM(this.pagina);
     console.log(this._isChecked,"a ver 2")
   }
   }

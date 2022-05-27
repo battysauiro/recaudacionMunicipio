@@ -1,0 +1,26 @@
+<h2 class="text-center">lISTA DE PERSONAS MORALES</h2>
+<table class="table  table-Light table-bordered table-striped">
+      <thead class="table-estilo text-white">
+        <tr >
+            <th>RMC</th>
+            <th>Direccion</th>  
+            <th>Razón Social</th>
+            <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Editar</th>
+            <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-white " *ngFor="let contribuyente of contribuyentesM">
+            <td class="">{{contribuyente.rfc_contribuyente}}</td>
+            <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>
+            <td>{{contribuyente.razon_social}}</td>
+            <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+              <button type="button" name="editar" [routerLink]="['/contribuyentes/contribuyenteM/form',contribuyente.rfc_contribuyente]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
+            </td> 
+            <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+              <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribuyenteM(contribuyente)'><i class="bi bi-trash"></i></button>
+            </td>
+        </tr> 
+      </tbody> 
+</table>
+<app-paginador-cmoral *ngIf="paginador" [paginador]="paginador"></app-paginador-cmoral>

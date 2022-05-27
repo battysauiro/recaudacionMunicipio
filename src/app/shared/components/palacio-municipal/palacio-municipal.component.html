@@ -1,0 +1,26 @@
+<h2 class="text-center">LISTA DE PALACIOS MUNICIPALES</h2>
+<table class="table  table-Light table-bordered table-striped" >
+  <thead class="table-estilo text-white">
+    <tr >
+        <th>Imagen</th>
+        <th>Nombre Municipio</th>
+        <th>Telefono</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-white " *ngFor="let palacio of palacios">
+        <td>{{palacio.imagen}} </td>
+        <td>{{palacio.nombre_municipio}} </td>
+        <td>{{palacio.telefono}}</td>
+        <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+          <button type="button" name="editar"  class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
+        </td> 
+        <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+          <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarPalacio(palacio)'><i class="bi bi-trash"></i></button>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<app-paginador-palaciomunicipal *ngIf="paginador" [paginador]="paginador"></app-paginador-palaciomunicipal>

@@ -46,11 +46,11 @@ export class EmpleadosServiceService {
     }
 
     update(empleado:Empleado):Observable<Empleado>{
-      return this.httpClient.put<Empleado>(`${this.baseURL}/${empleado.id}`,empleado,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.put<Empleado>(`${this.baseURL}/${empleado.curp}`,empleado,{headers:this.agregarAuthorizationHeader()});
     }
 
 
-    delete(id:number):Observable<Object>{
+    delete(id:string):Observable<Object>{
       return this.httpClient.delete(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
     }
 }  

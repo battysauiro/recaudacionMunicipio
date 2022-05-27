@@ -1,3 +1,4 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 .table-estilo{
     background-color: rgb(75, 69, 198);
 }
@@ -5,4 +6,4 @@
 .table-white{
     background-color: white;
     font-weight: bold;
-}
+} 

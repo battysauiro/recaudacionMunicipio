@@ -1,9 +1,11 @@
-   <div class="my-2 text-left">
+   <!--<div class="my-2 text-left">
     <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
       <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['formEmpleados']" >  Añadir Empleado</button>
-    </ng-container>
+    </ng-container> 
   
      </div>
+     -->
+     <h2 class="text-center">LISTA DE EMPLEADOS</h2>
     <table class="table  table-Light table-bordered table-striped" >
       <thead class="table-estilo text-white">
         <tr >
@@ -21,11 +23,11 @@
             <td>{{empleado.nombre}} </td>
             <td>{{empleado.apellido_p}}</td>
             <td>{{empleado.apellido_m}}</td> 
-            <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
-              <button type="button" name="editar" [routerLink]="['formEmpleados',empleado.id]" class="btn btn-primary btn-sm">Editar</button>
+            <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+              <button type="button" name="editar" [routerLink]="['/empleados/formEmpleados',empleado.curp]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
             </td> 
             <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
-              <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarEmpleado(empleado)'>Eliminar</button>
+              <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarEmpleado(empleado)'><i class="bi bi-trash"></i></button>
             </td>
         </tr>
       </tbody>

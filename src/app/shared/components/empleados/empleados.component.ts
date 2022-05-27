@@ -52,7 +52,7 @@ export class EmpleadosComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.value) {
-        this.empleadoService.delete(empleado.id).subscribe(response=>{
+        this.empleadoService.delete(empleado.curp).subscribe(response=>{
         this.obtenerEmpleados(this.pagina);
           swal(
             'Empleado Eliminado!',

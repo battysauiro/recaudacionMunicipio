@@ -1,6 +1,5 @@
 export class Empleado {
 
-     id:number;
      curp: string;
      nombre: string; 
      apellido_p:string;

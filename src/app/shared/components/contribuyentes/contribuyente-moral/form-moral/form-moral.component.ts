@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { ContribuyenteService } from './contribuyente.service';
+import { ContribuyenteMoral } from '../../contribuyente-moral';
+import { ContribuyenteService } from '../../contribuyente.service';
 import swal from 'sweetalert2';
-import { ContribuyenteMoral } from './contribuyente-moral';
 
 @Component({
   selector: 'app-form-moral',
@@ -11,31 +10,29 @@ import { ContribuyenteMoral } from './contribuyente-moral';
   styleUrls: ['./form-moral.component.css']
 })
 export class FormMoralComponent implements OnInit {
-
-  @Input() tipoContri:any;
   contribuyenteMoral= new ContribuyenteMoral();
+  idFound=false;
   constructor(private contribuyenteService:ContribuyenteService,private router:Router,private activatedRouter:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarContribuyenteMoral();
   }
 
-  
-
   cargarContribuyenteMoral(){
     this.activatedRouter.params.subscribe(params=>{
       let id=params['id'];
       if(id){
+        this.idFound=true;
         this.contribuyenteService.ObtenerContribuenteM(id).subscribe(contribuyenteM=>this.contribuyenteMoral=contribuyenteM)
       }
     });
   }
 
-  public createMoral(estado:boolean):void{  
+  public createMoral():void{  
     this.contribuyenteService.crearContribuyenteMoral(this.contribuyenteMoral).subscribe(
       response=> {this.contribuyenteMoral=response;
                   console.log(response);
-                  this.irContribuyentes(estado);
+                  this.irContribuyentes();
                   //this.router.navigate(['/inicio/contribuyentes'])
                   swal('Contribuyente Moral Agregado',`contribuyente ${this.contribuyenteMoral.razon_social} creado con éxito`,'success');
                 }//this.router.navigate(['/inicio/contribuyentes'])          
@@ -45,18 +42,16 @@ export class FormMoralComponent implements OnInit {
     
   }
 
-  public updateM(estado:boolean):void{
+  public updateM():void{
     this.contribuyenteService.updateM(this.contribuyenteMoral).subscribe(contribuyenteM=>{
-      this.irContribuyentes(estado);
+      this.irContribuyentes();
       //this.router.navigate(['/inicio/contribuyentes']);
       swal('Contribuyente Moral Actualizado',`Contribuyente Moral ${contribuyenteM.razon_social} actualizado con éxito`,'success');
     });
   }
 
-  irContribuyentes(tipoContribuyente:boolean){
-    this.contribuyenteService.setTipo(tipoContribuyente);
-    console.log("estamos en el ir ",tipoContribuyente)
-    
-    this.router.navigate(['/inicio/contribuyentes']); 
+  irContribuyentes(){
+    this.router.navigate(['contribuyentesMoral']);
   }
+
 }
