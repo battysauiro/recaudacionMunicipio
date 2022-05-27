@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from 'app/usuarios/auth.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Municipio } from './municipio';
 import { Palaciomunicipal } from './palaciomunicipal';
 
 @Injectable({
@@ -11,6 +12,7 @@ import { Palaciomunicipal } from './palaciomunicipal';
 export class PalacioServiceService {
 
   private baseURL="http://localhost:8080/api/palacioMunicipal";
+  private baseURLM="http://localhost:8080/api/municipios";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
 
   constructor(private httpClient:HttpClient,private authService:AuthService) { }  
@@ -33,6 +35,10 @@ export class PalacioServiceService {
         }))
       }
 
+      ObtenerListaMunicipios():Observable<Municipio[]>{
+        return this.httpClient.get<Municipio[]>(`${this.baseURLM}`,{headers:this.agregarAuthorizationHeader()})
+        }
+
     crearPalacioMunicipal(palacio:Palaciomunicipal):Observable<Palaciomunicipal>{
       return this.httpClient.post<Palaciomunicipal>(`${this.baseURL}`,palacio,{headers:this.agregarAuthorizationHeader()});
     }
@@ -42,7 +48,7 @@ export class PalacioServiceService {
     }
 
     update(palacio:Palaciomunicipal):Observable<Palaciomunicipal>{
-      return this.httpClient.put<Palaciomunicipal>(`${this.baseURL}/${palacio.nombre_municipio}`,palacio,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.put<Palaciomunicipal>(`${this.baseURL}/${palacio.id}`,palacio,{headers:this.agregarAuthorizationHeader()});
     }
 
 

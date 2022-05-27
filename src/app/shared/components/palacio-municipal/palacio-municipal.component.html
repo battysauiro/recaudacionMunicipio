@@ -15,8 +15,8 @@
         <td>{{palacio.nombre_municipio}} </td>
         <td>{{palacio.telefono}}</td>
         <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
-          <button type="button" name="editar"  class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
-        </td> 
+          <button type="button" name="editar" [routerLink]="['/palacioMunicipal/formPalacio',palacio.id]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
+        </td>   
         <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
           <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarPalacio(palacio)'><i class="bi bi-trash"></i></button>
         </td>

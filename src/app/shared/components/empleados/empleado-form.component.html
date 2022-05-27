@@ -18,9 +18,9 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Palacio Municipal<span class="text-danger"> *</span></label> 
-                            <select  [compareWith]="compararPalacio" name="palacio" [(ngModel)]="empleado.nombre_palacio"  style="height: 30px;">
+                            <select  [compareWith]="compararPalacio" name="palacio" [(ngModel)]="empleado.palacio"  style="height: 30px;">
                                 <option [ngValue]="undefined">-- Seleccionar Palacio --</option>
-                                <option *ngFor="let palacio of palacios" [ngValue]="palacio.nombre_municipio">{{palacio.nombre_municipio}}</option>
+                                <option *ngFor="let palacio of palacios" [ngValue]="palacio.id">{{palacio.nombre_municipio}}</option>
                             </select>
                         </div>
                     </div>

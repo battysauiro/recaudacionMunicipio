@@ -20,10 +20,11 @@ import { ContribuyenteMoralComponent } from './components/contribuyentes/contrib
 import { PaginadorCmoralComponent } from './components/contribuyentes/contribuyente-moral/paginador-cmoral/paginador-cmoral.component';
 import { PalacioMunicipalComponent } from './components/palacio-municipal/palacio-municipal.component';
 import { PaginadorPalaciomunicipalComponent } from './components/palacio-municipal/paginador-palaciomunicipal/paginador-palaciomunicipal.component';
+import { FormPalacioComponent } from './components/palacio-municipal/form-palacio/form-palacio.component';
 
 
 @NgModule({
-  declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent],
+  declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
