@@ -15,6 +15,7 @@ export class ContribucionesComponent implements OnInit {
   paginador:any; 
   contribuciones:Contribucion[];
   contribucionesGeneral:Contribuciones[];
+  tipoContribuciones=["IMPUESTOS","DERECHOS","APROVECHAMIENTO","OTROS PRODUCTOS"];
   
   constructor(private contribucionService:ContribucionesServiceService,
     private activatedRoute:ActivatedRoute,

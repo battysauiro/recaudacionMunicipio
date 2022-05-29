@@ -34,10 +34,10 @@ const routes: Routes = [
     //{path:'contribuyentes/contribuyenteM/form',component:FormMoralComponent,canActivate:[AuthGuard]},
     //{path:'contribuyentes/page/:page/contribuyenteM/form',component:FormMoralComponent,canActivate:[AuthGuard]},
     //{path:'contribuyentes/contribuyenteM/form/:id',component:FormMoralComponent,canActivate:[AuthGuard]},
-    {path:'contribuciones',component:ContribucionesComponent,canActivate:[AuthGuard]},
-    {path:'contribuciones/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
-    {path:'contribuciones/page/:page/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
-    {path:'contribuciones/page/:page',component:ContribucionesComponent,canActivate:[AuthGuard]},
+    //{path:'contribuciones',component:ContribucionesComponent,canActivate:[AuthGuard]},
+    //{path:'contribuciones/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
+    //{path:'contribuciones/page/:page/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
+    //{path:'contribuciones/page/:page',component:ContribucionesComponent,canActivate:[AuthGuard]},
     //{path:'empleados',component:EmpleadosComponent,canActivate:[AuthGuard]},
     //{path:'empleados/page/:page',component:EmpleadosComponent,canActivate:[AuthGuard]},
     //{path:'empleados/formEmpleados',component:EmpleadoFormComponent,canActivate:[AuthGuard]},
@@ -68,11 +68,10 @@ const routes: Routes = [
   {path:'usuario/page/:page',component:UsersComponent,canActivate:[AuthGuard]},
   {path:'usuario/formUsuario',component:FormUserComponent,canActivate:[AuthGuard]},
   {path:'usuario/formUsuario/:id',component:FormUserComponent,canActivate:[AuthGuard]},
-  //{path:'contribuyentes',component:ContribuyentesComponent},
-  //{path:'login',component:LoginComponent},
-  //{path:'contribuyenteF/form',component:FormComponent}
-  //{path:'contribuciones',component:LoginComponent},
-  //{path:'detalleCobro',component:LoginComponent},
+  {path:'contribuciones',component:ContribucionesComponent,canActivate:[AuthGuard]},
+  {path:'contribuciones/page/:page',component:ContribucionesComponent,canActivate:[AuthGuard]},
+  {path:'contribuciones/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
+  {path:'contribuciones/formContribuciones/:id',component:FormContribucionesComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
