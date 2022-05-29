@@ -13,9 +13,9 @@ import { ContribucionesServiceService } from './contribuciones-service.service';
 export class ContribucionesComponent implements OnInit {
 
   paginador:any; 
-  contribuciones:Contribucion[];
-  contribucionesGeneral:Contribuciones[];
-  tipoContribuciones=["IMPUESTOS","DERECHOS","APROVECHAMIENTO","OTROS PRODUCTOS"];
+  contribuciones:Contribuciones[]; 
+  //76contribucionesGeneral:Contribuciones[];
+
   
   constructor(private contribucionService:ContribucionesServiceService,
     private activatedRoute:ActivatedRoute,
@@ -37,7 +37,7 @@ export class ContribucionesComponent implements OnInit {
   private obtenerContribuciones(page:number){   
     this.contribucionService.ObtenerListaContribucionesCompleto(page).subscribe(
       
-      response=> {this.contribuciones= response.contenido as Contribucion[]
+      response=> {this.contribuciones= response.contenido as Contribuciones[]
         this.paginador=response;
       }
       

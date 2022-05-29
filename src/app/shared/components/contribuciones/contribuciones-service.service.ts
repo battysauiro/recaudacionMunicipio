@@ -5,6 +5,10 @@ import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Contribucion } from './contribucion';
 import { Contribuciones } from './contribuciones';
+import { Catalogo } from './catalogo';
+import { TipoPago } from './tipo-pago';
+import { Periodicidad } from './periodicidad';
+import { TipoVehiculo } from './tipo-vehiculo';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +35,40 @@ export class ContribucionesServiceService {
         return response
       }))
     }
-  }
+
+    obtenerCatalogoDescripcion():Observable<Catalogo[]>{
+      return this.httpClient.get<Catalogo[]>(`${this.baseURL}catalogoDescripcion`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    obtenerCatalogoImpuesto():Observable<Catalogo[]>{
+      return this.httpClient.get<Catalogo[]>(`${this.baseURL}catalogoImpuesto`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    obtenerCatalogoDerechos():Observable<Catalogo[]>{
+      return this.httpClient.get<Catalogo[]>(`${this.baseURL}catalogoDerecho`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    obtenerCatalogoAprovechamiento():Observable<Catalogo[]>{
+      return this.httpClient.get<Catalogo[]>(`${this.baseURL}catalogoAprovechamiento`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    obtenerCatalogoOtrosProductos():Observable<Catalogo[]>{
+      return this.httpClient.get<Catalogo[]>(`${this.baseURL}catalogoOtrosProductos`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    obtenerTipoPago():Observable<TipoPago[]>{
+      return this.httpClient.get<TipoPago[]>(`${this.baseURL}tipoPago`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    obtenerPeriodicidad():Observable<Periodicidad[]>{
+      return this.httpClient.get<Periodicidad[]>(`${this.baseURL}periodicidad`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    obtenerTipoVehiculo():Observable<TipoVehiculo[]>{
+      return this.httpClient.get<TipoVehiculo[]>(`${this.baseURL}tipoVehiculo`,{headers:this.agregarAuthorizationHeader()})
+    }
+  
+}
   
 
   

@@ -7,18 +7,17 @@
                 <form class="form-card">
 
                     <div class="row justify-content-between text-left"> 
-                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">TIPO CONTRIBUCION<span class="text-danger"> *</span></label> 
-                            <select   > 
-                                <option *ngFor="let contribucion of tipoContribuciones" [ngValue]="contribucion">{{contribucion}} 1</option>
+                        <div class="form-group col-sm-5 flex-column d-flex"> <label class="form-control-label px-3">TIPO CONTRIBUCION<span class="text-danger"> *</span></label> 
+                            <select   name="role"   style="height: 30px;">
+                                <option [ngValue]="undefined">-- Seleccionar Contribucion --</option>
+                                <option *ngFor="let tipoContribucion of tipoContribuciones" >{{tipoContribucion}}</option>
                             </select>
-                            
+                             
                         </div>
-                        <h1>g</h1>
-                            <h1>g</h1>
-                            <h1>g</h1>
-                            <h1>g</h1>
-                            <h1>g</h1>
-                            <h1>g</h1>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Codigo<span class="text-danger"> *</span></label> <input type="text"  name="codigo" placeholder="codigo" [(ngModel)]="contribuyenteMoral.rfc_contribuyente"> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Razon social<span class="text-danger"> *</span></label> <input type="text"  name="razon" placeholder="razón social" [(ngModel)]="contribuyenteMoral.razon_social" > </div>
                     </div>
                 
                    <!-- <div class="row justify-content-between text-left">
@@ -44,4 +43,3 @@
         </div>
     </div>
 </div> 
-<h1>esto esta funcionando </h1>

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-contribuciones.component.css']
 })
 export class FormContribucionesComponent implements OnInit {
-  tipoContribuciones:["IMPUESTOS","DERECHOS","OTROS PRODUCTOS","APROVECHAMIENTO"];
+  tipoContribuciones=["IMPUESTOS","DERECHOS","APROVECHAMIENTO","OTROS PRODUCTOS"];
   constructor() { }
 
   ngOnInit(): void {
