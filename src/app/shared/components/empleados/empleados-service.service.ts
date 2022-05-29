@@ -32,7 +32,7 @@ export class EmpleadosServiceService {
   
         map((response:any)=>{
           
-          console.log(response.contenido);
+          console.log(response.contenido); 
           return response
         }))
       }
