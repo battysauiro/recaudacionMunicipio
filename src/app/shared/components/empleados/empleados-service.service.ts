@@ -37,6 +37,10 @@ export class EmpleadosServiceService {
         }))
       }
 
+      ObtenerListarEmpleados():Observable<Empleado[]>{
+        return this.httpClient.get<Empleado[]>(`${this.baseURL}`,{headers:this.agregarAuthorizationHeader()})
+        }  
+
     crearEmpleado(empleado:Empleado):Observable<Empleado>{
       return this.httpClient.post<Empleado>(`${this.baseURL}`,empleado,{headers:this.agregarAuthorizationHeader()});
     }

@@ -13,6 +13,8 @@ import { EmpleadosComponent } from '@shared/components/empleados/empleados.compo
 import { InicioComponent } from '@shared/components/inicio/inicio.component';
 import { FormPalacioComponent } from '@shared/components/palacio-municipal/form-palacio/form-palacio.component';
 import { PalacioMunicipalComponent } from '@shared/components/palacio-municipal/palacio-municipal.component';
+import { FormUserComponent } from '@shared/components/users/form-user/form-user.component';
+import { UsersComponent } from '@shared/components/users/users.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './usuarios/guards/auth.guard';
 import { LoginComponent } from './usuarios/login/login.component';
@@ -62,6 +64,10 @@ const routes: Routes = [
   {path:'palacioMunicipal/page/:page',component:PalacioMunicipalComponent,canActivate:[AuthGuard]},
   {path:'palacioMunicipal/formPalacio',component:FormPalacioComponent,canActivate:[AuthGuard]},
   {path:'palacioMunicipal/formPalacio/:id',component:FormPalacioComponent,canActivate:[AuthGuard]},
+  {path:'usuario',component:UsersComponent,canActivate:[AuthGuard]},
+  {path:'usuario/page/:page',component:UsersComponent,canActivate:[AuthGuard]},
+  {path:'usuario/formUsuario',component:FormUserComponent,canActivate:[AuthGuard]},
+  {path:'usuario/formUsuario/:id',component:FormUserComponent,canActivate:[AuthGuard]},
   //{path:'contribuyentes',component:ContribuyentesComponent},
   //{path:'login',component:LoginComponent},
   //{path:'contribuyenteF/form',component:FormComponent}

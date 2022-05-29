@@ -1,16 +1,17 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
-@Component({ 
-  selector: 'app-paginador-palaciomunicipal',
-  templateUrl: './paginador-palaciomunicipal.component.html',
-  styleUrls: ['./paginador-palaciomunicipal.component.css']
+@Component({
+  selector: 'app-paginador-user',
+  templateUrl: './paginador-user.component.html',
+  styleUrls: ['./paginador-user.component.css']
 })
-export class PaginadorPalaciomunicipalComponent implements OnInit {
+export class PaginadorUserComponent implements OnInit {
 
   @Input() paginador:any;
   paginas:number[]; 
   desde:number;
   hasta:number; 
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -33,5 +34,4 @@ export class PaginadorPalaciomunicipalComponent implements OnInit {
       this.paginas=new Array(this.paginador.totalPaginas).fill(0).map((_valor,indice)=>indice+1);
     }
   }
-
 }

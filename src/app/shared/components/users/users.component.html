@@ -1,0 +1,42 @@
+<h2 class="text-center">LISTA DE USUARIOS</h2>
+<table class="table  table-Light table-bordered table-striped" >
+  <thead class="table-estilo text-white">
+    <tr >
+        <th>Imagen</th>
+        <th>Curp Empleado</th>
+        <th>Correo</th>
+        <th>Descripcion Puesto</th>
+        <th>estado</th>
+        <th>Rol</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+        <th>Desactivar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-white " *ngFor="let usuario of usuarios">
+        <td>{{usuario.url_imagen}} </td>
+        <td>{{usuario.id_empleado}} </td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.puesto}}</td>
+        <td  [ngClass]="inputEstado.checked?'text-success':'text-danger'">{{usuario.sEstado}}</td>
+        <td>{{usuario.nombre_rol}}</td>
+        <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+          <button type="button" name="editar"  class="btn btn-primary btn-sm" [routerLink]="['/usuario/formUsuario',usuario.email]"><i class="bi bi-pencil"></i></button>
+        </td>    
+        <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+          <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarUsuario(usuario)'><i class="bi bi-trash"></i></button>
+        </td>
+        <td >
+            <label [for]="usuario.email" class="toggle-switchy" data-style="rounded">
+                <input #inputEstado checked type="checkbox" [id]="usuario.email" [checked]="usuario.estado" (change)="onChange(usuario,inputEstado.checked)" > 
+                <span class="toggle">
+                    <span class="switch"></span>
+                </span> 
+            </label>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<app-paginador-user *ngIf="paginador" [paginador]="paginador"></app-paginador-user>
+

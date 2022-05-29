@@ -3,18 +3,15 @@ import { Injectable } from '@angular/core';
 import { AuthService } from 'app/usuarios/auth.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Municipio } from './municipio';
-import { Palaciomunicipal } from './palaciomunicipal';
+import { Rol } from './rol';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PalacioServiceService {
+export class RolesServiceService {
 
-  private baseURL="http://localhost:8080/api/palacioMunicipal";
-  private baseURLM="http://localhost:8080/api/municipios";
+  private baseURL="http://localhost:8080/api/roles";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
-
   constructor(private httpClient:HttpClient,private authService:AuthService) { }  
 
   private agregarAuthorizationHeader(){
@@ -25,7 +22,7 @@ export class PalacioServiceService {
     return this.httpHeaders;
   }
 
-    ObtenerListaPalacios(pageNo:number):Observable<any>{
+    ObtenerListaRoles(pageNo:number):Observable<any>{
       return this.httpClient.get(`${this.baseURL}/page/${pageNo}`,{headers:this.agregarAuthorizationHeader()}).pipe(
   
         map((response:any)=>{
@@ -35,20 +32,20 @@ export class PalacioServiceService {
         }))
       }
 
-      ObtenerListaMunicipios():Observable<Municipio[]>{
-        return this.httpClient.get<Municipio[]>(`${this.baseURLM}`,{headers:this.agregarAuthorizationHeader()})
+      ObtenerListaRole():Observable<Rol[]>{
+        return this.httpClient.get<Rol[]>(`${this.baseURL}`,{headers:this.agregarAuthorizationHeader()})
         }
 
-    crearPalacioMunicipal(palacio:Palaciomunicipal):Observable<Palaciomunicipal>{
-      return this.httpClient.post<Palaciomunicipal>(`${this.baseURL}`,palacio,{headers:this.agregarAuthorizationHeader()});
+    crearRole(role:Rol):Observable<Rol>{
+      return this.httpClient.post<Rol>(`${this.baseURL}`,role,{headers:this.agregarAuthorizationHeader()});
     }
 
-    ObtenerPalacioMunicipal(id):Observable<Palaciomunicipal>{
-      return this.httpClient.get<Palaciomunicipal>(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
+    ObtenerRole(id):Observable<Rol>{
+      return this.httpClient.get<Rol>(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
     }
 
-    update(palacio:Palaciomunicipal):Observable<Palaciomunicipal>{
-      return this.httpClient.put<Palaciomunicipal>(`${this.baseURL}/${palacio.id}`,palacio,{headers:this.agregarAuthorizationHeader()});
+    update(role:Rol):Observable<Rol>{
+      return this.httpClient.put<Rol>(`${this.baseURL}/${role.id_rol}`,role,{headers:this.agregarAuthorizationHeader()});
     } 
 
 

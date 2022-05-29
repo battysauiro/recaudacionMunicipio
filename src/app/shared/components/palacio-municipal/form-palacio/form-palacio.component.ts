@@ -36,7 +36,7 @@ export class FormPalacioComponent implements OnInit {
     this.palacioService.ObtenerListaMunicipios().subscribe(
       
       response=> {this.municipios= response 
-        console.log(this.municipios);
+        console.log(this.municipios); 
       }
       
     );
