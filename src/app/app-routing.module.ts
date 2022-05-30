@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
+import { ContribucionImpuestoComponent } from '@shared/components/contribuciones/contribucion-impuesto/contribucion-impuesto.component';
+import { FormImpuestoComponent } from '@shared/components/contribuciones/contribucion-impuesto/form-impuesto/form-impuesto.component';
 import { ContribucionesComponent } from '@shared/components/contribuciones/contribuciones.component';
 import { FormContribucionesComponent } from '@shared/components/contribuciones/form-contribuciones.component';
 import { ContribuyenteMoral } from '@shared/components/contribuyentes/contribuyente-moral';
@@ -68,10 +70,10 @@ const routes: Routes = [
   {path:'usuario/page/:page',component:UsersComponent,canActivate:[AuthGuard]},
   {path:'usuario/formUsuario',component:FormUserComponent,canActivate:[AuthGuard]},
   {path:'usuario/formUsuario/:id',component:FormUserComponent,canActivate:[AuthGuard]},
-  {path:'contribuciones',component:ContribucionesComponent,canActivate:[AuthGuard]},
-  {path:'contribuciones/page/:page',component:ContribucionesComponent,canActivate:[AuthGuard]},
-  {path:'contribuciones/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
-  {path:'contribuciones/formContribuciones/:id',component:FormContribucionesComponent,canActivate:[AuthGuard]}
+  {path:'impuestos',component:ContribucionImpuestoComponent,canActivate:[AuthGuard]},
+  {path:'impuestos/page/:page',component:ContribucionImpuestoComponent,canActivate:[AuthGuard]},
+  {path:'impuestos/FormImpuesto',component:FormImpuestoComponent,canActivate:[AuthGuard]},
+  {path:'impuestos/FormImpuesto/:id',component:FormImpuestoComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

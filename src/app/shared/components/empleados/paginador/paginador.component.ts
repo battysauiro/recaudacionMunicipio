@@ -10,7 +10,7 @@ export class PaginadorEmpleadoComponent implements OnInit {
   @Input() paginador:any;
   paginas:number[]; 
   desde:number;
-  hasta:number;
+  hasta:number; 
   constructor() { }
 
   ngOnInit(): void {

@@ -12,7 +12,7 @@ import { ContribucionesServiceService } from './contribuciones-service.service';
 })
 export class ContribucionesComponent implements OnInit {
 
-  paginador:any; 
+  paginador:any;  
   contribuciones:Contribuciones[]; 
   //76contribucionesGeneral:Contribuciones[];
 

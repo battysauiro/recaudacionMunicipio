@@ -19,11 +19,101 @@
                             <a href="#submenuContribucion" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                                 <i class="bi bi-journal-text"></i> <span class="ms-1 d-none d-sm-inline">Contribuciones</span></a>
                             <ul class="collapse nav flex-column ms-1" id="submenuContribucion" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a routerLink="contribuciones" class="nav-link px-0"> <span class="d-none d-sm-inline">Listar Contribuciones</span></a>
+                                <li>
+                                    <a href="#submenuImpuesto" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                        <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Impuesto</span></a>
+                                    <ul class="collapse nav flex-column ms-1" id="submenuImpuesto" data-bs-parent="#submenuContribucion">
+                                        <li class="w-100">
+                                            <a routerLink="impuestos" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Impuestos Contribucion</span></a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="impuestos/FormImpuesto" class="nav-link px-0"> <span class="d-none d-sm-inline">Nuevo Impuesto Contribucion</span></a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <a routerLink="contribuciones/formContribuciones" class="nav-link px-0"> <span class="d-none d-sm-inline">Agregar Contribucion</span></a>
+                                    <a href="#submenuDerechos" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                        <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Derechos</span></a>
+                                    <ul class="collapse nav flex-column ms-1" id="submenuDerechos" data-bs-parent="#submenuContribucion">
+                                        <li>
+                                            <a href="#submenuDerechoG" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Derecho General</span></a>
+                                            <ul class="collapse nav flex-column ms-1" id="submenuDerechoG" data-bs-parent="#submenuDerechos">
+                                                <li class="w-100">
+                                                    <a routerLink="palacioMunicipal" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Derechos Generales</span></a>
+                                                </li>
+                                                <li>
+                                                    <a routerLink="palacioMunicipal/formPalacio" class="nav-link px-0"> <span class="d-none d-sm-inline">Nuevo Derecho General</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#submenuDerechoL" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Derecho Licencia</span></a>
+                                            <ul class="collapse nav flex-column ms-1" id="submenuDerechoL" data-bs-parent="#submenuDerechos">
+                                                <li class="w-100">
+                                                    <a routerLink="palacioMunicipal" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Derechos Licencias</span></a>
+                                                </li>
+                                                <li>
+                                                    <a routerLink="palacioMunicipal/formPalacio" class="nav-link px-0"> <span class="d-none d-sm-inline">Nuevo Derecho Licencia</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#submenuAprovechamiento" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                        <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Aprovechamiento</span></a>
+                                    <ul class="collapse nav flex-column ms-1" id="submenuAprovechamiento" data-bs-parent="#submenuContribucion">
+                                        <li>
+                                            <a href="#submenuMulta" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Aprovechamiento Multa</span></a>
+                                            <ul class="collapse nav flex-column ms-1" id="submenuMulta" data-bs-parent="#submenuAprovechamiento">
+                                                <li class="w-100">
+                                                    <a routerLink="palacioMunicipal" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa General</span></a>
+                                                </li>
+                                                <li>
+                                                    <a routerLink="palacioMunicipal/formPalacio" class="nav-link px-0"> <span class="d-none d-sm-inline">Nueva Multa General</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#submenuVehicular" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Multa Vehicular</span></a>
+                                            <ul class="collapse nav flex-column ms-1" id="submenuVehicular" data-bs-parent="#submenuAprovechamiento">
+                                                <li class="w-100">
+                                                    <a routerLink="palacioMunicipal" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa Vehicular</span></a>
+                                                </li>
+                                                <li>
+                                                    <a routerLink="palacioMunicipal/formPalacio" class="nav-link px-0"> <span class="d-none d-sm-inline">Nueva Multa Vehicular</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#submenuEbriedad" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Multa Ebriedad</span></a>
+                                            <ul class="collapse nav flex-column ms-1" id="submenuEbriedad" data-bs-parent="#submenuAprovechamiento">
+                                                <li class="w-100">
+                                                    <a routerLink="palacioMunicipal" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa Ebriedad</span></a>
+                                                </li>
+                                                <li>
+                                                    <a routerLink="palacioMunicipal/formPalacio" class="nav-link px-0"> <span class="d-none d-sm-inline">Nueva Multa Ebriedad</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#submenuOtrosProductos" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                        <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Otros Productos</span></a>
+                                    <ul class="collapse nav flex-column ms-1" id="submenuOtrosProductos" data-bs-parent="#submenuContribucion">
+                                        <li class="w-100">
+                                            <a routerLink="palacioMunicipal" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Otros Productos</span></a>
+                                        </li>
+                                        <li>
+                                            <a routerLink="palacioMunicipal/formPalacio" class="nav-link px-0"> <span class="d-none d-sm-inline">añadir Otros Productos</span></a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>

@@ -25,10 +25,30 @@ import { UsersComponent } from './components/users/users.component';
 import { PaginadorUserComponent } from './components/users/paginador-user/paginador-user.component';
 import { FormUserComponent } from './components/users/form-user/form-user.component';
 import { RolesComponent } from './components/roles/roles.component';
+import { ContribucionImpuestoComponent } from './components/contribuciones/contribucion-impuesto/contribucion-impuesto.component';
+import { ContribucionDerechosComponent } from './components/contribuciones/contribucion-derechos/contribucion-derechos.component';
+import { DerechosGeneralComponent } from './components/contribuciones/contribucion-derechos/derechos-general/derechos-general.component';
+import { DerechosLicenciaComponent } from './components/contribuciones/contribucion-derechos/derechos-licencia/derechos-licencia.component';
+import { MultaVehicularComponent } from './components/contribuciones/contribucion-aprovechamiento/multa-vehicular/multa-vehicular.component';
+import { MultaComponent } from './components/contribuciones/contribucion-aprovechamiento/multa/multa.component';
+import { MultaEbriedadComponent } from './components/contribuciones/contribucion-aprovechamiento/multa-ebriedad/multa-ebriedad.component';
+import { OtrosProductosComponent } from './components/contribuciones/otros-productos/otros-productos.component';
+import { FormImpuestoComponent } from './components/contribuciones/contribucion-impuesto/form-impuesto/form-impuesto.component';
+import { PaginadorImpuestoComponent } from './components/contribuciones/contribucion-impuesto/paginador-impuesto/paginador-impuesto.component';
+import { FormLicenciaComponent } from './components/contribuciones/contribucion-derechos/derechos-licencia/form-licencia/form-licencia.component';
+import { PaginadorLicenciaComponent } from './components/contribuciones/contribucion-derechos/derechos-licencia/paginador-licencia/paginador-licencia.component';
+import { FormVehicularComponent } from './components/contribuciones/contribucion-aprovechamiento/multa-vehicular/form-vehicular/form-vehicular.component';
+import { PaginadorVehicularComponent } from './components/contribuciones/contribucion-aprovechamiento/multa-vehicular/paginador-vehicular/paginador-vehicular.component';
+import { FormMultaComponent } from './components/contribuciones/contribucion-aprovechamiento/multa/form-multa/form-multa.component';
+import { PaginadorMultaComponent } from './components/contribuciones/contribucion-aprovechamiento/multa/paginador-multa/paginador-multa.component';
+import { FormEbriedadComponent } from './components/contribuciones/contribucion-aprovechamiento/multa-ebriedad/form-ebriedad/form-ebriedad.component';
+import { PaginadorEbriedadComponent } from './components/contribuciones/contribucion-aprovechamiento/multa-ebriedad/paginador-ebriedad/paginador-ebriedad.component';
+import { FormOtrosProductosComponent } from './components/contribuciones/otros-productos/form-otros-productos/form-otros-productos.component';
+import { PaginadorOtrosProductosComponent } from './components/contribuciones/otros-productos/paginador-otros-productos/paginador-otros-productos.component';
 
 
 @NgModule({
-  declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent, UsersComponent, PaginadorUserComponent, FormUserComponent, RolesComponent],
+  declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent, UsersComponent, PaginadorUserComponent, FormUserComponent, RolesComponent, ContribucionImpuestoComponent, ContribucionDerechosComponent, DerechosGeneralComponent, DerechosLicenciaComponent, MultaVehicularComponent, MultaComponent, MultaEbriedadComponent, OtrosProductosComponent, FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
