@@ -7,6 +7,7 @@ export class ContribucionAMultaVehicular extends ContribucionAprovechamiento{
     uma_min: number;
     uma_max: number;
     tipo_vehiculo: number;
+    svehiculo:string;
 
     /**constructor(codigo_contribucion:string, concepto_contribucion:string, id_tipo_pago:number, id_descripcion:number,
         id_contribucion: string,id_catalogo: number,

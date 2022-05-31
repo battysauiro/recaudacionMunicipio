@@ -4,6 +4,7 @@ export class ContribucionDerechos extends Contribucion{
 
     id_derecho: string;
     catalogo_derechos: number;
+    scatalogo_derechos:string;
 
     /**constructor(codigo_contribucion:string, concepto_contribucion:string, id_tipo_pago:number, id_descripcion:number,
         id_derecho: string,catalogo_derechos: number) {

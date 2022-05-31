@@ -16,9 +16,9 @@ export class FormImpuestoComponent implements OnInit {
 
   contribucion= new ContribucionImpuesto();
   tipoPagos:TipoPago[];
-  descripciones:Catalogo[];
+  descripciones:Catalogo[]; 
   tImpuestos:Catalogo[];
-  idFound=false;
+  idFound=false; 
   constructor(private contribucionService:ContribucionesServiceService,private router:Router,private activatedRouter:ActivatedRoute,
     private contribucionImpuestoService:CImpuestoServiceService) { }
  

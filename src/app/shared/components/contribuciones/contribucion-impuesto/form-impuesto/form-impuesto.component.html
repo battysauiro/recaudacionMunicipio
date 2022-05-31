@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Cantidad<span class="text-danger"> *</span></label> <input type="number"  name="cantidad" placeholder="cantidad" [(ngModel)]="contribucion.cantidad"> </div>
                     </div>
-                    <div class="row justify-content-between text-left"> 
+                    <div class="row justify-content-between text-left">  
                         
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Agregar</button> </div>
                         <ng-template #elseBlock>

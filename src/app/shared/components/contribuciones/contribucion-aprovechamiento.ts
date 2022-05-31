@@ -4,6 +4,7 @@ export class ContribucionAprovechamiento extends Contribucion{
 
     id_contribucion: string;
     id_catalogo: number;
+    scatalogo:string;
 
     /**constructor(codigo_contribucion:string, concepto_contribucion:string, id_tipo_pago:number, id_descripcion:number,
         id_contribucion: string,id_catalogo: number) {

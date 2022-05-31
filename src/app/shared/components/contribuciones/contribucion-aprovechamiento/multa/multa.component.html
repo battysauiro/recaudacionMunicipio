@@ -1,1 +1,32 @@
-<p>multa works!</p>
+<h2 class="text-center">LISTA DE MULTAS GENERAL CONTRIBUCION</h2>
+<table class="table  table-Light table-bordered table-striped" >
+    <thead class="table-estilo text-white">
+      <tr >
+          <th>Codigo</th>
+          <th>Concepto</th>   
+          <th>Tipo Pago</th>
+          <th>Descripcion</th>
+          <th>Tipo Aprovechamiento</th>
+          <th>Cantidad</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-white " *ngFor="let contribucion of contribuciones">
+          <td>{{contribucion.codigo_contribucion}} </td>
+          <td>{{contribucion.concepto_contribucion}}</td>
+          <td>{{contribucion.tipo_pago}}</td>
+          <td>{{contribucion.descripcion}}</td> 
+          <td>{{contribucion.scatalogo}}</td> 
+          <td>{{contribucion.cantidad}}</td> 
+          <td>
+            <button type="button" name="editar" [routerLink]="['/multa/FormMulta',contribucion.codigo_contribucion]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
+          </td> 
+          <td>  
+            <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribucion(contribucion)'><i class="bi bi-trash"></i></button>
+          </td> 
+      </tr>
+    </tbody>
+  </table> 
+  <app-paginador-multa *ngIf="paginador" [paginador]="paginador"></app-paginador-multa>

@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ContribuyentesComponent } from '@shared/components/contribuyentes/contribuyentes.component';
 import { ContribucionesServiceService } from '@shared/components/contribuciones/contribuciones-service.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //registerLocaleData(localeEs,'es-MX')
 @NgModule({
@@ -32,7 +33,8 @@ import { ContribucionesServiceService } from '@shared/components/contribuciones/
     SharedModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ContribuyenteService,

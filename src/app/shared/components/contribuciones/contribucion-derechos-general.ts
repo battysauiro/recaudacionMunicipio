@@ -5,6 +5,7 @@ export class ContribucionDerechosGeneral extends ContribucionDerechos{
     id_derecho_general: string;
     cantidad: number;
     id_periodicidad: number;
+    periodicidad: string;
 
     /**constructor(codigo_contribucion:string, concepto_contribucion:string, id_tipo_pago:number, id_descripcion:number,
         id_derecho: string,catalogo_derechos: number,

@@ -1,1 +1,34 @@
-<p>otros-productos works!</p>
+<h2 class="text-center">LISTA OTROS PRODUCTOS CONTRIBUCION</h2>
+<table class="table  table-Light table-bordered table-striped" >
+    <thead class="table-estilo text-white">
+      <tr >
+          <th>Codigo</th>
+          <th>Concepto</th>   
+          <th>Tipo Pago</th>
+          <th>Descripcion</th>
+          <th>Tipo</th>
+          <th>Periodicidad</th>
+          <th>Cantidad</th>
+          <th><i class="bi bi-pencil"></i></th>
+          <th><i class="bi bi-trash"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-white " *ngFor="let contribucion of contribuciones">
+          <td>{{contribucion.codigo_contribucion}} </td>
+          <td>{{contribucion.concepto_contribucion}}</td>
+          <td>{{contribucion.tipo_pago}}</td>
+          <td>{{contribucion.descripcion}}</td> 
+          <td>{{contribucion.catalogo_otros_productos}}</td> 
+          <td>{{contribucion.speriodicidad}}</td> 
+          <td>{{contribucion.cantidad}}</td> 
+          <td>
+            <button type="button" name="editar" [routerLink]="['/otrosProductos/FormOtrosProductos',contribucion.codigo_contribucion]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
+          </td> 
+          <td>  
+            <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribucion(contribucion)'><i class="bi bi-trash"></i></button>
+          </td> 
+      </tr>
+    </tbody>
+  </table> 
+  <app-paginador-otros-productos *ngIf="paginador" [paginador]="paginador"></app-paginador-otros-productos>

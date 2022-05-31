@@ -4,7 +4,7 @@ export class ContribucionAMultaEbriedad extends ContribucionAprovechamiento{
     
     id_apro_ebriedad: string;
     uma_min: number;
-    uma_max: number;
+    uma_max: number; 
     cantidad_alcohol: number;
 
     /**constructor(codigo_contribucion:string, concepto_contribucion:string, id_tipo_pago:number, id_descripcion:number,

@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./contribucion-impuesto.component.css']
 })
 export class ContribucionImpuestoComponent implements OnInit {
-
+ 
   paginador:any; 
   contribuciones:ContribucionImpuesto[];
   pagina=0;

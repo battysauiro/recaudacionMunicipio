@@ -1,1 +1,34 @@
-<p>derechos-licencia works!</p>
+<h2 class="text-center">LISTA DE DERECHOS LICENCIAS CONTRIBUCION</h2>
+<table class="table  table-Light table-bordered table-striped" >
+    <thead class="table-estilo text-white">
+      <tr >
+          <th>Codigo</th>
+          <th>Concepto</th>   
+          <th>Tipo Pago</th>
+          <th>Descripcion</th>
+          <th>Tipo Derecho</th>
+          <th>Expedicion</th>
+          <th>Refrendo</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-white " *ngFor="let contribucion of contribuciones">
+          <td>{{contribucion.codigo_contribucion}} </td>
+          <td>{{contribucion.concepto_contribucion}}</td>
+          <td>{{contribucion.tipo_pago}}</td>
+          <td>{{contribucion.descripcion}}</td> 
+          <td>{{contribucion.scatalogo_derechos}}</td> 
+          <td>{{contribucion.expedicion}}</td> 
+          <td>{{contribucion.refrendo}}</td> 
+          <td>
+            <button type="button" name="editar" [routerLink]="['/derechosLicencia/FormDerechoL',contribucion.codigo_contribucion]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
+          </td> 
+          <td>  
+            <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribucion(contribucion)'><i class="bi bi-trash"></i></button>
+          </td> 
+      </tr>
+    </tbody>
+  </table> 
+  <app-paginador-licencia *ngIf="paginador" [paginador]="paginador"></app-paginador-licencia>

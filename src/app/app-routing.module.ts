@@ -1,10 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
+import { FormEbriedadComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa-ebriedad/form-ebriedad/form-ebriedad.component';
+import { MultaEbriedadComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa-ebriedad/multa-ebriedad.component';
+import { FormVehicularComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa-vehicular/form-vehicular/form-vehicular.component';
+import { MultaVehicularComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa-vehicular/multa-vehicular.component';
+import { FormMultaComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa/form-multa/form-multa.component';
+import { MultaComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa/multa.component';
+import { DerechosGeneralComponent } from '@shared/components/contribuciones/contribucion-derechos/derechos-general/derechos-general.component';
+import { FormDerechoGeneralComponent } from '@shared/components/contribuciones/contribucion-derechos/derechos-general/form-derecho-general/form-derecho-general.component';
+import { DerechosLicenciaComponent } from '@shared/components/contribuciones/contribucion-derechos/derechos-licencia/derechos-licencia.component';
+import { FormLicenciaComponent } from '@shared/components/contribuciones/contribucion-derechos/derechos-licencia/form-licencia/form-licencia.component';
 import { ContribucionImpuestoComponent } from '@shared/components/contribuciones/contribucion-impuesto/contribucion-impuesto.component';
 import { FormImpuestoComponent } from '@shared/components/contribuciones/contribucion-impuesto/form-impuesto/form-impuesto.component';
 import { ContribucionesComponent } from '@shared/components/contribuciones/contribuciones.component';
 import { FormContribucionesComponent } from '@shared/components/contribuciones/form-contribuciones.component';
+import { FormOtrosProductosComponent } from '@shared/components/contribuciones/otros-productos/form-otros-productos/form-otros-productos.component';
+import { OtrosProductosComponent } from '@shared/components/contribuciones/otros-productos/otros-productos.component';
 import { ContribuyenteMoral } from '@shared/components/contribuyentes/contribuyente-moral';
 import { ContribuyenteMoralComponent } from '@shared/components/contribuyentes/contribuyente-moral/contribuyente-moral.component';
 import { FormMoralComponent } from '@shared/components/contribuyentes/contribuyente-moral/form-moral/form-moral.component';
@@ -73,8 +85,32 @@ const routes: Routes = [
   {path:'impuestos',component:ContribucionImpuestoComponent,canActivate:[AuthGuard]},
   {path:'impuestos/page/:page',component:ContribucionImpuestoComponent,canActivate:[AuthGuard]},
   {path:'impuestos/FormImpuesto',component:FormImpuestoComponent,canActivate:[AuthGuard]},
-  {path:'impuestos/FormImpuesto/:id',component:FormImpuestoComponent,canActivate:[AuthGuard]}
-];
+  {path:'impuestos/FormImpuesto/:id',component:FormImpuestoComponent,canActivate:[AuthGuard]},
+  {path:'derechosGeneral',component:DerechosGeneralComponent,canActivate:[AuthGuard]},
+  {path:'derechosGeneral/page/:page',component:DerechosGeneralComponent,canActivate:[AuthGuard]},
+  {path:'derechosGeneral/FormDerechoG',component:FormDerechoGeneralComponent,canActivate:[AuthGuard]},
+  {path:'derechosGeneral/FormDerechoG/:id',component:FormDerechoGeneralComponent,canActivate:[AuthGuard]},
+  {path:'derechosLicencia',component:DerechosLicenciaComponent,canActivate:[AuthGuard]},
+  {path:'derechosLicencia/page/:page',component:DerechosLicenciaComponent,canActivate:[AuthGuard]},
+  {path:'derechosLicencia/FormDerechoL',component:FormLicenciaComponent,canActivate:[AuthGuard]},
+  {path:'derechosLicencia/FormDerechoL/:id',component:FormLicenciaComponent,canActivate:[AuthGuard]},
+  {path:'multa',component:MultaComponent,canActivate:[AuthGuard]},  
+  {path:'multa/page/:page',component:DerechosLicenciaComponent,canActivate:[AuthGuard]},
+  {path:'multa/FormMulta',component:FormMultaComponent,canActivate:[AuthGuard]},
+  {path:'multa/FormMulta/:id',component:FormMultaComponent,canActivate:[AuthGuard]},
+  {path:'multaVehicular',component:MultaVehicularComponent,canActivate:[AuthGuard]},
+  {path:'multaVehicular/page/:page',component:MultaVehicularComponent,canActivate:[AuthGuard]},
+  {path:'multaVehicular/FormMVehicular',component:FormVehicularComponent,canActivate:[AuthGuard]},
+  {path:'multaVehicular/FormMVehicular/:id',component:FormVehicularComponent,canActivate:[AuthGuard]},
+  {path:'multaEbriedad',component:MultaEbriedadComponent,canActivate:[AuthGuard]},
+  {path:'multaEbriedad/page/:page',component:MultaEbriedadComponent,canActivate:[AuthGuard]},
+  {path:'multaEbriedad/FormMEbriedad',component:FormEbriedadComponent,canActivate:[AuthGuard]},
+  {path:'multaEbriedad/FormMEbriedad/:id',component:FormEbriedadComponent,canActivate:[AuthGuard]},
+  {path:'otrosProductos',component:OtrosProductosComponent,canActivate:[AuthGuard]},
+  {path:'otrosProductos/page/:page',component:OtrosProductosComponent,canActivate:[AuthGuard]},
+  {path:'otrosProductos/FormOtrosProductos',component:FormOtrosProductosComponent,canActivate:[AuthGuard]},
+  {path:'otrosProductos/FormOtrosProductos/:id',component:FormOtrosProductosComponent,canActivate:[AuthGuard]},
+]; 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -5,7 +5,9 @@ export class ContribucionOtrosProductos extends Contribucion{
     id_otros_productos: string;
     cantidad: number;
     periodicidad: number;
+    speriodicidad:string;
     catalogo_otros_productos: number;
+    scatalogo_otros_productos:string;
 
     /**constructor(codigo_contribucion:string, concepto_contribucion:string, id_tipo_pago:number, id_descripcion:number,
         id_otros_productos: string,cantidad: number,periodicidad: number,catalogo_otros_productos: number) {

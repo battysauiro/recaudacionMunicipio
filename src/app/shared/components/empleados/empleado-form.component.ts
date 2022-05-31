@@ -11,7 +11,7 @@ import { PalacioMunicipal } from './palacio-municipal';
   styleUrls: ['./empleado-form.component.css']
 })
 export class EmpleadoFormComponent implements OnInit {
-   empleado= new Empleado();
+   empleado= new Empleado(); 
    palacios:PalacioMunicipal[];
    idFound=false;
   constructor(private empleadoService:EmpleadosServiceService,private router:Router,private activatedRouter:ActivatedRoute) { }
