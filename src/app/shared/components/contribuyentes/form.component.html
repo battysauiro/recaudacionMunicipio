@@ -2,7 +2,7 @@
     <div class="row d-flex justify-content-center">
         <div class=" col-lg-11 col-md-9 col-11 text-center">
             <div class="card">
-                <h5 class="text-center mb-4">AGREGAR CONTRIBUYENTE</h5>
+                <h5 class="text-center mb-4">{{titulo}}</h5>
                 
                 <form class="form-card">
                   
@@ -85,10 +85,15 @@
                    
                     <div class="row justify-content-between text-left"> 
                         <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Fecha de nacimiento<span class="text-danger"> *</span></label> <input type="date" id="lname" name="lname" placeholder="fecha de nacimiento" [(ngModel)]="contribuyenteFisica.fecha" required> </div>
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create(true)' *ngIf="!idFound else elseBlock">Agregar</button> </div>
+                        
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label>
+                            <button type="submit" class="btn-block btn-primary" (click)='create(true)' *ngIf="!idFound else elseBlock">Agregar</button> 
+                        </div>
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label>
+                            <button type="button" class="btn-block btn-danger" (click)='irContribuyentes(true)'  >Cancelar</button>
+                        </div>
                         <ng-template #elseBlock>
-                            <button type="submit" class="btn-block btn-primary" (click)='update(true)' >Actualizar</button>
-                            <button type="button" class="btn-block btn-primary" (click)='irContribuyentes(true)' >Cancelar</button>
+                                <button type="submit" class="btn-block btn-primary" (click)='update(true)' >Actualizar</button>
                         </ng-template>
                     </div>
                   

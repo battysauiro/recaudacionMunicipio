@@ -71,7 +71,12 @@ export class ContribuyenteService {
   }
 
   crearContribuyenteFisica(contribuyenteFisica:ContribuyenteFisica):Observable<ContribuyenteFisica>{
-    return this.httpClient.post<ContribuyenteFisica>(`${this.baseURL}`,contribuyenteFisica,{headers:this.agregarAuthorizationHeader()});
+    return this.httpClient.post<ContribuyenteFisica>(`${this.baseURL}`,contribuyenteFisica,{headers:this.agregarAuthorizationHeader()}).pipe(
+      catchError(e=>{
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
   }
  //agrega un contribuyente Moral
   crearContribuyenteMoral(contribuyenteMoral:ContribuyenteMoral):Observable<ContribuyenteMoral>{
@@ -129,6 +134,18 @@ export class ContribuyenteService {
       this.router.navigate(['/inicio/contribuyentes']);
       return true;
     }
+    if(e.status==500){
+      console.log("usted entro en el usuario a existente");
+      window.alert("la persona Fisica ya existe");
+      
+      return true;
+    }
+
+    if(e.status==302){
+      window.alert("la curp ya existe");
+      
+      return true;
+    }
     return false;
   }
-}
+} 

@@ -19,10 +19,11 @@ export class FormComponent implements OnInit {
    
   contribuyenteFisica= new ContribuyenteFisica();
   contribuyenteMoral= new ContribuyenteMoral();
-  titulo:string ="Crear Contribuyente Fisica";
+  titulo:string ="Crear Persona Fisica";
   tipoContribuyente="Fisica";
   isChecked:boolean=true;
   idFound=false;
+
   constructor(private contribuyenteService:ContribuyenteService,private router:Router,private activatedRouter:ActivatedRoute) {
       
      }
@@ -41,6 +42,7 @@ export class FormComponent implements OnInit {
       let id=params['id'];
       if(id){
         this.idFound=true;
+        this.titulo="Actualizar Persona Fisica";
         this.contribuyenteService.ObtenerContribuente(id).subscribe(contribuyenteF=>this.contribuyenteFisica=contribuyenteF)
       }
     });

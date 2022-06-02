@@ -47,6 +47,9 @@ import { FormOtrosProductosComponent } from './components/contribuciones/otros-p
 import { PaginadorOtrosProductosComponent } from './components/contribuciones/otros-productos/paginador-otros-productos/paginador-otros-productos.component';
 import { FormDerechoGeneralComponent } from './components/contribuciones/contribucion-derechos/derechos-general/form-derecho-general/form-derecho-general.component';
 import { PaginadorDerechoGeneralComponent } from './components/contribuciones/contribucion-derechos/derechos-general/paginador-derecho-general/paginador-derecho-general.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -55,6 +58,9 @@ import { PaginadorDerechoGeneralComponent } from './components/contribuciones/co
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
     HttpClientModule,
     CommonModule,
     RouterModule

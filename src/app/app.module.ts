@@ -1,7 +1,6 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -12,10 +11,12 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { LoginComponent } from './usuarios/login/login.component';
 import { ContribuyenteService } from '@shared/components/contribuyentes/contribuyente.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContribuyentesComponent } from '@shared/components/contribuyentes/contribuyentes.component';
 import { ContribucionesServiceService } from '@shared/components/contribuciones/contribuciones-service.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlertsComponent } from './alerts/alerts.component';
+
 
 //registerLocaleData(localeEs,'es-MX')
 @NgModule({
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     NavigationComponent,
     LoginComponent,
+    AlertsComponent,
     
   ],
   imports: [//aqui van los modulos
@@ -34,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ContribuyenteService,

@@ -9,6 +9,7 @@ import { Catalogo } from './catalogo';
 import { TipoPago } from './tipo-pago';
 import { Periodicidad } from './periodicidad';
 import { TipoVehiculo } from './tipo-vehiculo';
+import { ContribucionAMulta } from './contribucion-amulta';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,10 @@ export class ContribucionesServiceService {
 
     obtenerTipoVehiculo():Observable<TipoVehiculo[]>{
       return this.httpClient.get<TipoVehiculo[]>(`${this.baseURL}tipoVehiculo`,{headers:this.agregarAuthorizationHeader()})
+    }
+
+    filtrarContribucionMulta(term:string):Observable<ContribucionAMulta[]>{
+      return this.httpClient.get<ContribucionAMulta[]>(`${this.baseURL}aprovechamientoMulta/filtrar/${term}`,{headers:this.agregarAuthorizationHeader()})
     }
   
 }

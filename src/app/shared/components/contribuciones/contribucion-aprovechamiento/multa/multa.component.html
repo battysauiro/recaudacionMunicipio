@@ -1,4 +1,22 @@
-<h2 class="text-center">LISTA DE MULTAS GENERAL CONTRIBUCION</h2>
+<div class="row justify-content-center align-items-center">
+  <form class=" example-form ">
+    <mat-form-field class="example-full-width " appearance="fill">
+      <mat-label class="text-dark row justify-content-center align-items-center">Buscar Contribucion</mat-label>
+      <input type="text"
+             placeholder="seleccionar Contribucion"
+             aria-label="Number"
+             matInput
+             [formControl]="autoCompletado"
+             [matAutocomplete]="auto"
+             >
+        <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+</form>
+</div>
 <table class="table  table-Light table-bordered table-striped" >
     <thead class="table-estilo text-white">
       <tr >

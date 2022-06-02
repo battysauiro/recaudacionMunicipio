@@ -22,8 +22,8 @@
           <th>Direccion</th>  
           <th>Nombre</th>
           <th>Fecha Nacimiento</th>
-          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Editar</th>
-          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Eliminar</th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-pencil"></i></th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-trash"></i></th>
       </tr>
     </thead>
     <tbody>

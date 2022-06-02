@@ -5,6 +5,9 @@ import { ContribucionAMulta } from '../../contribucion-amulta';
 import { CAMultaEbriedadServiceService } from '../../servicios/c-amulta-ebriedad-service.service';
 import swal from 'sweetalert2';
 import { CAprovechamientoMultaServiceService } from '../../servicios/c-aprovechamiento-multa-service.service';
+import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-multa',
@@ -16,6 +19,10 @@ export class MultaComponent implements OnInit {
   paginador:any;   
   contribuciones:ContribucionAMulta[];
   pagina=0;
+  autoCompletado = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+  
   constructor(private contribucionMultaService:CAprovechamientoMultaServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }
@@ -30,6 +37,16 @@ export class MultaComponent implements OnInit {
         this.obtenerContribuciones(page);
        }
        );
+       this.filteredOptions = this.autoCompletado.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value)),
+      );
+    }
+
+    private _filter(value: string): string[] { 
+      const filterValue = value.toLowerCase();
+  
+      return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
   
     private obtenerContribuciones(page:number){   
