@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { ContribuyenteMoral } from './contribuyente-moral';
 import { ContribuyentesComponent } from './contribuyentes.component';
 import { ContribuyenteServiceService } from './contribuyente-service.service';
+import { AlertService } from 'app/alerts/alert.service';
 
 @Component({
   selector: 'app-form',
@@ -24,7 +25,8 @@ export class FormComponent implements OnInit {
   isChecked:boolean=true;
   idFound=false;
 
-  constructor(private contribuyenteService:ContribuyenteService,private router:Router,private activatedRouter:ActivatedRoute) {
+  constructor(private contribuyenteService:ContribuyenteService,private router:Router,private activatedRouter:ActivatedRoute,
+    private alertService:AlertService) {
       
      }
 

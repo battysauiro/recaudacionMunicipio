@@ -10,6 +10,7 @@ import { ContribuyenteFisica } from './contribuyente-fisica';
 import { ContribuyenteMoral } from './contribuyente-moral';
 import swal from 'sweetalert2';
 import { formatDate, registerLocaleData } from '@angular/common';
+import { AlertService } from 'app/alerts/alert.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,8 +21,13 @@ export class ContribuyenteService {
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'})
   //@Output() tipoContribuyenteDisparador= new EventEmitter<boolean>();
   private estado:boolean;
+  options = {
+    autoClose: false,
+    keepAfterRouteChange: false
+};
   constructor(private httpClient:HttpClient,private authService:AuthService,
-    private router:Router) { }
+    private router:Router,
+    private alertService:AlertService) { }
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
     if(token!=null){ 
@@ -135,11 +141,10 @@ export class ContribuyenteService {
       return true;
     }
     if(e.status==500){
-      console.log("usted entro en el usuario a existente");
-      window.alert("la persona Fisica ya existe");
       
+      this.alertService.error('La persona Fisica ya existe', this.options);
       return true;
-    }
+    } 
 
     if(e.status==302){
       window.alert("la curp ya existe");

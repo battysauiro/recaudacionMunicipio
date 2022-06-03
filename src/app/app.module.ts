@@ -16,6 +16,7 @@ import { ContribuyentesComponent } from '@shared/components/contribuyentes/contr
 import { ContribucionesServiceService } from '@shared/components/contribuciones/contribuciones-service.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertsComponent } from './alerts/alerts.component';
+import { AlertModule } from './alerts/alert/alert.module';
 
 
 //registerLocaleData(localeEs,'es-MX')
@@ -26,10 +27,11 @@ import { AlertsComponent } from './alerts/alerts.component';
     FooterComponent,
     NavigationComponent,
     LoginComponent,
-    AlertsComponent,
-    
+    //AlertsComponent,
+     
   ],
   imports: [//aqui van los modulos
+    AlertModule,
     BrowserModule,
     CoreModule,
     SharedModule,
