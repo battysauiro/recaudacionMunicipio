@@ -15,7 +15,7 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./multa.component.css']
 })
 export class MultaComponent implements OnInit {
- 
+  
   paginador:any;   
   contribuciones:ContribucionAMulta[];
   pagina=0;

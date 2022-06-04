@@ -22,7 +22,7 @@ export class ContribuyenteService {
   //@Output() tipoContribuyenteDisparador= new EventEmitter<boolean>();
   private estado:boolean;
   options = {
-    autoClose: false,
+    autoClose: true,
     keepAfterRouteChange: false
 };
   constructor(private httpClient:HttpClient,private authService:AuthService,
@@ -103,6 +103,10 @@ export class ContribuyenteService {
     return this.httpClient.get<ContribuyenteMoral>(`${this.baseURLM}/${id}`,{headers:this.agregarAuthorizationHeader()});
   }
 
+  filtarContribuyente(term:string):Observable<ContribuyenteFisica[]>{
+    return this.httpClient.get<ContribuyenteFisica[]>(`${this.baseURL}/filtrar/${term}`,{headers:this.agregarAuthorizationHeader()})
+  }
+
   update(contribuyenteFisica:ContribuyenteFisica):Observable<ContribuyenteFisica>{
     return this.httpClient.put<ContribuyenteFisica>(`${this.baseURL}/${contribuyenteFisica.id_contribuyente_fisica}`,contribuyenteFisica,{headers:this.agregarAuthorizationHeader()});
   }
@@ -142,13 +146,12 @@ export class ContribuyenteService {
     }
     if(e.status==500){
       
-      this.alertService.error('La persona Fisica ya existe', this.options);
+      this.alertService.error('LA PERSONA FISICA YA EXISTE', this.options);
       return true;
     } 
 
     if(e.status==302){
-      window.alert("la curp ya existe");
-      
+      this.alertService.error('LA CURP YA EXISTE', this.options);
       return true;
     }
     return false;

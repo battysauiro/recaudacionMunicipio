@@ -6,21 +6,30 @@ import swal from 'sweetalert2';
 import { ContribuyenteMoral } from './contribuyente-moral';
 import { AuthService } from 'app/usuarios/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import {  map, mergeMap, startWith } from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-contribuyentes',
   templateUrl: './contribuyentes.component.html',
   styleUrls: ['./contribuyentes.component.css']
 })
 export class ContribuyentesComponent implements OnInit {
-  _isChecked:boolean;//=true;
-  _isChecked2:boolean;
+
   pagina=0;
   isFisrt=false;
   isLast=false;
   totalPaginas:number[];
   paginador:any;
+  autoCompletado = new FormControl();
+  filteredOptions: Observable<ContribuyenteFisica[]>;
+  
   
   contribuyentes:ContribuyenteFisica[];
+  term='';
+  contribuyentesO:Observable<ContribuyenteFisica[]>;
   //contribuyentesM:ContribuyenteMoral[];
   constructor(private contribuyenteService:ContribuyenteService,
     public authService:AuthService,
@@ -38,53 +47,22 @@ export class ContribuyentesComponent implements OnInit {
       page=0;
     }
     this.pagina=page;
-    this.tipo();
-    console.log(this._isChecked,"este es la mitad del camino");
-    console.log(this._isChecked2,"este es la mitad del camino chec2");
-    //this._isChecked=this._isChecked2;
-    if(this._isChecked2==null){
-      console.log(this._isChecked,"este es el nuevo cambio porque esta vacio");
-      this._isChecked=true;
-    if(this._isChecked){
-      console.log("entra en obtenerfisica 1");
-      
-      
-      this.obtenerContribuyentes(page);
-      console.log(this._isChecked2,"esto es el get");
-    }
-    else{
-      console.log("entra en obtenerMoral 1");
-      //this.obtenerContribuyentesM(page);
-      console.log(this._isChecked,"ya al final");
-    }
-    }else{
-      this._isChecked=this._isChecked2;
-      if(this._isChecked){
-        console.log("entra en obtenerfisica 1 pero del no vaciio");
-        
-        
-        this.obtenerContribuyentes(page);
-        console.log(this._isChecked,"esto es el get pero del no vaciio");
-      }
-      else{
-        console.log("entra en obtenerMoral 1 pero del no vaciio");
-        //this.obtenerContribuyentesM(page);
-        console.log(this._isChecked,"ya al final pero del no vaciio");
-      }
-     
-    }
+    this.obtenerContribuyentes(page);
     }
     );
-   
+    this.filteredOptions = this.autoCompletado.valueChanges.pipe(
+      map(value => typeof value === 'string'? value: value.rfc_contribuyente),
+      mergeMap(value => value ? this._filter(value):[]),
+    );
     //this.contribuyenteService.tipoContribuyenteDisparador.subscribe(data=>{
       //  data=this._isChecked2=data;
         //console.log(this._isChecked2,"la datita")});
   }    
 
-  private tipo(){
-   
-    this._isChecked2=this.contribuyenteService.getTipo();
-    console.log("estamos en tipo",this._isChecked2);
+  private _filter(value: string): Observable<ContribuyenteFisica[]> { 
+    const filterValue = value.toLowerCase();
+
+    return this.contribuyenteService.filtarContribuyente(filterValue);
   }
 
   private obtenerContribuyentes(pagina:number){
@@ -139,7 +117,9 @@ export class ContribuyentesComponent implements OnInit {
     this.obtenerContribuyentes();
     })*/
   }
-
+  mostrarNombre(contribuyente?:ContribuyenteFisica):string | undefined{
+    return contribuyente? contribuyente.nombre:undefined;
+  }
   /**eliminarContribuyenteM(contribuyenteM:ContribuyenteMoral){
     swal({
       title: 'Estas seguro?',
@@ -172,22 +152,8 @@ export class ContribuyentesComponent implements OnInit {
     })
   }*/
 
-  onChange(event :Event){
-    this._isChecked = (event.target as HTMLInputElement).checked;//Eventelement.checked as HTMLInputElement;
-  console.log(this._isChecked,"a ver")
-  if(this._isChecked){
-    this.obtenerContribuyentes(this.pagina);
-    console.log(this._isChecked,"a ver 1")
-  }
-  else{
-    //this.obtenerContribuyentesM(this.pagina);
-    console.log(this._isChecked,"a ver 2")
-  }
-  }
 
-  public get isChecked():boolean{
-    return this._isChecked;
-  }
+
 
   /** rewind():void{
     if(!this.isFisrt){

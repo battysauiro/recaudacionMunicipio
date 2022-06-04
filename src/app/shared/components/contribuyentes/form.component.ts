@@ -110,7 +110,26 @@ export class FormComponent implements OnInit {
     if(true)
       return true;
     else  
-      return false
+      return false ;
+  }
+
+  public vacio(){
+    if(this.contribuyenteFisica.rfc_contribuyente==null || this.contribuyenteFisica.rfc_contribuyente=="" ||
+      this.contribuyenteFisica.curp==null || this.contribuyenteFisica.curp=="" ||
+      this.contribuyenteFisica.nombre==null || this.contribuyenteFisica.nombre=="" ||
+      this.contribuyenteFisica.apellido_p==null || this.contribuyenteFisica.apellido_p=="" ||
+      this.contribuyenteFisica.apellido_m==null || this.contribuyenteFisica.apellido_m=="" ||
+      this.contribuyenteFisica.calle==null || this.contribuyenteFisica.calle=="" ||
+      this.contribuyenteFisica.colonia==null || this.contribuyenteFisica.colonia=="" ||
+      this.contribuyenteFisica.codigo_postal==null || this.contribuyenteFisica.codigo_postal=="" ||
+      this.contribuyenteFisica.fecha==null || this.contribuyenteFisica.fecha==""){
+        console.log("esta vacio "+this.contribuyenteFisica.rfc_contribuyente);
+        return true;
+      }
+        else{
+          console.log("no esta vacio "+this.contribuyenteFisica.rfc_contribuyente+  " cuatro");
+          return false;
+        }
   }
 
   onChange(event :Event){
@@ -124,4 +143,10 @@ export class FormComponent implements OnInit {
    //this.contribuyenteService.setTipo(tipo);
     this.router.navigate(['/contribuyentes']);
   }
+
+  //CONVIERTE A MAYUSCULAS LA CADENA
+  onKey(event: any){
+    event.target.value = event.target.value.toUpperCase();
+    console.log(event.target.value);
+ }
 }
