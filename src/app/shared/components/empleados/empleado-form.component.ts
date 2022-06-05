@@ -14,6 +14,7 @@ export class EmpleadoFormComponent implements OnInit {
    empleado= new Empleado(); 
    palacios:PalacioMunicipal[];
    idFound=false;
+   titulo="AÑADIR EMPLEADO";
   constructor(private empleadoService:EmpleadosServiceService,private router:Router,private activatedRouter:ActivatedRoute) { }
 
   ngOnInit(){
@@ -45,6 +46,7 @@ export class EmpleadoFormComponent implements OnInit {
       let id=params['id'];
       if(id){
         this.idFound=true;
+        this.titulo="ACTUALIZAR EMPLEADO";
         this.empleadoService.ObtenerEmpleado(id).subscribe(empleado=>this.empleado=empleado)
       }
     });
@@ -71,5 +73,24 @@ export class EmpleadoFormComponent implements OnInit {
     console.log(o2+" obj 2")
     return o1===null || o2===null || o1===undefined || o2===undefined? false:o1.id===o2.id;
   }
+
+  public vacio(){
+    if(this.empleado.curp==null || this.empleado.curp=="" ||
+      this.empleado.nombre==null || this.empleado.nombre=="" ||
+      this.empleado.apellido_p==null || this.empleado.apellido_p=="" ||
+      this.empleado.apellido_m==null || this.empleado.apellido_m=="" ||
+      this.empleado.palacio==null){
+        return true;
+      }
+        else{
+          return false;
+        }
+  }
+
+  //CONVIERTE A MAYUSCULAS LA CADENA
+  onKey(event: any){
+    event.target.value = event.target.value.toUpperCase();
+    console.log(event.target.value); 
+ }
 
 }

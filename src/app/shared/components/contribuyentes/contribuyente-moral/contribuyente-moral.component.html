@@ -1,16 +1,18 @@
-<h2 class="text-center">lISTA DE PERSONAS MORALES</h2>
+<div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
+  <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="term" [(ngModel)]="termino">
+</div> 
 <table class="table  table-Light table-bordered table-striped">
       <thead class="table-estilo text-white">
         <tr >
             <th>RMC</th>
             <th>Direccion</th>  
             <th>Razón Social</th>
-            <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Editar</th>
-            <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Eliminar</th>
+            <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-pencil"></i></th>
+            <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-trash"></i></th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="table-white " *ngFor="let contribuyente of contribuyentesM">
+      <tbody> 
+        <tr class="table-white " *ngFor="let contribuyente of contribuyentesM | filtroContribuyentemoral:termino">
             <td class="">{{contribuyente.rfc_contribuyente}}</td>
             <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>
             <td>{{contribuyente.razon_social}}</td>

@@ -14,7 +14,8 @@ export class ContribuyenteMoralComponent implements OnInit {
 
   contribuyentesM:ContribuyenteMoral[];
   paginador:any;
-  pagina=0;
+  pagina=0; 
+  termino='';
   constructor(private contribuyenteService:ContribuyenteService,
     public authService:AuthService,
     private activatedRoute:ActivatedRoute) { }

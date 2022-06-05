@@ -15,6 +15,7 @@ export class EmpleadosComponent implements OnInit {
   paginador:any; 
   empleados:Empleado[]; 
   pagina=0;
+  termEmpleado='';
   constructor(private empleadoService:EmpleadosServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }

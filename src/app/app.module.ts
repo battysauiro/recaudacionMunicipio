@@ -17,7 +17,8 @@ import { ContribucionesServiceService } from '@shared/components/contribuciones/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AlertModule } from './alerts/alert/alert.module';
-import { FiltroContribuyentePipe } from './pipes/filtro-contribuyente.pipe';
+import { FiltroUsuarioPipe } from './pipes/filtro-usuario.pipe';
+
 
 
 //registerLocaleData(localeEs,'es-MX')
@@ -27,10 +28,8 @@ import { FiltroContribuyentePipe } from './pipes/filtro-contribuyente.pipe';
     SkeletonComponent,
     FooterComponent,
     NavigationComponent,
-    LoginComponent,
-    //FiltroContribuyentePipe
-    //AlertsComponent,
-     
+    LoginComponent
+    
   ],
   imports: [//aqui van los modulos
     AlertModule,

@@ -12,6 +12,7 @@ import swal from 'sweetalert2';
 export class FormMoralComponent implements OnInit {
   contribuyenteMoral= new ContribuyenteMoral();
   idFound=false;
+  titulo:string ="Agregar Persona Moral";
   constructor(private contribuyenteService:ContribuyenteService,private router:Router,private activatedRouter:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class FormMoralComponent implements OnInit {
       let id=params['id'];
       if(id){
         this.idFound=true;
+        this.titulo="Actualizar Persona Moral";
         this.contribuyenteService.ObtenerContribuenteM(id).subscribe(contribuyenteM=>this.contribuyenteMoral=contribuyenteM)
       }
     });
@@ -50,8 +52,26 @@ export class FormMoralComponent implements OnInit {
     });
   }
 
-  irContribuyentes(){
+  irContribuyentes(){ 
     this.router.navigate(['contribuyentesMoral']);
   }
+
+  public vacio(){
+    if(this.contribuyenteMoral.rfc_contribuyente==null || this.contribuyenteMoral.rfc_contribuyente=="" ||
+      this.contribuyenteMoral.razon_social==null || this.contribuyenteMoral.razon_social=="" ||
+      this.contribuyenteMoral.calle==null || this.contribuyenteMoral.calle=="" ||
+      this.contribuyenteMoral.colonia==null || this.contribuyenteMoral.colonia=="" ||
+      this.contribuyenteMoral.codigo_postal==null || this.contribuyenteMoral.codigo_postal==""){
+        return true;
+      }
+        else{
+          return false;
+        }
+  }
+  //CONVIERTE A MAYUSCULAS LA CADENA
+  onKey(event: any){
+    event.target.value = event.target.value.toUpperCase();
+    console.log(event.target.value); 
+ }
 
 }

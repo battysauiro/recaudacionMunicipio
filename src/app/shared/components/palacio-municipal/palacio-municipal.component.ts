@@ -5,7 +5,7 @@ import { PalacioServiceService } from './palacio-service.service';
 import { Palaciomunicipal } from './palaciomunicipal';
 import swal from 'sweetalert2';
 
-@Component({
+@Component({ 
   selector: 'app-palacio-municipal',
   templateUrl: './palacio-municipal.component.html',
   styleUrls: ['./palacio-municipal.component.css']
@@ -15,6 +15,7 @@ export class PalacioMunicipalComponent implements OnInit {
   paginador:any; 
   palacios:Palaciomunicipal[];
   pagina=0;
+  termPalacio='';
   constructor(private palacioService:PalacioServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }  

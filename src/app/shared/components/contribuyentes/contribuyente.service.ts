@@ -86,7 +86,14 @@ export class ContribuyenteService {
   }
  //agrega un contribuyente Moral
   crearContribuyenteMoral(contribuyenteMoral:ContribuyenteMoral):Observable<ContribuyenteMoral>{
-    return this.httpClient.post<ContribuyenteMoral>(`${this.baseURLM}`,contribuyenteMoral,{headers:this.agregarAuthorizationHeader()});
+    return this.httpClient.post<ContribuyenteMoral>(`${this.baseURLM}`,contribuyenteMoral,{headers:this.agregarAuthorizationHeader()}).pipe(
+      catchError(e=>{
+        if(e.status==302){
+          this.alertService.error('LA PERSONA MORAL YA EXISTE', this.options);
+        }
+        return throwError(e);
+      })
+    );
   }
 
   ObtenerContribuente(id):Observable<ContribuyenteFisica>{

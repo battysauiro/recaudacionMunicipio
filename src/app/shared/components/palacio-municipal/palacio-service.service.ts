@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Municipio } from './municipio';
 import { Palaciomunicipal } from './palaciomunicipal';
 
@@ -15,8 +16,13 @@ export class PalacioServiceService {
   private baseURLM="http://localhost:8080/api/municipios";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
 
-  constructor(private httpClient:HttpClient,private authService:AuthService) { }  
+  constructor(private httpClient:HttpClient,private authService:AuthService,
+    private alertService:AlertService) { }  
 
+    options = {
+      autoClose: true,
+      keepAfterRouteChange: false
+    };
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
     if(token!=null){ 
@@ -38,9 +44,16 @@ export class PalacioServiceService {
       ObtenerListaMunicipios():Observable<Municipio[]>{
         return this.httpClient.get<Municipio[]>(`${this.baseURLM}`,{headers:this.agregarAuthorizationHeader()})
         }
-
+ 
     crearPalacioMunicipal(palacio:Palaciomunicipal):Observable<Palaciomunicipal>{
-      return this.httpClient.post<Palaciomunicipal>(`${this.baseURL}`,palacio,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.post<Palaciomunicipal>(`${this.baseURL}`,palacio,{headers:this.agregarAuthorizationHeader()}).pipe(
+        catchError(e=>{
+          if(e.status==302){
+            this.alertService.error('YA EXISTE UNA CUENTA CON ESTE MUNICIPIO', this.options);
+          }
+          return throwError(e);
+        })
+      );
     }
 
     ObtenerPalacioMunicipal(id):Observable<Palaciomunicipal>{

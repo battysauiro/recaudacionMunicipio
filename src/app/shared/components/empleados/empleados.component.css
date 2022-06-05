@@ -7,3 +7,9 @@
     background-color: white; 
     /**font-weight: bold; */
 }
+
+.busqueda{
+    display: inline; 
+    width: 40%;
+    margin-bottom: 1rem;
+}

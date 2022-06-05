@@ -15,6 +15,7 @@ export class FormPalacioComponent implements OnInit {
   palacioM= new Palaciomunicipal();
   municipios:Municipio[];
   idFound=false;
+  titulo:string ="AGREGAR PALACIO MUNICIPAL";
   constructor(private palacioService:PalacioServiceService,private router:Router,private activatedRouter:ActivatedRoute) { } 
 
   ngOnInit(): void {
@@ -47,6 +48,7 @@ export class FormPalacioComponent implements OnInit {
       let id=params['id'];
       if(id){
         this.idFound=true;
+        this.titulo="ACTUALIZAR PALACIO MUNICIPAL";
         this.palacioService.ObtenerPalacioMunicipal(id).subscribe(palacioM=>this.palacioM=palacioM)
       }
     });
@@ -70,8 +72,22 @@ export class FormPalacioComponent implements OnInit {
       console.log("anda aqui en el comparar");
       return true;
     }
-    console.log(o2+" obj 2")
     return o1===null || o2===null || o1===undefined || o2===undefined? false:o1.clave===o2.clave;
   }
+
+  public vacio(){
+    if(this.palacioM.telefono==null || this.palacioM.telefono=="" ||
+      this.palacioM.municipio==null ){
+        return true;
+      }
+        else{
+          return false; 
+        }
+  }
+
+  onKey(event: any){
+    event.target.value = event.target.value.toUpperCase();
+    console.log(event.target.value); 
+ } 
 
 }

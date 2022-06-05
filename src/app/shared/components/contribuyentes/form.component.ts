@@ -128,7 +128,7 @@ export class FormComponent implements OnInit {
       }
         else{
           console.log("no esta vacio "+this.contribuyenteFisica.rfc_contribuyente+  " cuatro");
-          return false;
+          return false; 
         }
   }
 
@@ -147,6 +147,6 @@ export class FormComponent implements OnInit {
   //CONVIERTE A MAYUSCULAS LA CADENA
   onKey(event: any){
     event.target.value = event.target.value.toUpperCase();
-    console.log(event.target.value);
- }
+    console.log(event.target.value); 
+ } 
 }

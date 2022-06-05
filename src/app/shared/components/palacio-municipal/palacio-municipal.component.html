@@ -1,16 +1,18 @@
-<h2 class="text-center">LISTA DE PALACIOS MUNICIPALES</h2>
+<div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
+  <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="termPalacio" [(ngModel)]="termPalacio">
+</div>
 <table class="table  table-Light table-bordered table-striped" >
   <thead class="table-estilo text-white">
     <tr >
         <th>Imagen</th>
         <th>Nombre Municipio</th>
         <th>Telefono</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th><i class="bi bi-pencil"></i></th>
+        <th><i class="bi bi-trash"></i></th>
     </tr>
   </thead>
   <tbody>
-    <tr class="table-white " *ngFor="let palacio of palacios">
+    <tr class="table-white " *ngFor="let palacio of palacios | filtroPalacio:termPalacio">
         <td>{{palacio.imagen}} </td>
         <td>{{palacio.nombre_municipio}} </td>
         <td>{{palacio.telefono}}</td>

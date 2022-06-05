@@ -51,11 +51,15 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FiltroContribuyentePipe } from 'app/pipes/filtro-contribuyente.pipe';
+import { FiltroContribuyentemoralPipe } from 'app/pipes/filtro-contribuyentemoral.pipe';
+import { FiltroEmpleadoPipe } from 'app/pipes/filtro-empleado.pipe';
+import { FiltroPalacioPipe } from 'app/pipes/filtro-palacio.pipe';
+import { FiltroUsuarioPipe } from 'app/pipes/filtro-usuario.pipe';
 
 
 @NgModule({
   declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent, UsersComponent, PaginadorUserComponent, FormUserComponent, RolesComponent, ContribucionImpuestoComponent, ContribucionDerechosComponent, DerechosGeneralComponent, DerechosLicenciaComponent, MultaVehicularComponent, MultaComponent, MultaEbriedadComponent, OtrosProductosComponent, 
-    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe],
+    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe,FiltroContribuyentemoralPipe,FiltroEmpleadoPipe,FiltroPalacioPipe,FiltroUsuarioPipe],
   imports: [
     FormsModule,
     ReactiveFormsModule,

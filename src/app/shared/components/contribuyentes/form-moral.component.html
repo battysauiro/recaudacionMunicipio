@@ -2,12 +2,22 @@
     <div class="row d-flex justify-content-center">
         <div class=" col-lg-8 col-md-9 col-11 text-center">
             <div class="card">
-                <h5 class="text-center mb-4">AGREGAR CONTRIBUYENTE</h5>
-                
+                <h5 class="text-center mb-4">{{titulo}}</h5> 
+                 
                 <form class="form-card">
                 
                     <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">RFC<span class="text-danger"> *</span></label> <input type="text"  name="rfc" placeholder="RFC" [(ngModel)]="contribuyenteMoral.rfc_contribuyente"> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">RFCcccccc<span class="text-danger"> *</span></label> <input type="text"  name="rfc" placeholder="RFC" [(ngModel)]="contribuyenteMoral.rfc_contribuyente"> 
+                            <div class="alert alert-danger" *ngIf="rfc.invalid && (rfc.dirty || rfc.touched)">
+                                <div *ngIf="rfc.errors.required">
+                                    El RFC es requerido
+                                </div>
+                                <div *ngIf="rfc.errors.minlength">
+                                    El RFC debe tener 13 caracteres
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Razon social<span class="text-danger"> *</span></label> <input type="text"  name="razon" placeholder="razón social" [(ngModel)]="contribuyenteMoral.razon_social" > </div>
                     </div>
 

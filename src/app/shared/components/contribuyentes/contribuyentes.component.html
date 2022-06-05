@@ -28,9 +28,9 @@
           <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-trash"></i></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody> 
       <tr class="table-white " *ngFor="let contribuyente of contribuyentes | filtro:term">
-          
+           
           <td class="">{{contribuyente.rfc_contribuyente}}</td>
           <td class="">{{contribuyente.curp}}</td>
           <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>

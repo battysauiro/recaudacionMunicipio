@@ -2,8 +2,8 @@
     <div class="row d-flex justify-content-center">
         <div class=" col-lg-8 col-md-9 col-11 text-center">
             <div class="card">
-                <h5 class="text-center mb-4">AGREGAR PALACIO MUNICIPAL</h5>
-                
+                <h5 class="text-center mb-4">{{titulo}}</h5>
+                 
                 <form class="form-card">
                     
                     <div class="row justify-content-between text-left">
@@ -13,15 +13,8 @@
                                 <option *ngFor="let municipio of municipios" [ngValue]="municipio.clave">{{municipio.nombre_municipios}}</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Telefono<span class="text-danger"> *</span></label> <input  type="text"  name="telefono" placeholder="telefono" [(ngModel)]="palacioM.telefono" required minlength="18" #tel="ngModel"> 
-                          <!--  <div class="alert alert-danger" *ngIf="curpv.invalid && (curpv.dirty || curpv.touched)">
-                                <div *ngIf="curpv.errors.required">
-                                    la CURP es requerida
-                                </div>
-                                <div *ngIf="curpv.errors.minlength">
-                                    la CURP debe tener 18 caracteres
-                                </div>
-                            </div>-->
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Telefono<span class="text-danger"> </span></label> <input  type="text"  name="telefono" placeholder="telefono" [(ngModel)]="palacioM.telefono" required minlength="10" maxlength="10" #tel="ngModel"> 
+                            
                         </div>
                         
                     </div>
@@ -35,12 +28,18 @@
                         </div>
                     </div>   
                    
-                    <div class="row justify-content-between text-left"> 
-                        
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Agregar</button> </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-4 flex-column d-flex">
+
+                        </div>
+                        <div class="form-group col-sm-4 flex-column d-flex">
+                            <button #buttonCrear [disabled]="vacio()" [ngClass]="buttonCrear.disabled?'btn btn-secondary disabled':''" type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Añadir</button> 
+                        </div>
+                        <div class="form-group col-sm-4 flex-column d-flex">
+                            <button type="button" class="btn-block btn-danger" (click)='irPalacios()'  >Cancelar</button>
+                        </div>
                         <ng-template #elseBlock>
-                            <button type="submit" class="btn-block btn-primary" (click)='update()' >Actualizar</button>
-                            <button type="button" class="btn-block btn-primary" (click)="irPalacios()" >Cancelar</button>
+                            <button #buttonUpdate [disabled]="vacio()" [ngClass]="buttonUpdate.disabled?'btn btn-secondary disabled':''" type="submit" class="btn-block btn-primary" (click)='update()' >Actualizar</button>
                         </ng-template>
                     </div>  
                 </form>
