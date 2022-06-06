@@ -3,45 +3,91 @@
         <div class=" col-lg-11 col-md-9 col-11 text-center">
             <div class="card">
                 <h5 class="text-center mb-4">AGREGAR USUARIO</h5>
-                
+
                 <form class="form-card">
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Imagen<span class="text-danger"> *</span></label> <input  type="text"  name="imagen" placeholder="imagen" [(ngModel)]="usuario.url_imagen" #img="ngModel">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group col-sm flex-column d-flex mb-3">
+                                    <select [compareWith]="compararEmpleados" name="empleados"
+                                        [(ngModel)]="usuario.id_empleado" style="height: 30px;">
+                                        <option [ngValue]="undefined">-- Seleccionar Empleado --</option>
+                                        <option *ngFor="let empleado of empleados" [ngValue]="empleado.curp">
+                                            {{empleado.curp}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm flex-column d-flex">
+                                    <select [compareWith]="compararRoles" name="role" [(ngModel)]="usuario.id_rol"
+                                        style="height: 30px;">
+                                        <option [ngValue]="undefined">-- Seleccionar Rol --</option>
+                                        <option *ngFor="let rol of roles" [ngValue]="rol.id_rol">{{rol.descripcion}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-inline col-sm flex-column d-flex"> <input type="text" name="puesto" placeholder="Descripcion Puesto"
+                                        [(ngModel)]="usuario.puesto" #puesto="ngModel">
+                                </div>
+                                <div class="form-group col-sm flex-column d-flex"> <label
+                                        class="form-control-label px-3">Correo<span class="text-danger">
+                                            *</span></label> <input [disabled]="idFound?true:false" type="email"
+                                        name="correo" placeholder="correo" [(ngModel)]="usuario.email"
+                                        #correo="ngModel"> 
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="input-group mb-3">
+                                    <button (click)="subirFoto()" class="btn btn-outline-secondary" type="button"
+                                        id="inputGroupFileAddon03">Subir Imagen</button>
+                                    <input (change)="seleccionarFoto($event)" type="file" class="form-control"
+                                        id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
+                                        aria-label="Upload">
+                                </div>
+                            </div>
                         </div>
-                        
-                        
+                    </div>
+
+                    <div class="row justify-content-between text-left">
+
+
+                    </div>
+
+                    <div class="row justify-content-between text-left">
+
+
                     </div>
                     <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" >Correo<span class="text-danger"> *</span></label> <input [disabled]="idFound?true:false" type="email"  name="correo" placeholder="correo" [(ngModel)]="usuario.email" #correo="ngModel"> 
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label
+                                class="form-control-label px-3">Contraseña<span class="text-danger"> *</span></label>
+                            <input type="text" name="password" placeholder="contraseña" [(ngModel)]="usuario.password"
+                                #password="ngModel">
                         </div>
-                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Empleado<span class="text-danger"> *</span></label> 
-                            <select  [compareWith]="compararEmpleados" name="empleados" [(ngModel)]="usuario.id_empleado"  style="height: 30px;">
-                                <option [ngValue]="undefined">-- Seleccionar Empleado --</option>
-                                <option *ngFor="let empleado of empleados" [ngValue]="empleado.curp">{{empleado.curp}}</option>
-                            </select>
-                        </div>
-                    </div>  
-                    
+
+                    </div>
                     <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Descripcion Puesto<span class="text-danger"> *</span></label> <input type="text" name="puesto" placeholder="puesto" [(ngModel)]="usuario.puesto" #puesto="ngModel">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label
+                                class="form-control-label px-3">Confirmar Contraseña<span class="text-danger">
+                                    *</span></label> <input type="text" name="password" placeholder="contraseña"
+                                [(ngModel)]="Cpassword" #cPassword="ngModel"></div>
+
+                    </div>
+                    <div class="row justify-content-between text-left">
+
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label
+                                class="form-control-label px-3"><span class="text-danger">. </span></label><button
+                                type="submit" class="btn-block btn-primary" (click)='create()'
+                                *ngIf="!idFound else elseBlock">Agregar</button> </div>
+                        <div class="form-group col-sm-4 flex-column d-flex">
+                            <button type="button" class="btn-block btn-danger" (click)='irUsuarios()'>Cancelar</button>
                         </div>
-                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Rol<span class="text-danger"> *</span></label> 
-                            <select  [compareWith]="compararRoles" name="role" [(ngModel)]="usuario.id_rol"  style="height: 30px;">
-                                <option [ngValue]="undefined">-- Seleccionar Rol --</option>
-                                <option *ngFor="let rol of roles" [ngValue]="rol.id_rol">{{rol.descripcion}}</option>
-                            </select>
-                        </div> 
-                    </div>  
-                    <div class="row justify-content-between text-left"> 
-                        
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Agregar</button> </div>
                         <ng-template #elseBlock>
-                            <button type="submit" class="btn-block btn-primary" (click)='update()' >Actualizar</button>
-                            <button type="button" class="btn-block btn-primary" (click)='irUsuarios()' >Cancelar</button>
+                            <button type="submit" class="btn-block btn-primary" (click)='update()'>Actualizar</button>
+
                         </ng-template>
                     </div>
-                  
-                 <!-- <ng-template #blockMoral>
+
+                    <!-- <ng-template #blockMoral>
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">RFC<span class="text-danger"> *</span></label> <input type="text"  name="rfc" placeholder="RFC" [(ngModel)]="contribuyenteMoral.rfc_contribuyente"> </div>
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Razon social<span class="text-danger"> *</span></label> <input type="text"  name="razon" placeholder="razón social" [(ngModel)]="contribuyenteMoral.razon_social" > </div>

@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   paginador:any; 
   usuarios:User[]; 
   pagina=0;
-  
+  termUsuario=''; 
   constructor(private usuarioService:UserServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService,

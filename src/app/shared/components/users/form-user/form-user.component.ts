@@ -7,6 +7,7 @@ import { RolesServiceService } from '@shared/components/roles/roles-service.serv
 import { User } from '../user';
 import { UserServiceService } from '../user-service.service';
 import swal from 'sweetalert2';
+import { AlertService } from 'app/alerts/alert.service';
 
 @Component({
   selector: 'app-form-user',
@@ -19,11 +20,14 @@ export class FormUserComponent implements OnInit {
   roles:Rol[];
   empleados:Empleado[];
   idFound=false;
+  Cpassword:string;
+  private fotoSeleccionada: File;
   constructor(private userService:UserServiceService,
     private rolesService:RolesServiceService,
     private empleadoService:EmpleadosServiceService,
     private router:Router,
-    private activatedRouter:ActivatedRoute) { }
+    private activatedRouter:ActivatedRoute,
+    private alertService:AlertService) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -72,6 +76,21 @@ export class FormUserComponent implements OnInit {
       this.irUsuarios();   
       swal('Usuario Actualizado',`Usuario ${this.usuario.email} actualizado con éxito`,'success');
     });
+  }
+
+  seleccionarFoto(event){
+    this.fotoSeleccionada = event.target.files[0];
+    console.log(this.fotoSeleccionada);
+  }
+
+  subirFoto(){
+    this.userService.subirFoto(this.fotoSeleccionada,this.usuario.email).subscribe(
+      usuario=>{
+        this.usuario=usuario;
+        console.log(this.usuario);
+        this.alertService.success("La foto se ha subido con exito"); 
+      }
+    );
   }
 
   irUsuarios(){

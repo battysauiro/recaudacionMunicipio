@@ -12,7 +12,11 @@
     position: absolute;
     left: -9999px;
 }
-
+.busqueda{
+    display: inline; 
+    width: 40%;
+    margin-bottom: 1rem;
+}
 /*
 Project:	Toggle Switchy
 Version:	1.14

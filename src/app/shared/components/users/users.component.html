@@ -1,4 +1,6 @@
-<h2 class="text-center">LISTA DE USUARIOS</h2>
+<div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
+  <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="termUsuario" [(ngModel)]="termUsuario">
+</div>
 <table class="table  table-Light table-bordered table-striped" >
   <thead class="table-estilo text-white">
     <tr >
@@ -8,13 +10,13 @@
         <th>Descripcion Puesto</th>
         <th>estado</th>
         <th>Rol</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th><i class="bi bi-pencil"></i></th>
+        <th><i class="bi bi-trash"></i></th> 
         <th>Desactivar</th>
     </tr>
   </thead>
   <tbody>
-    <tr class="table-white " *ngFor="let usuario of usuarios">
+    <tr class="table-white " *ngFor="let usuario of usuarios | filtroUsuario:termUsuario">
         <td>{{usuario.url_imagen}} </td>
         <td>{{usuario.id_empleado}} </td>
         <td>{{usuario.email}}</td>

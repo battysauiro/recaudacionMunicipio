@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map , catchError} from 'rxjs/operators';
 import { Empleado } from '../empleados/empleado';
 import { User } from './user';
 
@@ -14,8 +15,14 @@ export class UserServiceService {
   private baseURL="http://localhost:8080/api/usuario";
   private baseURLE="http://localhost:8080/api/empleado";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
-  constructor(private httpClient:HttpClient,private authService:AuthService) { } 
+  
+  constructor(private httpClient:HttpClient,private authService:AuthService,
+    private alertService:AlertService) { } 
 
+    options = {
+      autoClose: true,
+      keepAfterRouteChange: false
+    };
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
     if(token!=null){ 
@@ -23,6 +30,8 @@ export class UserServiceService {
     }
     return this.httpHeaders;
   }
+
+  
 
     ObtenerListaUsuarios(pageNo:number):Observable<any>{
       return this.httpClient.get(`${this.baseURL}/page/${pageNo}`,{headers:this.agregarAuthorizationHeader()}).pipe(
@@ -57,8 +66,22 @@ export class UserServiceService {
 
     updateEstado(usuario:User,estado:boolean):Observable<User>{
       return this.httpClient.put<User>(`${this.baseURL}/${usuario.email}/${estado}`,usuario,{headers:this.agregarAuthorizationHeader()});
-    }
+    } 
 
+    subirFoto(archivo:File,username):Observable<User>{
+      let formData = new FormData();
+      formData.append("archivo",archivo);
+      formData.append("username",username);
+      let httpHeaders = new HttpHeaders();
+      let token = this.authService.token;
+      if(token!=null){
+        httpHeaders=httpHeaders.append('Authorization','Bearer '+token)
+      }
+      return this.httpClient.post(`${this.baseURL}/upload`,formData,{headers:httpHeaders}).pipe(
+        map((response: any)=> response.usuario as User)
+        
+      );
+    }
 
     delete(id:string):Observable<Object>{
       return this.httpClient.delete(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
