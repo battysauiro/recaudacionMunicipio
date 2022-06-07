@@ -21,7 +21,13 @@ export class FormUserComponent implements OnInit {
   empleados:Empleado[];
   idFound=false;
   Cpassword:string;
-  private fotoSeleccionada: File;
+  fotoSeleccionada: File;
+  banderaPassword=false;
+  mensaje='';
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
   constructor(private userService:UserServiceService,
     private rolesService:RolesServiceService,
     private empleadoService:EmpleadosServiceService,
@@ -66,7 +72,9 @@ export class FormUserComponent implements OnInit {
       let id=params['id'];
       if(id){
         this.idFound=true;
-        this.userService.Obtener(id).subscribe(usuario=>this.usuario=usuario)
+        this.userService.Obtener(id).subscribe(usuario=>{
+          usuario.password="";
+          this.usuario=usuario})
       }
     });
   }
@@ -81,14 +89,26 @@ export class FormUserComponent implements OnInit {
   seleccionarFoto(event){
     this.fotoSeleccionada = event.target.files[0];
     console.log(this.fotoSeleccionada);
+    if(this.fotoSeleccionada.type.indexOf('image')<0){
+      this.alertService.error("Error al seleccionar Imagen: debe ser de tipo imagen",this.options); 
+      this.fotoSeleccionada=null;
+    }
+    else{
+      this.subirFoto();
+    }
   }
 
   subirFoto(){
+    if(!this.fotoSeleccionada){
+      this.alertService.error("Error al subir: debe seleccionar una foto",this.options); 
+    }else{
+
+    }
     this.userService.subirFoto(this.fotoSeleccionada,this.usuario.email).subscribe(
       usuario=>{
         this.usuario=usuario;
         console.log(this.usuario);
-        this.alertService.success("La foto se ha subido con exito"); 
+        //this.alertService.success("La foto se ha subido con exito"); 
       }
     );
   }
@@ -115,4 +135,62 @@ export class FormUserComponent implements OnInit {
     return o1===null || o2===null || o1===undefined || o2===undefined? false:o1.curp===o2.curp;
   }
 
+  validarCorreo(){
+    let correo=this.usuario.email;
+    if(correo===undefined){
+      correo="";
+    }
+    var expCorreo=  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    if(correo.match(expCorreo)){
+      console.log(true);
+      return true;
+      
+    }else{
+    console.log(false);
+    return false;
+  }
+  }
+
+  validarContrasena(event){
+    let password=this.usuario.password;
+    
+    var passw=  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.])[A-Za-z\d$@$!%*?&]{8,15}[^'\s]/;
+    if(password.match(passw)){
+      this.banderaPassword=true;
+    }else{
+    this.banderaPassword=false;}
+  }
+
+  compararContrasena(){
+    let password=this.usuario.password;
+    console.log("esto es lo que contiene el password");
+    console.log(password)
+    console.log("esto es lo que contiene el password de comparar");
+    console.log(this.Cpassword)
+    if(password!=" "){
+      console.log("--------------------------------");
+      console.log(password);
+    }
+    
+    if(password===this.Cpassword){
+      console.log("esto ya entro");
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  public vacio(){
+    if(this.usuario.email==null || this.usuario.email=="" ||
+      this.usuario.id_empleado==null || this.usuario.id_empleado=="" ||
+      this.usuario.id_rol==null ||
+      this.usuario.password==null || this.usuario.password=="" &&
+      (!this.compararContrasena())){
+        return true;
+      }
+        else{
+          return false; 
+        }
+  }
 }

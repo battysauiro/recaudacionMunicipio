@@ -17,7 +17,11 @@
   </thead>
   <tbody>
     <tr class="table-white " *ngFor="let usuario of usuarios | filtroUsuario:termUsuario">
-        <td>{{usuario.url_imagen}} </td>
+        <td><img *ngIf="usuario?.url_imagen" src="http://localhost:8080/api/usuario/uploads/img/{{usuario.url_imagen}}" alt="usuario.url_imagen" class="img-thumbnail rounded"
+          style="width:64px; cursor: pointer;"> 
+          <img *ngIf="!usuario?.url_imagen" src="http://localhost:8080/static/imagenes/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
+          style="width:64px; cursor: pointer;">
+        </td>
         <td>{{usuario.id_empleado}} </td>
         <td>{{usuario.email}}</td>
         <td>{{usuario.puesto}}</td>
