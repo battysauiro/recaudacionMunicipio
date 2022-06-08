@@ -50,7 +50,7 @@ export class UserServiceService {
 
       ObtenerListaEmpleados():Observable<Empleado[]>{
         return this.httpClient.get<Empleado[]>(`${this.baseURLE}`,{headers:this.agregarAuthorizationHeader()})
-        }
+        } 
 
     crearUsuario(usuario:User):Observable<User>{
       return this.httpClient.post<User>(`${this.baseURL}`,usuario,{headers:this.agregarAuthorizationHeader()}).pipe(

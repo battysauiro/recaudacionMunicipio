@@ -71,7 +71,7 @@ export class UsersComponent implements OnInit {
   }
 
   estadoUsuario(estado:boolean){
-    console.log(estado);
+    console.log(estado); 
   }
   onChange(usuario,estado){
     this.update(usuario,estado);

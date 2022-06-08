@@ -8,7 +8,7 @@
                     
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Municipio<span class="text-danger"> *</span></label> 
-                            <select  [compareWith]="compararPalacio" name="municipio" [(ngModel)]="palacioM.municipio"  style="height: 30px;">
+                            <select  [compareWith]="compararPalacio" name="municipio" [(ngModel)]="palacioM.municipio"  style="height: 30px;" [disabled]="!(!palacioM.municipio)">
                                 <option [ngValue]="undefined">-- Seleccionar Municipio --</option>
                                 <option *ngFor="let municipio of municipios" [ngValue]="municipio.clave">{{municipio.nombre_municipios}}</option>
                             </select>

@@ -1,8 +1,9 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable,throwError } from 'rxjs';
+import { map ,catchError} from 'rxjs/operators';
 import { Empleado } from './empleado';
 import { PalacioMunicipal } from './palacio-municipal';
 
@@ -13,7 +14,12 @@ export class EmpleadosServiceService {
   private baseURL="http://localhost:8080/api/empleado";
   private baseURLP="http://localhost:8080/api/palacioMunicipal";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
-  constructor(private httpClient:HttpClient,private authService:AuthService) { }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+  constructor(private httpClient:HttpClient,private authService:AuthService,
+    private alertService:AlertService) { }
 
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
@@ -42,7 +48,14 @@ export class EmpleadosServiceService {
         }  
 
     crearEmpleado(empleado:Empleado):Observable<Empleado>{
-      return this.httpClient.post<Empleado>(`${this.baseURL}`,empleado,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.post<Empleado>(`${this.baseURL}`,empleado,{headers:this.agregarAuthorizationHeader()}).pipe(
+        catchError(e=>{
+          if(e.status==302){
+            this.alertService.error('YA EXISTE EL EMPLEADO', this.options);
+          }
+          return throwError(e);
+        })
+      );
     }
 
     ObtenerEmpleado(id):Observable<Empleado>{
