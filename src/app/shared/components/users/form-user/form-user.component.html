@@ -2,7 +2,7 @@
     <div class="row d-flex justify-content-center">
         <div class=" col-lg-11 col-md-9 col-11 text-center">
             <div class="card">
-                <h5 class="text-center mb-4">AGREGAR USUARIO</h5>
+                <h5 class="text-center mb-4">{{titulo}}</h5>
 
                 
                 
@@ -52,8 +52,8 @@
                                #password="ngModel" (keyup)="validarContrasena($event)">
                                 <div class="alert alert-danger" *ngIf="!banderaPassword && (password.dirty || password.touched)">
                                     <div *ngIf="!banderaPassword">
-                                        {{banderaPassword}}
-                                        la contraseña debe contener al menos una mayuscula,
+                                        la contraseña debe tener una longitud minima de 8 caracteres
+                                        y debe contener al menos: una mayuscula,
                                        una minuscula ,un numero y un caracter especial
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                             <div class="input-group mb-3">
                                 <input (change)="seleccionarFoto($event)" type="file" class="form-control"
                                     id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
-                                    aria-label="Upload" [disabled]="!usuario.id_empleado && !compararContrasena()">
+                                    aria-label="Upload" [disabled]="desactivarImagen()">
                             </div>
                             
                                 <div class="row">
@@ -96,7 +96,7 @@
             
                 <div class="row justify-content-between text-left">
                     <ng-template #elseBlock>
-                        <button type="submit" class="btn-block btn-primary" (click)='update()'>Actualizar</button>
+                        <button #buttonUpdate [disabled]="!usuario.id_empleado" [ngClass]="buttonUpdate.disabled?'btn btn-secondary disabled':''" type="submit" class="btn-block btn-primary" (click)='update()'>Actualizar</button>
                     </ng-template>
                 </div>
 

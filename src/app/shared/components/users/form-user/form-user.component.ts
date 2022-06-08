@@ -28,6 +28,7 @@ export class FormUserComponent implements OnInit {
     autoClose: true,
     keepAfterRouteChange: false
   };
+  titulo="AGREGAR USUARIO";
   constructor(private userService:UserServiceService,
     private rolesService:RolesServiceService,
     private empleadoService:EmpleadosServiceService,
@@ -72,6 +73,7 @@ export class FormUserComponent implements OnInit {
       let id=params['id'];
       if(id){
         this.idFound=true;
+        this.titulo="ACTUALIZAR USUARIO";
         this.userService.Obtener(id).subscribe(usuario=>{
           usuario.password="";
           this.usuario=usuario})
@@ -167,12 +169,19 @@ export class FormUserComponent implements OnInit {
     console.log(password)
     console.log("esto es lo que contiene el password de comparar");
     console.log(this.Cpassword)
-    if(password!=" "){
-      console.log("--------------------------------");
-      console.log(password);
+    
+    if(password===undefined){
+      console.log("es undefinidoooooooooooooooooooooooooo");
+      return false;
+    }
+
+    if(password===""){
+      console.log("es vaciooooooooooooooooooooo");
+      return false;
     }
     
-    if(password===this.Cpassword){
+    
+    if(password===this.Cpassword && password.length>8 && this.Cpassword.length >8){
       console.log("esto ya entro");
       return true;
     }
@@ -181,11 +190,25 @@ export class FormUserComponent implements OnInit {
     }
   }
 
+  desactivarImagen(){
+    if(!this.compararContrasena() || !this.usuario.id_empleado){
+      console.log("entro en desactivar imagen");
+      return true;
+    }
+    else{
+      console.log("no entro en desactivar imagen");
+      return false;
+    }
+    
+  }
+
   public vacio(){
     if(this.usuario.email==null || this.usuario.email=="" ||
       this.usuario.id_empleado==null || this.usuario.id_empleado=="" ||
       this.usuario.id_rol==null ||
-      this.usuario.password==null || this.usuario.password=="" &&
+      this.usuario.password==null || this.usuario.password=="" ||
+      this.usuario.password.length <9 || 
+      this.Cpassword.length<9 &&
       (!this.compararContrasena())){
         return true;
       }

@@ -53,7 +53,14 @@ export class UserServiceService {
         }
 
     crearUsuario(usuario:User):Observable<User>{
-      return this.httpClient.post<User>(`${this.baseURL}`,usuario,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.post<User>(`${this.baseURL}`,usuario,{headers:this.agregarAuthorizationHeader()}).pipe(
+        catchError(e=>{
+          if(e.status==302){
+            this.alertService.error('YA EXISTE UN CORREO ASOCIADO', this.options);
+          }
+          return throwError(e);
+        })
+      );
     }
 
     Obtener(id):Observable<User>{
@@ -82,7 +89,7 @@ export class UserServiceService {
         
       );
     }
-
+ 
     delete(id:string):Observable<Object>{
       return this.httpClient.delete(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});
     }
