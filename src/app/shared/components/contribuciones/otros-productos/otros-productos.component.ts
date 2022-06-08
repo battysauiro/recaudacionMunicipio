@@ -15,6 +15,7 @@ export class OtrosProductosComponent implements OnInit {
   paginador:any;  
   contribuciones:ContribucionOtrosProductos[];
   pagina=0;
+  termProducto='';
   constructor(private contribucionOtrosPService:COtrosProductosServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }

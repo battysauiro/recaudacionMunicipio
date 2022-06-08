@@ -15,6 +15,7 @@ export class ContribucionImpuestoComponent implements OnInit {
   paginador:any; 
   contribuciones:ContribucionImpuesto[];
   pagina=0;
+  termImpuesto='';
 
   constructor(private contribucionImpuestoService:CImpuestoServiceService,
     private activatedRoute:ActivatedRoute,

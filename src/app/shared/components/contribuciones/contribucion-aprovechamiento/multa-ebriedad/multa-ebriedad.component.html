@@ -1,4 +1,6 @@
-<h2 class="text-center">LISTA DE MULTAS EBRIEDAD CONTRIBUCION</h2>
+<div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
+  <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="termEbriedad" [(ngModel)]="termEbriedad">
+</div>
 <table class="table  table-Light table-bordered table-striped" >
     <thead class="table-estilo text-white">
       <tr >
@@ -15,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-white " *ngFor="let contribucion of contribuciones">
+      <tr class="table-white " *ngFor="let contribucion of contribuciones | filtroContribuciones:termEbriedad">
           <td>{{contribucion.codigo_contribucion}} </td>
           <td>{{contribucion.concepto_contribucion}}</td>
           <td>{{contribucion.tipo_pago}}</td>

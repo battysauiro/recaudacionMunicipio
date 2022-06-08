@@ -15,6 +15,7 @@ export class MultaEbriedadComponent implements OnInit {
   paginador:any;  
   contribuciones:ContribucionAMultaEbriedad[];
   pagina=0;
+  termEbriedad='';
   constructor(private contribucionMEbriedadService:CAMultaEbriedadServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }

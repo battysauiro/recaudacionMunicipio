@@ -19,6 +19,7 @@ export class MultaComponent implements OnInit {
   paginador:any;   
   contribuciones:ContribucionAMulta[];
   pagina=0;
+  termContribucion='';
   autoCompletado = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;

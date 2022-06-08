@@ -15,6 +15,7 @@ export class MultaVehicularComponent implements OnInit {
   paginador:any; 
   contribuciones:ContribucionAMultaVehicular[];
   pagina=0;
+  termVehicular='';
   constructor(private contribucionMVehicularService:CAprovechamientoVehicularServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }

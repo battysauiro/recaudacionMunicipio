@@ -15,6 +15,7 @@ export class DerechosGeneralComponent implements OnInit {
   paginador:any;  
   contribuciones:ContribucionDerechosGeneral[];
   pagina=0;
+  termDerecho='';
   constructor(private contribucionDGeneralService:CDerechosGeneralServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }

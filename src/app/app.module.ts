@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AlertModule } from './alerts/alert/alert.module';
 import { FiltroUsuarioPipe } from './pipes/filtro-usuario.pipe';
+import { FiltroContribucionesPipe } from './pipes/filtro-contribuciones.pipe';
 
 
 

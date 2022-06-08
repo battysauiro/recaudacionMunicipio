@@ -3,6 +3,12 @@
     background-color: rgb(75, 69, 198);
 }
 
+.busqueda{
+    display: inline; 
+    width: 40%;
+    margin-bottom: 1rem;
+  }
+  
 .table-white{
     background-color: white; 
     /**font-weight: bold; */

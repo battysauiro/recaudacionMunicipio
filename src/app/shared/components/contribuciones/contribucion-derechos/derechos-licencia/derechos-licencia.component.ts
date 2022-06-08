@@ -15,6 +15,7 @@ export class DerechosLicenciaComponent implements OnInit {
   paginador:any;  
   contribuciones:ContribucionDerechoslicencia[];
   pagina=0;
+  termLicencia='';
   constructor(private contribucionDLicenciaService:CDerechosLicenciaServiceService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService) { }
