@@ -19,7 +19,7 @@ export class UserServiceService {
   constructor(private httpClient:HttpClient,private authService:AuthService,
     private alertService:AlertService) { } 
 
-    options = {
+    options = { 
       autoClose: true,
       keepAfterRouteChange: false
     };
