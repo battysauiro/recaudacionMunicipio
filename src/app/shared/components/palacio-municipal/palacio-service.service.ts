@@ -55,6 +55,20 @@ export class PalacioServiceService {
         })
       );
     }
+    subirFoto(archivo:File,idpalacio):Observable<Palaciomunicipal>{
+      let formData = new FormData();
+      formData.append("archivo",archivo);
+      formData.append("idPalacio",idpalacio);
+      let httpHeaders = new HttpHeaders();
+      let token = this.authService.token;
+      if(token!=null){
+        httpHeaders=httpHeaders.append('Authorization','Bearer '+token)
+      }
+      return this.httpClient.post(`${this.baseURL}/upload`,formData,{headers:httpHeaders}).pipe(
+        map((response: any)=> response.palacio as Palaciomunicipal)
+        
+      );
+    }
 
     ObtenerPalacioMunicipal(id):Observable<Palaciomunicipal>{
       return this.httpClient.get<Palaciomunicipal>(`${this.baseURL}/${id}`,{headers:this.agregarAuthorizationHeader()});

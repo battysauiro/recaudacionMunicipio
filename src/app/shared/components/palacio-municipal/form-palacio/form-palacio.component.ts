@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from 'app/alerts/alert.service';
 import swal from 'sweetalert2';
 import { Municipio } from '../municipio';
 import { PalacioServiceService } from '../palacio-service.service';
@@ -15,8 +16,14 @@ export class FormPalacioComponent implements OnInit {
   palacioM= new Palaciomunicipal();
   municipios:Municipio[];
   idFound=false;
+  fotoSeleccionada: File;
   titulo:string ="AGREGAR PALACIO MUNICIPAL";
-  constructor(private palacioService:PalacioServiceService,private router:Router,private activatedRouter:ActivatedRoute) { } 
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+  constructor(private palacioService:PalacioServiceService,private router:Router,private activatedRouter:ActivatedRoute,
+    private alertService:AlertService) { } 
 
   ngOnInit(): void {
     this.cargarPalacioM();
@@ -74,7 +81,7 @@ export class FormPalacioComponent implements OnInit {
     }
     return o1===null || o2===null || o1===undefined || o2===undefined? false:o1.clave===o2.clave;
   }
-
+ 
   public vacio(){
     if(this.palacioM.telefono==null || this.palacioM.telefono=="" ||
       this.palacioM.municipio==null ){
@@ -90,4 +97,30 @@ export class FormPalacioComponent implements OnInit {
     console.log(event.target.value); 
  } 
 
+ seleccionarFoto(event){
+  this.fotoSeleccionada = event.target.files[0];
+  console.log(this.fotoSeleccionada);
+  if(this.fotoSeleccionada.type.indexOf('image')<0){
+    this.alertService.error("Error al seleccionar Imagen: debe ser de tipo imagen",this.options); 
+    this.fotoSeleccionada=null;
+  }
+  else{
+    this.subirFoto();
+  }
+}
+
+subirFoto(){
+  if(!this.fotoSeleccionada){
+    this.alertService.error("Error al subir: debe seleccionar una foto",this.options); 
+  }else{
+
+  }
+  this.palacioService.subirFoto(this.fotoSeleccionada,this.palacioM.id).subscribe(
+    palacio=>{
+      this.palacioM=palacio;
+      console.log(this.palacioM);
+      //this.alertService.success("La foto se ha subido con exito"); 
+    }
+  );
+}
 }

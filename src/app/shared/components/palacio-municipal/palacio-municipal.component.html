@@ -13,8 +13,12 @@
   </thead>
   <tbody>
     <tr class="table-white " *ngFor="let palacio of palacios | filtroPalacio:termPalacio">
-        <td>{{palacio.imagen}} </td>
-        <td>{{palacio.nombre_municipio}} </td>
+      <td><img *ngIf="palacio?.imagen" src="http://localhost:8080/api/palacioMunicipal/uploads/img/{{palacio.imagen}}" alt="palacio.imagen" class="img-thumbnail rounded"
+        style="width:64px; cursor: pointer;"> 
+        <img *ngIf="!palacio?.imagen" src="http://localhost:8080/static/imagenes_municipios/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
+        style="width:64px; cursor: pointer;">
+      </td>
+        <td>{{palacio.nombre_municipio}} </td> 
         <td>{{palacio.telefono}}</td>
         <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
           <button type="button" name="editar" [routerLink]="['/palacioMunicipal/formPalacio',palacio.id]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
