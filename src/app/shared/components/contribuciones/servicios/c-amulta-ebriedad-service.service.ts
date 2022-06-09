@@ -1,8 +1,9 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { ContribucionAMultaEbriedad } from '../contribucion-amulta-ebriedad';
 
 @Injectable({
@@ -12,8 +13,13 @@ export class CAMultaEbriedadServiceService {
 
   private baseURL="http://localhost:8080/api/multaEbriedad";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
 
-  constructor(private httpClient:HttpClient,private authService:AuthService) { }
+  constructor(private httpClient:HttpClient,private authService:AuthService,
+    private alertService:AlertService) { }
 
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
@@ -35,7 +41,14 @@ export class CAMultaEbriedadServiceService {
       }
 
     crearCMebriedad(mEbriedad:ContribucionAMultaEbriedad):Observable<ContribucionAMultaEbriedad>{
-      return this.httpClient.post<ContribucionAMultaEbriedad>(`${this.baseURL}`,mEbriedad,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.post<ContribucionAMultaEbriedad>(`${this.baseURL}`,mEbriedad,{headers:this.agregarAuthorizationHeader()}).pipe(
+        catchError(e=>{
+          if(e.status==302){
+            this.alertService.error('YA EXISTE UNA CONTRIBUCION CON ESTA IFORMACION', this.options);
+          }
+          return throwError(e);
+        })
+      );
     }
 
     ObtenerCMebriedad(id):Observable<ContribucionAMultaEbriedad>{

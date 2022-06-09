@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { ContribucionAMulta } from '../contribucion-amulta';
 
 @Injectable({
@@ -12,8 +13,13 @@ export class CAprovechamientoMultaServiceService {
 
   private baseURL="http://localhost:8080/api/aprovechamientoMulta";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
 
-  constructor(private httpClient:HttpClient,private authService:AuthService) { }
+  constructor(private httpClient:HttpClient,private authService:AuthService,
+    private alertService:AlertService) { }
 
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
@@ -35,7 +41,14 @@ export class CAprovechamientoMultaServiceService {
       }
 
     crearCMulta(multa:ContribucionAMulta):Observable<ContribucionAMulta>{
-      return this.httpClient.post<ContribucionAMulta>(`${this.baseURL}`,multa,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.post<ContribucionAMulta>(`${this.baseURL}`,multa,{headers:this.agregarAuthorizationHeader()}).pipe(
+        catchError(e=>{
+          if(e.status==302){
+            this.alertService.error('YA EXISTE UNA CONTRIBUCION CON ESTA IFORMACION', this.options);
+          }
+          return throwError(e);
+        })
+      );
     }
 
     ObtenerCMulta(id):Observable<ContribucionAMulta>{
