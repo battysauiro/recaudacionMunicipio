@@ -53,7 +53,7 @@ export class PalacioServiceService {
           }
           return throwError(e);
         })
-      );
+      ); 
     }
     subirFoto(archivo:File,idpalacio):Observable<Palaciomunicipal>{
       let formData = new FormData();

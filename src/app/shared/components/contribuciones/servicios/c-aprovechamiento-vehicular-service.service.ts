@@ -1,8 +1,9 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { ContribucionAMultaVehicular } from '../contribucion-amulta-vehicular';
 
 @Injectable({
@@ -12,8 +13,13 @@ export class CAprovechamientoVehicularServiceService {
 
   private baseURL="http://localhost:8080/api/multaVehicular";
   private httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
 
-  constructor(private httpClient:HttpClient,private authService:AuthService) { }
+  constructor(private httpClient:HttpClient,private authService:AuthService,
+    private alertService:AlertService) { }
 
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
@@ -35,7 +41,14 @@ export class CAprovechamientoVehicularServiceService {
       }
 
     crearCMvehicular(mVehicular:ContribucionAMultaVehicular):Observable<ContribucionAMultaVehicular>{
-      return this.httpClient.post<ContribucionAMultaVehicular>(`${this.baseURL}`,mVehicular,{headers:this.agregarAuthorizationHeader()});
+      return this.httpClient.post<ContribucionAMultaVehicular>(`${this.baseURL}`,mVehicular,{headers:this.agregarAuthorizationHeader()}).pipe(
+        catchError(e=>{
+          if(e.status==302){
+            this.alertService.error('YA EXISTE UNA CONTRIBUCION CON ESTA IFORMACION', this.options);
+          }
+          return throwError(e);
+        })
+      );
     }
 
     ObtenerCMvehicular(id):Observable<ContribucionAMultaVehicular>{
