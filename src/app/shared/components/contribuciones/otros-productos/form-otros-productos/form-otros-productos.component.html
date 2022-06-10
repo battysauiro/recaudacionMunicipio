@@ -39,15 +39,17 @@
                     </div>
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Cantidad<span class="text-danger"> *</span></label> <input type="number"  name="cantidad" placeholder="cantidad" [(ngModel)]="contribucion.cantidad"> </div>
-                    </div>
+                    </div> 
+
                     <div class="row justify-content-between text-left">  
-                        
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label><button type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Agregar</button> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger"> </span></label><button #buttonCrear [disabled]="vacio()" [ngClass]="buttonCrear.disabled?'btn btn-secondary disabled':''" type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Agregar</button> </div>
+                        <div class="form-group col-sm-4 flex-column d-flex">
+                            <button type="button" class="btn-block btn-danger" (click)='irOtrosProductos()'  >Cancelar</button>
+                        </div>
                         <ng-template #elseBlock>
-                            <button type="submit" class="btn-block btn-primary" (click)='update()' >Actualizar</button>
-                            <button type="button" class="btn-block btn-primary" (click)="irOtrosProductos()" >Cancelar</button>
+                            <button #buttonUpdate [disabled]="vacio()" [ngClass]="buttonUpdate.disabled?'btn btn-secondary disabled':''" type="submit" class="btn-block btn-primary" (click)='update()' >Actualizar</button>
                         </ng-template>
-                    </div>  
+                    </div>
                 </form>
             </div>
         </div>

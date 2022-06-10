@@ -129,4 +129,19 @@ export class FormVehicularComponent implements OnInit {
       }
       return o1===null || o2===null || o1===undefined || o2===undefined? false:o1.id_tipo_vehiculo===o2.id_tipo_vehiculo;
     }
+
+    public vacio(){
+      if(this.contribucion.codigo_contribucion==null || this.contribucion.codigo_contribucion=="" ||
+        this.contribucion.concepto_contribucion==null || this.contribucion.concepto_contribucion=="" ||
+        this.contribucion.id_tipo_pago==null ||
+        this.contribucion.id_descripcion==null ||
+        this.contribucion.id_catalogo==null ||
+        this.contribucion.tipo_vehiculo==null ||
+        this.contribucion.descripcion_articulo==null || this.contribucion.descripcion_articulo==""){
+          return true;
+        }
+          else{
+            return false; 
+          }
+    }
 }
