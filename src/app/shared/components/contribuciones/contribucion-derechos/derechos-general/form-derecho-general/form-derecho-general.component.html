@@ -6,7 +6,7 @@
                 
                 <form class="form-card">
                     <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Codigo<span class="text-danger"> *</span></label> <input type="text"  name="codigo" placeholder="codigo" [(ngModel)]="contribucion.codigo_contribucion"> </div>
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Codigo<span class="text-danger"> *</span></label> <input [disabled]="idFound?true:false" type="text"  name="codigo" placeholder="codigo" [(ngModel)]="contribucion.codigo_contribucion"> </div>
                         <div class="form-group col-sm-8 flex-column d-flex"> <label class="form-control-label px-3">Descripcion<span class="text-danger"> *</span></label> <input type="text"  name="concepto" placeholder="descripcion" [(ngModel)]="contribucion.concepto_contribucion" > </div>
                     </div>
                     <div class="row justify-content-between text-left"> 

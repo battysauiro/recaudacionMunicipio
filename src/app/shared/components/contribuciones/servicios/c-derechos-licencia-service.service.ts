@@ -43,7 +43,7 @@ export class CDerechosLicenciaServiceService {
       return this.httpClient.post<ContribucionDerechoslicencia>(`${this.baseURL}`,dLicencia,{headers:this.agregarAuthorizationHeader()}).pipe(
         catchError(e=>{
           if(e.status==302){
-            this.alertService.error('YA EXISTE UNA CONTRIBUCION CON ESTA IFORMACION', this.options);
+            this.alertService.error('YA EXISTE UNA CONTRIBUCION CON ESTA INFORMACION', this.options);
           }
           return throwError(e);
         })
