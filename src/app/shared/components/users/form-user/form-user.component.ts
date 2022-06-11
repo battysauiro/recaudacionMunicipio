@@ -156,7 +156,7 @@ export class FormUserComponent implements OnInit {
   validarContrasena(event){
     let password=this.usuario.password;
     
-    var passw=  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.])[A-Za-z\d$@$!%*?&]{8,15}[^'\s]/;
+var passw=  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*¡¿#?&./()=])[A-Za-z\d$@!%*¡¿#?&./()=]{8,15}[^'\s]/;
     if(password.match(passw)){
       this.banderaPassword=true;
     }else{
