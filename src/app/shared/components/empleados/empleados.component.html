@@ -16,8 +16,11 @@
       <th>Nombre</th>
       <th>Apellido Paterno</th>
       <th>Apellido Materno</th>
+      <!--
       <th><i class="bi bi-pencil"></i></th>
-      <th><i class="bi bi-trash"></i></th>
+      <th><i class="bi bi-trash"></i></th>-->
+      <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-pencil"></i></th>
+      <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-trash"></i></th>
     </tr>
   </thead>
   <tbody>
@@ -30,7 +33,7 @@
         <button type="button" name="editar" [routerLink]="['/empleados/formEmpleados',empleado.curp]"
           class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
       </td>
-      <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+      <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
         <button type="button" name="eliminar" class="btn btn-danger btn-sm" (click)='eliminarEmpleado(empleado)'><i
             class="bi bi-trash"></i></button>
       </td>

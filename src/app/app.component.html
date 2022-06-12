@@ -26,7 +26,7 @@
                                         <li class="w-100">
                                             <a routerLink="impuestos" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Impuestos Contribucion</span></a>
                                         </li>
-                                        <li>
+                                        <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                                             <a routerLink="impuestos/FormImpuesto" class="nav-link px-0"> <span class="d-none d-sm-inline">Nuevo Impuesto Contribucion</span></a>
                                         </li>
                                     </ul>
@@ -42,7 +42,7 @@
                                                 <li class="w-100">
                                                     <a routerLink="derechosGeneral" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Derechos Generales</span></a>
                                                 </li>
-                                                <li>
+                                                <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                                                     <a routerLink="derechosGeneral/FormDerechoG" class="nav-link px-0"> <span class="d-none d-sm-inline">Nuevo Derecho General</span></a>
                                                 </li>
                                             </ul>
@@ -54,7 +54,7 @@
                                                 <li class="w-100">
                                                     <a routerLink="derechosLicencia" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Derechos Licencias</span></a>
                                                 </li>
-                                                <li>
+                                                <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                                                     <a routerLink="derechosLicencia/FormDerechoL" class="nav-link px-0"> <span class="d-none d-sm-inline">Nuevo Derecho Licencia</span></a>
                                                 </li>
                                             </ul>
@@ -72,7 +72,7 @@
                                                 <li class="w-100">
                                                     <a routerLink="multa" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa General</span></a>
                                                 </li>
-                                                <li>
+                                                <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                                                     <a routerLink="multa/FormMulta" class="nav-link px-0"> <span class="d-none d-sm-inline">Nueva Multa General</span></a>
                                                 </li>
                                             </ul>
@@ -84,7 +84,7 @@
                                                 <li class="w-100">
                                                     <a routerLink="multaVehicular" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa Vehicular</span></a>
                                                 </li>
-                                                <li>
+                                                <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                                                     <a routerLink="multaVehicular/FormMVehicular" class="nav-link px-0"> <span class="d-none d-sm-inline">Nueva Multa Vehicular</span></a>
                                                 </li>
                                             </ul>
@@ -96,7 +96,7 @@
                                                 <li class="w-100">
                                                     <a routerLink="multaEbriedad" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa Ebriedad</span></a>
                                                 </li>
-                                                <li>
+                                                <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                                                     <a routerLink="multaEbriedad/FormMEbriedad" class="nav-link px-0"> <span class="d-none d-sm-inline">Nueva Multa Ebriedad</span></a>
                                                 </li>
                                             </ul>
@@ -110,8 +110,8 @@
                                         <li class="w-100">
                                             <a routerLink="otrosProductos" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Otros Productos</span></a>
                                         </li>
-                                        <li>
-                                            <a routerLink="otrosProductos/FormOtrosProductos" class="nav-link px-0"> <span class="d-none d-sm-inline">añadir Otros Productos</span></a>
+                                        <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
+                                            <a routerLink="otrosProductos/FormOtrosProductos" class="nav-link px-0"> <span class="d-none d-sm-inline">Añadir Otros Productos</span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -127,15 +127,15 @@
                                 <li>
                                     <a routerLink="contribuyentesMoral"  class="nav-link px-0"> <span class="d-none d-sm-inline">Listar Personas Moral</span></a>
                                 </li>
-                                <li>
+                                <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
                                     <a routerLink="contribuyentes/contribuyenteF/form" class="nav-link px-0"> <span class="d-none d-sm-inline">Agregar Persona Fisica</span></a>
                                 </li>
-                                <li>
+                                <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
                                     <a routerLink="contribuyentes/contribuyenteM/form" class="nav-link px-0"> <span class="d-none d-sm-inline">Agregar Persona Moral</span></a>
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
                             <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                                 <i class="bi bi-person-video2"></i> <span class="ms-1 d-none d-sm-inline">Empleados</span></a>
                             <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
@@ -147,7 +147,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                             <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                                 <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Palacio Municipal</span></a>
                             <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
@@ -159,14 +159,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
                             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                 <i class="bi bi-person-lines-fill"></i> <span class="ms-1 d-none d-sm-inline">Usuarios</span> </a>
                                 <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                                 <li class="w-100">
                                     <a routerLink="usuario" class="nav-link px-0"> <span class="d-none d-sm-inline">Listar Usuario</span></a>
                                 </li>
-                                <li>
+                                <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                                     <a routerLink="usuario/formUsuario" class="nav-link px-0"> <span class="d-none d-sm-inline">Agregar Usuario</span></a>
                                 </li>
                             </ul>
@@ -181,7 +181,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                             <li>
-                                <button (click)="logout()" class="dropdown-item" type="submit">Sign Out</button>
+                                <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Secion</button>
                                 <!--<a class="dropdown-item" href="#">Sign out</a>-->
                             </li>
                         </ul> 

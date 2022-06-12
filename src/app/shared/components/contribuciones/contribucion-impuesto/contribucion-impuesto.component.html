@@ -19,8 +19,8 @@
           <th>Descripcion</th>
           <th>Tipo Impuesto</th>
           <th>Cantidad</th>
-          <th>Editar</th>
-          <th>Eliminar</th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-pencil"></i></th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-trash"></i></th>
       </tr>
     </thead>
     <tbody>
@@ -31,10 +31,10 @@
           <td>{{contribucion.descripcion}}</td> 
           <td>{{contribucion.scatalogo_impuesto}}</td> 
           <td>{{contribucion.cantidad}}</td> 
-          <td>
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
             <button type="button" name="editar" [routerLink]="['/impuestos/FormImpuesto',contribucion.codigo_contribucion]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
           </td> 
-          <td>  
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">  
             <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribucion(contribucion)'><i class="bi bi-trash"></i></button>
           </td> 
       </tr>

@@ -24,8 +24,8 @@
           <th>Direccion</th>  
           <th>Nombre</th>
           <th>Fecha Nacimiento</th>
-          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-pencil"></i></th>
-          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])"><i class="bi bi-trash"></i></th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])"><i class="bi bi-pencil"></i></th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-trash"></i></th>
       </tr>
     </thead>
     <tbody> 
@@ -36,10 +36,10 @@
           <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>
           <td>{{contribuyente.nombre}} {{contribuyente.apellido_p}} {{contribuyente.apellido_m}}</td>
           <td>{{contribuyente.fecha}}</td>
-          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])">
             <button type="button" name="editar" [routerLink]="['/contribuyentes/contribuyenteF/form',contribuyente.rfc_contribuyente]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
           </td> 
-          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">  
             <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribuyente(contribuyente)'><i class="bi bi-trash"></i></button>
           </td>
       </tr>

@@ -13,8 +13,8 @@
           <th>Articulo</th>
           <th>Uma min</th>
           <th>Uma max</th>
-          <th><i class="bi bi-pencil"></i></th>
-          <th><i class="bi bi-trash"></i></th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-pencil"></i></th>
+          <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-trash"></i></th>
       </tr>
     </thead>
     <tbody>
@@ -28,10 +28,10 @@
           <td>{{contribucion.descripcion_articulo}}</td> 
           <td>{{contribucion.uma_min}}</td> 
           <td>{{contribucion.uma_max}}</td> 
-          <td>
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
             <button type="button" name="editar" [routerLink]="['/multaVehicular/FormMVehicular',contribucion.codigo_contribucion]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
           </td> 
-          <td>  
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">  
             <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribucion(contribucion)'><i class="bi bi-trash"></i></button>
           </td> 
       </tr>
