@@ -33,7 +33,7 @@
 
                             <div class="form-group col-sm flex-column d-flex"><label
                                 class="form-control-label px-3">Puesto<span class="text-danger"></span></label> <input type="text" name="puesto" placeholder="Descripcion Puesto"
-                                    [(ngModel)]="usuario.puesto" #puesto="ngModel">
+                                    [(ngModel)]="usuario.puesto" #puesto="ngModel"> 
                             </div>
                             <div class="form-group col-sm flex-column d-flex"> <label
                                     class="form-control-label px-3">Correo<span class="text-danger">
@@ -51,7 +51,7 @@
                             <input type="text" name="password" placeholder="contraseña" [(ngModel)]="usuario.password"
                                #password="ngModel" (keyup)="validarContrasena($event)">
                                 <div class="alert alert-danger" *ngIf="!banderaPassword && (password.dirty || password.touched)">
-                                    <div *ngIf="!banderaPassword">
+                                    <div *ngIf="!banderaPassword"> 
                                         la contraseña debe tener una longitud minima de 8 caracteres
                                         y debe contener al menos: una mayuscula,
                                        una minuscula ,un numero y un caracter especial

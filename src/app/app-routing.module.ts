@@ -27,6 +27,8 @@ import { EmpleadosComponent } from '@shared/components/empleados/empleados.compo
 import { InicioComponent } from '@shared/components/inicio/inicio.component';
 import { FormPalacioComponent } from '@shared/components/palacio-municipal/form-palacio/form-palacio.component';
 import { PalacioMunicipalComponent } from '@shared/components/palacio-municipal/palacio-municipal.component';
+import { ChangePasswordComponent } from '@shared/components/recuperar-password/change-password.component';
+import { SendEmailComponent } from '@shared/components/recuperar-password/send-email.component';
 import { FormUserComponent } from '@shared/components/users/form-user/form-user.component';
 import { UsersComponent } from '@shared/components/users/users.component';
 import { AppComponent } from './app.component';
@@ -35,33 +37,9 @@ import { LoginComponent } from './usuarios/login/login.component';
 
 
 const routes: Routes = [
-  //{path:'',redirectTo:'/inicio',pathMatch:'full'},//component:LoginComponent},//SkeletonComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'},//component:LoginComponent},
   {path:'login',component:LoginComponent},
-  {path:'inicio',component:InicioComponent,children: [  
-    //{path:'contribuyentes',component:ContribuyentesComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/page/:page',component:ContribuyentesComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/page/:page/contribuyenteF/form',component:FormComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/contribuyenteF/form',component:FormComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/contribuyenteF/form/:id',component:FormComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/page/:page/contribuyenteF/form/:id',component:FormComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/contribuyenteM/form',component:FormMoralComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/page/:page/contribuyenteM/form',component:FormMoralComponent,canActivate:[AuthGuard]},
-    //{path:'contribuyentes/contribuyenteM/form/:id',component:FormMoralComponent,canActivate:[AuthGuard]},
-    //{path:'contribuciones',component:ContribucionesComponent,canActivate:[AuthGuard]},
-    //{path:'contribuciones/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
-    //{path:'contribuciones/page/:page/formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
-    //{path:'contribuciones/page/:page',component:ContribucionesComponent,canActivate:[AuthGuard]},
-    //{path:'empleados',component:EmpleadosComponent,canActivate:[AuthGuard]},
-    //{path:'empleados/page/:page',component:EmpleadosComponent,canActivate:[AuthGuard]},
-    //{path:'empleados/formEmpleados',component:EmpleadoFormComponent,canActivate:[AuthGuard]},
-    //{path:'empleados/formEmpleados/:id',component:EmpleadoFormComponent,canActivate:[AuthGuard]},
-    //{path:'empleados/page/:page/formEmpleados',component:EmpleadoFormComponent,canActivate:[AuthGuard]},
-    //{path:'empleados/page/:page/formEmpleados/:id',component:EmpleadoFormComponent,canActivate:[AuthGuard]}
-    ],canActivate:[AuthGuard]  
-    
-    
-  },//{path:'formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
+  {path:'inicio',component:InicioComponent,canActivate:[AuthGuard] },//{path:'formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes',component:ContribuyentesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes/page/:page',component:ContribuyentesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes/contribuyenteF/form',component:FormComponent,canActivate:[AuthGuard]},
@@ -110,6 +88,8 @@ const routes: Routes = [
   {path:'otrosProductos/page/:page',component:OtrosProductosComponent,canActivate:[AuthGuard]},
   {path:'otrosProductos/FormOtrosProductos',component:FormOtrosProductosComponent,canActivate:[AuthGuard]},
   {path:'otrosProductos/FormOtrosProductos/:id',component:FormOtrosProductosComponent,canActivate:[AuthGuard]},
+  {path:'sendEmail',component:SendEmailComponent},
+  {path:'changePassword/:tokenPassword',component:ChangePasswordComponent}
 ]; 
 
 @NgModule({
