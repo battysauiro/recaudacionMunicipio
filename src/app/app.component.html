@@ -127,10 +127,10 @@
                                 <li>
                                     <a routerLink="contribuyentesMoral"  class="nav-link px-0"> <span class="d-none d-sm-inline">Listar Personas Moral</span></a>
                                 </li>
-                                <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+                                <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])">
                                     <a routerLink="contribuyentes/contribuyenteF/form" class="nav-link px-0"> <span class="d-none d-sm-inline">Agregar Persona Fisica</span></a>
                                 </li>
-                                <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+                                <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])">
                                     <a routerLink="contribuyentes/contribuyenteM/form" class="nav-link px-0"> <span class="d-none d-sm-inline">Agregar Persona Moral</span></a>
                                 </li>
                             </ul>
@@ -159,7 +159,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+                        <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                 <i class="bi bi-person-lines-fill"></i> <span class="ms-1 d-none d-sm-inline">Usuarios</span> </a>
                                 <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">

@@ -1,5 +1,6 @@
 <p>inicio works!</p>
-
+<!--PRIMERO-->
+<!--
 <div class="bwizard clearfix">
     <ol class="bwizard-steps d-flex step-own" role="tablist" style="color: black;">
       <li role="tab" id="level_0">
@@ -43,4 +44,89 @@
             <option value="REFRENDOS">
             <option value="DESCARGA A GRANEL">
           </datalist>
-        </div>
+        </div>-->
+
+<!--SEGUNDO -->
+<div class="container-fluid  mx-auto">
+  <div class="row d-flex justify-content-center">
+      <div class=" col-lg-8 col-md-9 col-11 text-center">
+          <div class="card">
+              <h5 class="text-center mb-4">{{titulo}}</h5>
+              
+              <form class="form-card">
+                <div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
+                  <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search"> <!--name="termImpuesto" [(ngModel)]="termImpuesto">-->
+                </div>
+                  <div class="row justify-content-between text-left">
+                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Curp<span class="text-danger"> *</span></label> <input> <!--<input (keyup)="onKey($event)" [disabled]="idFound?true:false" type="text"  name="curp" placeholder="CURP" [(ngModel)]="empleado.curp" required minlength="18" maxlength="18" #curpv="ngModel">-->
+                          <div class="alert alert-danger"><!-- *ngIf="curpv.invalid && (curpv.dirty || curpv.touched)">-->
+                              <div><!--*ngIf="curpv.errors.required">-->
+                                  la CURP es requerida
+                              </div>
+                              <div> <!--*ngIf="curpv.errors.minlength">-->
+                                  la CURP debe tener 18 caracteres
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">RFC<span class="text-danger"> *</span></label> <input> <!--<input (keyup)="onKey($event)" [disabled]="idFound?true:false" type="text"  name="curp" placeholder="CURP" [(ngModel)]="empleado.curp" required minlength="18" maxlength="18" #curpv="ngModel">-->
+                        <div class="alert alert-danger"><!-- *ngIf="curpv.invalid && (curpv.dirty || curpv.touched)">-->
+                            <div><!--*ngIf="curpv.errors.required">-->
+                                el RFC es requerido
+                            </div>
+                            <div><!--*ngIf="curpv.errors.minlength">-->
+                                el RFC debe tener 13 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                      <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Palacio Municipal<span class="text-danger"></span></label> 
+                          <select  [compareWith]="compararPalacio" name="palacio" [(ngModel)]="empleado.palacio"  style="height: 30px;">
+                              <option [ngValue]="undefined">-- Seleccionar Palacio --</option>
+                              <option *ngFor="let palacio of palacios" [ngValue]="palacio.id">{{palacio.nombre_municipio}}</option>
+                          </select>
+                      </div>-->
+                    </div>
+                  <div class="row justify-content-between text-left">
+                      <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Nombre<span class="text-danger"> *</span></label> <input> <!--<input (keyup)="onKey($event)" type="text"  name="nombre" placeholder="Nombre" [(ngModel)]="empleado.nombre" required #nombre="ngModel">-->
+                          <div class="alert alert-danger"><!-- *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">-->
+                              <div><!-- *ngIf="nombre.errors.required">-->
+                                  El Nombre es requerido
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Apellido Paterno<span class="text-danger"> *</span></label> <input> <!--<input (keyup)="onKey($event)" type="text"  name="apellidoP" placeholder="Apellido Paterno" [(ngModel)]="empleado.apellido_p" required #apellidoP="ngModel">-->
+                          <div class="alert alert-danger"><!--*ngIf="apellidoP.invalid && (apellidoP.dirty || apellidoP.touched)">-->
+                              <div><!-- *ngIf="apellidoP.errors.required">-->
+                                  El Apellido Paterno es requerido
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Apellido Materno<span class="text-danger"> *</span></label> <input> <!--<input (keyup)="onKey($event)" type="text"  name="apellidoM" placeholder="Apellido Materno" [(ngModel)]="empleado.apellido_m" required #apellidoM="ngModel">-->
+                          <div class="alert alert-danger"><!-- *ngIf="apellidoM.invalid && (apellidoM.dirty || apellidoM.touched)">-->
+                              <div><!-- *ngIf="apellidoM.errors.required">-->
+                                  El Apellido Materno es requerido
+                              </div>
+                          </div>
+                      </div>
+                  </div>   
+                 
+                  <div class="row justify-content-between text-left"> 
+                    
+                      <div class="form-group col-sm-4 flex-column d-flex"></div>
+                      <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label>
+                          <button type="submit" class="btn-block btn-primary">Siguiente</button> <!--#buttonCrear [disabled]="vacio()" [ngClass]="buttonCrear.disabled?'btn btn-secondary disabled':''" type="submit" class="btn-block btn-primary" (click)='create()' *ngIf="!idFound else elseBlock">Añadir</button>--> 
+                      </div>
+                      <!--
+                      <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger">. </span></label>
+                          <button type="button" class="btn-block btn-danger" (click)='irEmpleados()'  >Cancelar</button>
+                      </div>-->
+                      <!--
+                      <ng-template #elseBlock>
+                          <button #buttonUpdate [disabled]="vacio()" [ngClass]="buttonUpdate.disabled?'btn btn-secondary disabled':''" type="submit" class="btn-block btn-primary" (click)='update()' >Actualizar</button>
+                      </ng-template>-->
+                  </div> 
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

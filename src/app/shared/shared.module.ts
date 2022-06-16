@@ -59,11 +59,12 @@ import { FiltroContribucionesPipe } from 'app/pipes/filtro-contribuciones.pipe';
 import { ChangePasswordComponent } from './components/recuperar-password/change-password.component';
 import { SendEmailComponent } from './components/recuperar-password/send-email.component';
 import { AlertModule } from 'app/alerts/alert/alert.module';
+import { LineaCapturaComponent } from './components/linea-captura/linea-captura.component';
 
 
 @NgModule({
   declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent, UsersComponent, PaginadorUserComponent, FormUserComponent, RolesComponent, ContribucionImpuestoComponent, ContribucionDerechosComponent, DerechosGeneralComponent, DerechosLicenciaComponent, MultaVehicularComponent, MultaComponent, MultaEbriedadComponent, OtrosProductosComponent, 
-    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe,FiltroContribuyentemoralPipe,FiltroEmpleadoPipe,FiltroPalacioPipe,FiltroUsuarioPipe,FiltroContribucionesPipe, ChangePasswordComponent,SendEmailComponent],
+    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe,FiltroContribuyentemoralPipe,FiltroEmpleadoPipe,FiltroPalacioPipe,FiltroUsuarioPipe,FiltroContribucionesPipe, ChangePasswordComponent,SendEmailComponent, LineaCapturaComponent],
   imports: [
     AlertModule,
     FormsModule,

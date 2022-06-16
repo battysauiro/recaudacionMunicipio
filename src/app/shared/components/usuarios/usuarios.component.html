@@ -1,5 +1,5 @@
 <div class="my-2 text-left">
-    <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
+    <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN'])">
       <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['formEmpleados']" >  Añadir Usuario</button>
     </ng-container>
   

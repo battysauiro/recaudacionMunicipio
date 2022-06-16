@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  titulo="BUSCAR INFORMACION DE LOS CONTRIBUYENTES";
 
   constructor() { }
 
