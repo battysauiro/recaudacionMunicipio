@@ -6,6 +6,7 @@ export class Contribucion {
     tipo_pago:string;
     id_descripcion:number;
     descripcion:string;
+    nivelContribucion:number;
     
     
     /**constructor(codigo_contribucion:string, concepto_contribucion:string, id_tipo_pago:number, id_descripcion:number) {

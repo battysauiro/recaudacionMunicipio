@@ -1,3 +1,4 @@
+import { Factura } from "../linea-captura/models/factura";
 import { Contribuyente } from "./contribuyente";
 
 export class ContribuyenteMoral{
@@ -9,5 +10,6 @@ export class ContribuyenteMoral{
     codigo_postal :string;
     id_contribuyente_moral:string;
     razon_social:string;
+    facturas:Array<Factura>[]=[]
 
 }

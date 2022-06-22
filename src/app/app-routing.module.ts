@@ -25,6 +25,7 @@ import { FormComponent } from '@shared/components/contribuyentes/form.component'
 import { EmpleadoFormComponent } from '@shared/components/empleados/empleado-form.component';
 import { EmpleadosComponent } from '@shared/components/empleados/empleados.component';
 import { InicioComponent } from '@shared/components/inicio/inicio.component';
+import { GenerarFacturaComponent } from '@shared/components/linea-captura/generar-factura/generar-factura.component';
 import { LineaCapturaComponent } from '@shared/components/linea-captura/linea-captura.component';
 import { FormPalacioComponent } from '@shared/components/palacio-municipal/form-palacio/form-palacio.component';
 import { PalacioMunicipalComponent } from '@shared/components/palacio-municipal/palacio-municipal.component';
@@ -73,7 +74,7 @@ const routes: Routes = [
   {path:'derechosLicencia/page/:page',component:DerechosLicenciaComponent,canActivate:[AuthGuard]},
   {path:'derechosLicencia/FormDerechoL',component:FormLicenciaComponent,canActivate:[AuthGuard]},
   {path:'derechosLicencia/FormDerechoL/:id',component:FormLicenciaComponent,canActivate:[AuthGuard]},
-  {path:'multa',component:MultaComponent,canActivate:[AuthGuard]},  
+  {path:'multa',component:MultaComponent,canActivate:[AuthGuard]},
   {path:'multa/page/:page',component:DerechosLicenciaComponent,canActivate:[AuthGuard]},
   {path:'multa/FormMulta',component:FormMultaComponent,canActivate:[AuthGuard]},
   {path:'multa/FormMulta/:id',component:FormMultaComponent,canActivate:[AuthGuard]},
@@ -90,8 +91,10 @@ const routes: Routes = [
   {path:'otrosProductos/FormOtrosProductos',component:FormOtrosProductosComponent,canActivate:[AuthGuard]},
   {path:'otrosProductos/FormOtrosProductos/:id',component:FormOtrosProductosComponent,canActivate:[AuthGuard]},
   {path:'sendEmail',component:SendEmailComponent},
-  {path:'changePassword/:tokenPassword',component:ChangePasswordComponent}
-]; 
+  {path:'changePassword/:tokenPassword',component:ChangePasswordComponent},
+  {path:'pagoContribucion',component:LineaCapturaComponent},
+  {path:'generarLinea-captura',component:GenerarFacturaComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

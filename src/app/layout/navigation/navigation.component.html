@@ -1,39 +1,23 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <div class="container-fluid ">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="#">IDS administracion</a>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link  btn btn-general me-2" routerLink="">Pago Contribucion</a>
-              </li>
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link  btn btn-general me-2" routerLink="contribuyentes">contribuyentes</a>
-              </li>
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link  btn btn-general me-2" routerLink="contribuciones">Contribuciones</a>
-              </li>
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link  btn btn-general me-2" routerLink="empleados">Empleados</a>
-              </li>
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link  btn btn-general me-2" routerLink="">Leyes</a>
-              </li>
-            </ul>
-            
           
-            <ul class="navbar-nav navbar-right">
+          <div class="collapse navbar-collapse ms-2" id="navbarTogglerDemo03">
+            <ul class="navbar-nav navbar-left ms-1 ms-auto ">
               <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Sing In</a></li>
+              <li class=""><div class="border border-primary btn btn-outline-primary">{{authService.usuario.roles}}</div></li>
+              <li><br>_</li>
               <li *ngIf="authService.isAuthenticated()" class="dropdown">
+                
                 <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   {{authService.usuario.username}}
                 </a>
               
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><button (click)="logout()" class="dropdown-item" type="submit">Sign Out</button></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesion</button></li>
+                  <li><a class="dropdown-item" href="#">Mi perfil</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </li>
@@ -41,93 +25,6 @@
           </div>
         </div>
 </nav>
--->
 
-<div class="container-fluid">
-  <div class="row flex-nowrap"> 
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-              <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                  <span class="fs-5 d-none d-sm-inline">Menu</span>
-              </a>  
-              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                  <li class="nav-item">
-                      <a href="#" class="nav-link align-middle px-0">
-                          <i class="bi bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                      <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                          <li class="w-100">
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
-                          </li>
-                          <li>
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="#" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
-                  </li>
-                  <li>
-                      <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                          <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                      <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                          <li class="w-100">
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
-                          </li>
-                          <li>
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                          <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                          <li class="w-100">
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                          </li>
-                          <li>
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                          </li>
-                          <li>
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                          </li>
-                          <li>
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="#" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                  </li>
-              </ul>
-              <hr>
-              <div class="dropdown pb-4">
-                  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                      <span class="d-none d-sm-inline mx-1">loser</span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                      <li><a class="dropdown-item" href="#">New project...</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
-                      <li><a class="dropdown-item" href="#">Profile</a></li>
-                      <li>
-                          <hr class="dropdown-divider">
-                      </li>
-                      <li><a class="dropdown-item" href="#">Sign out</a></li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-      <div class="col py-3">
-          Content area...
-      </div>
-  </div>
-</div>
+
   

@@ -1,6 +1,6 @@
 <div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
   <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="termUsuario" [(ngModel)]="termUsuario">
-</div> 
+</div>
 <table class="table  table-Light table-bordered table-striped" >
   <thead class="table-estilo text-white">
     <tr >
@@ -18,7 +18,7 @@
   <tbody>
     <tr class="table-white " *ngFor="let usuario of usuarios | filtroUsuario:termUsuario">
         <td><img *ngIf="usuario?.url_imagen" src="http://localhost:8080/api/usuario/uploads/img/{{usuario.url_imagen}}" alt="usuario.url_imagen" class="img-thumbnail rounded"
-          style="width:64px; cursor: pointer;"> 
+          style="width:64px; cursor: pointer;">
           <img *ngIf="!usuario?.url_imagen" src="http://localhost:8080/static/imagenes/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
           style="width:64px; cursor: pointer;">
         </td>
@@ -27,19 +27,19 @@
         <td>{{usuario.puesto}}</td>
         <td [ngClass]="inputEstado.checked?'text-success':'text-danger'">{{usuario.sEstado}}</td>
         <td>{{usuario.nombre_rol}}</td>
-        <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+        <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
           <button type="button" name="editar"  class="btn btn-primary btn-sm" [routerLink]="['/usuario/formUsuario',usuario.email]"><i class="bi bi-pencil"></i></button>
-        </td>    
-        <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">  
+        </td>
+        <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
           <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarUsuario(usuario)'><i class="bi bi-trash"></i></button>
         </td>
         <td>
             <label [for]="usuario.email" class="toggle-switchy" data-style="rounded">
-                <input #inputEstado checked type="checkbox" [id]="usuario.email" [checked]="usuario.estado" (change)="onChange(usuario,inputEstado.checked)" > 
+                <input #inputEstado checked type="checkbox" [id]="usuario.email" [checked]="usuario.estado" (change)="onChange(usuario,inputEstado.checked)" >
                 <span class="toggle">
                     <span class="switch"></span>
-                </span> 
-            </label> 
+                </span>
+            </label>
         </td>
     </tr>
   </tbody>

@@ -1,3 +1,4 @@
+import { Factura } from "../linea-captura/models/factura";
 import { Contribuyente } from "./contribuyente";
 
 export class ContribuyenteFisica {
@@ -12,4 +13,5 @@ export class ContribuyenteFisica {
     apellido_p :string;
     apellido_m :string; 
     fecha :string;
+    facturas:Array<Factura>[]=[]
 }

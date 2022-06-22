@@ -23,19 +23,19 @@ export class CAMultaEbriedadServiceService {
 
   private agregarAuthorizationHeader(){
     let token= this.authService.token;
-    if(token!=null){ 
+    if(token!=null){
       return this.httpHeaders.append('Authorization','Bearer '+token);
     }
-    return this.httpHeaders; 
+    return this.httpHeaders;
   }
 
 
     ObtenerListaCMebriedad(pageNo:number):Observable<any>{
       return this.httpClient.get(`${this.baseURL}/page/${pageNo}`,{headers:this.agregarAuthorizationHeader()}).pipe(
-  
+
         map((response:any)=>{
-          
-          console.log(response.contenido); 
+
+          console.log(response.contenido);
           return response
         }))
       }

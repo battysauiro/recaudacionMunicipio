@@ -49,6 +49,7 @@ import { FormDerechoGeneralComponent } from './components/contribuciones/contrib
 import { PaginadorDerechoGeneralComponent } from './components/contribuciones/contribucion-derechos/derechos-general/paginador-derecho-general/paginador-derecho-general.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FiltroContribuyentePipe } from 'app/pipes/filtro-contribuyente.pipe';
 import { FiltroContribuyentemoralPipe } from 'app/pipes/filtro-contribuyentemoral.pipe';
@@ -60,11 +61,12 @@ import { ChangePasswordComponent } from './components/recuperar-password/change-
 import { SendEmailComponent } from './components/recuperar-password/send-email.component';
 import { AlertModule } from 'app/alerts/alert/alert.module';
 import { LineaCapturaComponent } from './components/linea-captura/linea-captura.component';
+import { GenerarFacturaComponent } from './components/linea-captura/generar-factura/generar-factura.component';
 
 
 @NgModule({
-  declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent, UsersComponent, PaginadorUserComponent, FormUserComponent, RolesComponent, ContribucionImpuestoComponent, ContribucionDerechosComponent, DerechosGeneralComponent, DerechosLicenciaComponent, MultaVehicularComponent, MultaComponent, MultaEbriedadComponent, OtrosProductosComponent, 
-    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe,FiltroContribuyentemoralPipe,FiltroEmpleadoPipe,FiltroPalacioPipe,FiltroUsuarioPipe,FiltroContribucionesPipe, ChangePasswordComponent,SendEmailComponent, LineaCapturaComponent],
+  declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent, UsersComponent, PaginadorUserComponent, FormUserComponent, RolesComponent, ContribucionImpuestoComponent, ContribucionDerechosComponent, DerechosGeneralComponent, DerechosLicenciaComponent, MultaVehicularComponent, MultaComponent, MultaEbriedadComponent, OtrosProductosComponent,
+    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe,FiltroContribuyentemoralPipe,FiltroEmpleadoPipe,FiltroPalacioPipe,FiltroUsuarioPipe,FiltroContribucionesPipe, ChangePasswordComponent,SendEmailComponent, LineaCapturaComponent, GenerarFacturaComponent],
   imports: [
     AlertModule,
     FormsModule,
@@ -72,6 +74,7 @@ import { LineaCapturaComponent } from './components/linea-captura/linea-captura.
     MatAutocompleteModule,
     MatInputModule,
     MatFormFieldModule,
+    MatIconModule,
     HttpClientModule,
     CommonModule,
     RouterModule
