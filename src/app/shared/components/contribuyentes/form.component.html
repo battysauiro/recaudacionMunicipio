@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Nombre<span class="text-danger"> *</span></label> <input type="text" ()="onKey($event)" name="nombre" placeholder="Nombre" [(ngModel)]="contribuyenteFisica.nombre" required #nombre="ngModel">
+                        <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3">Nombre<span class="text-danger"> *</span></label> <input type="text" (keyup)="onKey($event)" name="nombre" placeholder="Nombre" [(ngModel)]="contribuyenteFisica.nombre" required #nombre="ngModel">
                             <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                                 <div *ngIf="nombre.errors.required">
                                     El Nombre es requerido

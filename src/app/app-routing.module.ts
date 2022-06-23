@@ -41,7 +41,7 @@ import { LoginComponent } from './usuarios/login/login.component';
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},//component:LoginComponent},
   {path:'login',component:LoginComponent},
-  {path:'inicio',component:InicioComponent,canActivate:[AuthGuard]}, //InicioComponent,canActivate:[AuthGuard]}, //ContribuyentesComponent,canActivate:[AuthGuard] },//{path:'formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
+  {path:'inicio',component:LineaCapturaComponent,canActivate:[AuthGuard]}, //InicioComponent,canActivate:[AuthGuard]}, //ContribuyentesComponent,canActivate:[AuthGuard] },//{path:'formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes',component:ContribuyentesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes/page/:page',component:ContribuyentesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes/contribuyenteF/form',component:FormComponent,canActivate:[AuthGuard]},
