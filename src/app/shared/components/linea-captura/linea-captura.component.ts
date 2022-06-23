@@ -378,16 +378,17 @@ export class LineaCapturaComponent implements OnInit {
   }
 
   createPDF(){
-
+    this.generarFactura();
     const pdfDefinition: any = {
       content: [
         {
-          text: 'RESUME',
+          text: 'Linea de captura',
           bold: true,
           fontSize: 20,
           alignment: 'center',
           margin: [0, 0, 0, 20]
         },
+
 
       ]
     }
