@@ -1,0 +1,6 @@
+<p>captura-folio works!</p>
+<div class="form-group row">
+    <div class="col-sm-2">
+      <input type="submit" #buttonCrear [ngClass]="buttonCrear.disabled?'btn btn-secondary disabled':'btn btn-primary'" (click)="createPDF()" value="Generar Linea de pago">
+    </div>
+</div>

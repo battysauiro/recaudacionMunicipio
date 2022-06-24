@@ -378,18 +378,38 @@ export class LineaCapturaComponent implements OnInit {
   }
 
   createPDF(){
-    this.generarFactura();
+    //this.generarFactura();
     const pdfDefinition: any = {
       content: [
         {
-          text: 'Linea de captura',
+          text: 'CAPTURA DE PAGO',
           bold: true,
           fontSize: 20,
           alignment: 'center',
           margin: [0, 0, 0, 20]
         },
 
-
+        //segundo
+        {
+          style: 'tableExample',
+          color: '#444',
+          table: {
+            widths: [400, 'auto', 'auto'],
+            alignment: 'center',
+            headerRows: 2,
+            // keepWithHeaderRows: 1,
+            body: [
+              [{ text: 'IDS ADMINISTRACION S.C.\n"Servicios Legales, Contables y Administrativos"\nCalle Huertos los Olivos #107, Fraccionaminento Trinidad de los Huertos\n C.P. 68020       R.F.C IAD1604299M9', style: 'tableHeader', colSpan: 2, alignment: 'center' }, {}, { text: 'Folio:\n'+this.factura.folio, style: 'tableHeader', alignment: 'center' }],
+              [{ text: 'Fecha: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}], //{ text: 'Header 2', style: 'tableHeader', alignment: 'center' }, { text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
+              [{ text: 'Cajero: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
+              [{ text: 'Contribuyente: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
+              [{ text: 'R.M.C: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, true]},{},{}],
+              [{ border:[true, true, true, false], text: 'INFORMACION DE PAGO', style: 'tableHeader', alignment: 'center', colSpan: 3},''],
+              [{ colSpan: 3, border:[true, false, true, false], text: 'Concepto: ', style: 'tableHeader', alignment: 'left'}, '',''],
+              [{ colSpan: 3, border:[true, false, true, true], text: 'Total: ', style: 'tableHeader', alignment: 'rigth'}, '',''],
+            ]
+          }
+        }
       ]
     }
 

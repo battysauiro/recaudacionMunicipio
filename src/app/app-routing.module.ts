@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
+import { CapturaFolioComponent } from '@shared/components/captura-folio/captura-folio.component';
 import { FormEbriedadComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa-ebriedad/form-ebriedad/form-ebriedad.component';
 import { MultaEbriedadComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa-ebriedad/multa-ebriedad.component';
 import { FormVehicularComponent } from '@shared/components/contribuciones/contribucion-aprovechamiento/multa-vehicular/form-vehicular/form-vehicular.component';
@@ -31,6 +32,7 @@ import { FormPalacioComponent } from '@shared/components/palacio-municipal/form-
 import { PalacioMunicipalComponent } from '@shared/components/palacio-municipal/palacio-municipal.component';
 import { ChangePasswordComponent } from '@shared/components/recuperar-password/change-password.component';
 import { SendEmailComponent } from '@shared/components/recuperar-password/send-email.component';
+import { ReportesComponent } from '@shared/components/reportes/reportes.component';
 import { FormUserComponent } from '@shared/components/users/form-user/form-user.component';
 import { UsersComponent } from '@shared/components/users/users.component';
 import { AppComponent } from './app.component';
@@ -41,7 +43,7 @@ import { LoginComponent } from './usuarios/login/login.component';
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'login',component:LoginComponent},
-  {path:'inicio',component:LineaCapturaComponent,canActivate:[AuthGuard]}, //InicioComponent,canActivate:[AuthGuard]}, //ContribuyentesComponent,canActivate:[AuthGuard] },//{path:'formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
+  {path:'captura',component:LineaCapturaComponent,canActivate:[AuthGuard]}, //InicioComponent,canActivate:[AuthGuard]}, //ContribuyentesComponent,canActivate:[AuthGuard] },//{path:'formContribuciones',component:FormContribucionesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes',component:ContribuyentesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes/page/:page',component:ContribuyentesComponent,canActivate:[AuthGuard]},
   {path:'contribuyentes/contribuyenteF/form',component:FormComponent},
@@ -92,8 +94,11 @@ const routes: Routes = [
   {path:'otrosProductos/FormOtrosProductos/:id',component:FormOtrosProductosComponent,canActivate:[AuthGuard]},
   {path:'sendEmail',component:SendEmailComponent},
   {path:'changePassword/:tokenPassword',component:ChangePasswordComponent},
-  {path:'pagoContribucion',component:LineaCapturaComponent},
-  {path:'generarLinea-captura',component:GenerarFacturaComponent}
+  {path:'pagoContribucion',component:LineaCapturaComponent,canActivate:[AuthGuard]},
+  {path:'generarLinea-captura',component:GenerarFacturaComponent,canActivate:[AuthGuard]},
+  {path:'registroFolio-captura',component:CapturaFolioComponent,canActivate:[AuthGuard]},
+  {path:'inicio',component:InicioComponent,canActivate:[AuthGuard]},
+  {path:'reportes',component:ReportesComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

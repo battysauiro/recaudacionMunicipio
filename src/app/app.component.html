@@ -15,6 +15,21 @@
                                 <i class="bi bi-house"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a routerLink="captura" class="nav-link align-middle px-0">
+                                <i class="bi bi-cash-coin"></i> <span class="ms-1 d-none d-sm-inline">Cobro Contribucion</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_TESORERO','ROLE_PRESIDENTE'])">
+                            <a routerLink="registroFolio-captura" class="nav-link align-middle px-0">
+                                <i class="bi bi-book-fill"></i> <span class="ms-1 d-none d-sm-inline">Registrar Folio</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_CONTADOR','ROLE_PRESIDENTE'])">
+                            <a routerLink="reportes" class="nav-link align-middle px-0">
+                                <i class="bi bi-activity"></i> <span class="ms-1 d-none d-sm-inline">Reportes</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="#submenuContribucion" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                                 <i class="bi bi-journal-text"></i> <span class="ms-1 d-none d-sm-inline">Contribuciones</span></a>
@@ -149,7 +164,7 @@
                         </li>
                         <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
                             <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Palacio Municipal</span></a>
+                                <i class="bi bi-bank2"></i> <span class="ms-1 d-none d-sm-inline">Palacio Municipal</span></a>
                             <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                                 <li class="w-100">
                                     <a routerLink="palacioMunicipal" class="nav-link px-0"> <span class="d-none d-sm-inline">Listar palacios Municipales</span></a>
@@ -174,18 +189,6 @@
                     </ul>
                     <hr>
                     <!--aqui empezaba un comentario hasta abajo del div de Sign out-->
-                    <div class="dropdown pb-4">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <!--<img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">-->
-                            <span class="d-none d-sm-inline mx-1">Salir</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li>
-                                <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesion</button>
-                                <!--<a class="dropdown-item" href="#">Sign out</a>-->
-                            </li>
-                        </ul> 
-                    </div>
                 </div>
             </div>
             <div class="col py-3 fondo text-center">

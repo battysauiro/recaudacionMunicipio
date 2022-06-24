@@ -30,7 +30,6 @@ import { FiltroContribucionesPipe } from './pipes/filtro-contribuciones.pipe';
     FooterComponent,
     NavigationComponent,
     LoginComponent
-    
   ],
   imports: [//aqui van los modulos
     AlertModule,

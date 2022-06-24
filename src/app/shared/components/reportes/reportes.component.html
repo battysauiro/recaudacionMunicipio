@@ -1,0 +1,59 @@
+<p>reportes works! holaaaaaaaaaaaaa</p>
+<!--
+<div class="my-2 text-left">
+    <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN'])">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['formEmpleados']" >  Añadir Usuario</button>
+    </ng-container>
+  
+     </div>-->
+    <table class="table  table-Light table-bordered table-striped" >
+      <thead class="table-estilo text-white">
+        <tr >
+            <th width="30%">Nombre del Reporte</th>
+            <th>Descripción</th>
+            <th width="30%"><i class="bi bi-download">Descargar</i></th>
+        </tr>
+      </thead>
+      <!--
+      <tbody>
+        <tr class="table-white " *ngFor="let usuario of usuarios">
+            <td>{{usuario.nombre_usuario}} </td>
+            <td>{{usuario.password}} </td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.puesto}}</td> 
+            <td>{{usuario.estado}}</td> 
+            <td>{{usuario.nombre_empleado}}</td> 
+            
+        </tr>
+      </tbody>-->
+    </table>
+
+<!--TABS -->
+<p>TAAAAAAAAAAAAAAAAAAAAAAAABS</p>
+<!-- Tab links -->
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'London')">Contribuyentes Fisicos</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">Contribuyentes Morales</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">Reportes Sobre Adeudos</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">Reportes Sobre Pagos</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Contribuciones Sobre Impuestos</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Contribuciones Sobre Derechos</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Contribuciones Sobre Otros Productos</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Contribuciones Sobre Multas</button>
+  </div>
+  
+  <!-- Tab content -->
+  <div id="London" class="tabcontent">
+    <h3>London</h3>
+    <p>London is the capital city of England.</p>
+  </div>
+  
+  <div id="Paris" class="tabcontent">
+    <h3>Paris</h3>
+    <p>Paris is the capital of France.</p>
+  </div>
+  
+  <div id="Tokyo" class="tabcontent">
+    <h3>Tokyo</h3>
+    <p>Tokyo is the capital of Japan.</p>
+  </div>
