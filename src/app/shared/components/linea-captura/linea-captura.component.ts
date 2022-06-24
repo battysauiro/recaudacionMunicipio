@@ -53,6 +53,7 @@ export class LineaCapturaComponent implements OnInit {
   total=0;
   esLicencia=false;
   opcionSeleccionado=0;
+  itemFacturaAux= new ItemFactura();
   options = {
     autoClose: true,
     keepAfterRouteChange: true
@@ -68,6 +69,7 @@ export class LineaCapturaComponent implements OnInit {
   contribucionOtrosProductos = new ContribucionOtrosProductos();
   contribucionDGneral = new ContribucionDerechosGeneral();
   contribucionDLicencias = new ContribucionDerechoslicencia();
+  contribucionAux= new Contribucion();
 
   rfcContribuyente = ' ';
   nombreContribuyente = ' ';
@@ -226,6 +228,7 @@ export class LineaCapturaComponent implements OnInit {
 
   seleccionarContribucion(event: MatAutocompleteSelectedEvent): void {
     let contribucion = event.option.value as Contribucion;
+    this.contribucionAux= contribucion;
     this.tipoMoneda="$";
     this.uma=1;
     this.mensaje="";
@@ -354,16 +357,22 @@ export class LineaCapturaComponent implements OnInit {
   generarFactura():void{
 
     this.factura.descuento=this.opcionSeleccionado;
-    //if(this.opcionSeleccionado>=10){
-      //total=this.costo-(this.costo*(this.opcionSeleccionado/100))
-    //}
-    //if(this.opcionSeleccionado<10){
-      //total=this.costo;
-    //}
+    if(this.opcionSeleccionado>=10){
+      this.total=this.costo-(this.costo*(this.opcionSeleccionado/100))
+    }
+    if(this.opcionSeleccionado<10){
+      this.total=this.costo;
+    }
     this.factura.total=this.total;
     console.log("------------------aqui va la factura---------------");
     console.log(this.factura);
     this.facturasService.createFactura(this.factura).subscribe(factura=>{
+      this.factura=factura;
+      this.itemFacturaAux=factura.items.pop();
+      console.log(this.itemFacturaAux);
+      this.createPDF();
+      console.log("esta es la nueva facturaaaaaaaaaaaaaaaaaaaaaa");
+      console.log(this.factura);
       this.alertService.success('Se ha creado la linea de pago', this.options);
     });
   }
@@ -399,14 +408,14 @@ export class LineaCapturaComponent implements OnInit {
             headerRows: 2,
             // keepWithHeaderRows: 1,
             body: [
-              [{ text: 'IDS ADMINISTRACION S.C.\n"Servicios Legales, Contables y Administrativos"\nCalle Huertos los Olivos #107, Fraccionaminento Trinidad de los Huertos\n C.P. 68020       R.F.C IAD1604299M9', style: 'tableHeader', colSpan: 2, alignment: 'center' }, {}, { text: 'Folio:\n'+this.factura.folio, style: 'tableHeader', alignment: 'center' }],
-              [{ text: 'Fecha: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}], //{ text: 'Header 2', style: 'tableHeader', alignment: 'center' }, { text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
-              [{ text: 'Cajero: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
-              [{ text: 'Contribuyente: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
-              [{ text: 'R.M.C: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, true]},{},{}],
+              [{ text: 'IDS ADMINISTRACION S.C.\n"Servicios Legales, Contables y Administrativos"\nCalle Huertos los Olivos #107, Fraccionaminento Trinidad de los Huertos\n C.P. 68020            R.F.C. IAD1604299M9', style: 'tableHeader', colSpan: 2, alignment: 'center' }, {}, { text: 'Folio:\n' + String(this.factura.folio), style: 'tableHeader', alignment: 'center' }],
+              [{ text: 'Fecha: ' + this.factura.fecha, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}], //{ text: 'Header 2', style: 'tableHeader', alignment: 'center' }, { text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
+              [{ text: 'Cajero: ' + this.factura.usuario_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
+              [{ text: 'Contribuyente: ' + this.factura.contribuyente_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
+              [{ text: 'R.M.C: ' + this.factura.contribuyente_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, true]},{},{}],
               [{ border:[true, true, true, false], text: 'INFORMACION DE PAGO', style: 'tableHeader', alignment: 'center', colSpan: 3},''],
-              [{ colSpan: 3, border:[true, false, true, false], text: 'Concepto: ', style: 'tableHeader', alignment: 'left'}, '',''],
-              [{ colSpan: 3, border:[true, false, true, true], text: 'Total: ', style: 'tableHeader', alignment: 'rigth'}, '',''],
+              [{ colSpan: 3, border:[true, false, true, false], text: 'Concepto: ' + this.contribucionAux.concepto_contribucion, style: 'tableHeader', alignment: 'left'}, '',''],
+              [{ colSpan: 3, border:[true, false, true, true], text: 'Total: $ ' + String(this.factura.total), style: 'tableHeader', alignment: 'rigth'}, '',''],
             ]
           }
         }

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Contribucion } from '@shared/components/contribuciones/contribucion';
@@ -6,6 +7,7 @@ import { ContribuyenteMoral } from '@shared/components/contribuyentes/contribuye
 import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Factura } from '../models/factura';
 
 @Injectable({
@@ -48,7 +50,12 @@ export class FacturasService {
   }
 
   createFactura(factura:Factura): Observable<Factura>{
-    return this.httpCliente.post<Factura>(this.urlEndPoint,factura,{headers:this.agregarAuthorizationHeader()})
+    return this.httpCliente.post<Factura>(this.urlEndPoint,factura,{headers:this.agregarAuthorizationHeader()}).pipe(
+      map(response=>{
+        response.fecha=formatDate(response.fecha,'yyyy-MM-dd','en-MX');
+        return response;
+      })
+    );
   }
   //verifica si una contribucion ya ha sido pagada antes por el contribuyente
   existeContribucion(id_contribuyente:string,codigo_contribucion:string):Observable<boolean>{

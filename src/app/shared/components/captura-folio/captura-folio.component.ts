@@ -1,6 +1,10 @@
+
+//import { ItemFactura } from './models/item-factura';
+//import { FacturasService } from './services/facturas.service';
 import { Component, OnInit } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { Factura } from '../linea-captura/models/factura';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -11,6 +15,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class CapturaFolioComponent implements OnInit {
 
   constructor() { }
+
+  factura = new Factura();
 
   ngOnInit(): void {
   }
@@ -37,7 +43,7 @@ export class CapturaFolioComponent implements OnInit {
             headerRows: 2,
             // keepWithHeaderRows: 1,
             body: [
-              [{ text: 'IDS ADMINISTRACION S.C.\n"Servicios Legales, Contables y Administrativos"\nCalle Huertos los Olivos #107, Fraccionaminento Trinidad de los Huertos\n C.P. 68020               R.F.C IAD1604299M9', style: 'tableHeader', colSpan: 1, alignment: 'center' }, {text:'Fecha\n', style: 'tableHeader', alignment: 'center'}, { text: 'Folio\n', style: 'tableHeader', alignment: 'center' }],
+              [{ text: 'IDS ADMINISTRACION S.C.\n"Servicios Legales, Contables y Administrativos"\nCalle Huertos los Olivos #107, Fraccionaminento Trinidad de los Huertos\n C.P. 68020               R.F.C IAD1604299M9', style: 'tableHeader', colSpan: 1, alignment: 'center' }, {text:'Fecha\n' + this.factura.fecha, style: 'tableHeader', alignment: 'center'}, { text: 'Folio\n' + this.factura.folio, style: 'tableHeader', alignment: 'center' }],
               [{ text: 'DATOS DEL CONTRIBUYENTE', fillColor: '#cccccc', style: 'tableHeader', alignment: 'center', colSpan: 3},''],
               [{ text: 'Nombre: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}], //{ text: 'Header 2', style: 'tableHeader', alignment: 'center' }, { text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
               [{ text: 'R.M.C.: ', style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
