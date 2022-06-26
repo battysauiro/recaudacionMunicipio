@@ -18,6 +18,7 @@ import { ContribucionesComponent } from '@shared/components/contribuciones/contr
 import { FormContribucionesComponent } from '@shared/components/contribuciones/form-contribuciones.component';
 import { FormOtrosProductosComponent } from '@shared/components/contribuciones/otros-productos/form-otros-productos/form-otros-productos.component';
 import { OtrosProductosComponent } from '@shared/components/contribuciones/otros-productos/otros-productos.component';
+import { ReportesContribucionesComponent } from '@shared/components/contribuciones/reportes-contribuciones/reportes-contribuciones.component';
 import { ContribuyenteMoral } from '@shared/components/contribuyentes/contribuyente-moral';
 import { ContribuyenteMoralComponent } from '@shared/components/contribuyentes/contribuyente-moral/contribuyente-moral.component';
 import { FormMoralComponent } from '@shared/components/contribuyentes/contribuyente-moral/form-moral/form-moral.component';
@@ -98,7 +99,7 @@ const routes: Routes = [
   {path:'generarLinea-captura',component:GenerarFacturaComponent,canActivate:[AuthGuard]},
   {path:'registroFolio-captura',component:CapturaFolioComponent,canActivate:[AuthGuard]},
   {path:'inicio',component:InicioComponent,canActivate:[AuthGuard]},
-  {path:'reportes',component:ReportesComponent,canActivate:[AuthGuard]}
+  {path:'reportes',component:ReportesContribucionesComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

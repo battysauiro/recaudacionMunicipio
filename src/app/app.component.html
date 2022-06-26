@@ -3,12 +3,12 @@
 </ng-container>
 <ng-template #blockLogeado>
     <div class="container-fluid">
-        <div class="row flex-nowrap"> 
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-4 col-xl-2 px-sm-2 px-0 bg-dark">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a routerLink="inicio" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fs-5 d-none d-sm-inline">{{titulo}}</span>
-                    </a>  
+                    </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
                             <a routerLink="inicio" class="nav-link align-middle px-0">
@@ -25,11 +25,21 @@
                                 <i class="bi bi-book-fill"></i> <span class="ms-1 d-none d-sm-inline">Registrar Folio</span>
                             </a>
                         </li>
+
                         <li class="nav-item" *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_CONTADOR','ROLE_PRESIDENTE'])">
-                            <a routerLink="reportes" class="nav-link align-middle px-0">
-                                <i class="bi bi-activity"></i> <span class="ms-1 d-none d-sm-inline">Reportes</span>
-                            </a>
-                        </li>
+                          <a href="#submenur" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="bi bi-activity"></i> <span class="ms-1 d-none d-sm-inline">Reportes</span> </a>
+                          <ul class="collapse nav flex-column ms-1" id="submenur" data-bs-parent="#menu">
+                              <li class="w-100">
+                                  <a routerLink="reportes" class="nav-link px-0"><i class="bi bi-filetype-pdf"></i> <span class="d-none d-sm-inline">Reportes contribuciones</span></a>
+                              </li>
+                              <li>
+                                  <a routerLink="contribuyentesMoral"  class="nav-link px-0"> <i class="bi bi-filetype-pdf"></i><span class="d-none d-sm-inline">Reportes contribuyentes</span></a>
+                              </li>
+                          </ul>
+                      </li>
+
+
                         <li>
                             <a href="#submenuContribucion" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                                 <i class="bi bi-journal-text"></i> <span class="ms-1 d-none d-sm-inline">Contribuciones</span></a>
@@ -38,11 +48,11 @@
                                     <a href="#submenuImpuesto" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                                         <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Impuesto</span></a>
                                     <ul class="collapse nav flex-column ms-1" id="submenuImpuesto" data-bs-parent="#submenuContribucion">
-                                        <li class="w-100">
-                                            <a routerLink="impuestos" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Impuestos Contribucion</span></a>
+                                        <li >
+                                            <a routerLink="impuestos" class="nav-link px-0 align-middle"><i class="bi bi-circle-fill"></i><span class="ms-1 d-none d-sm-inline">lista Impuestos Contribucion</span></a>
                                         </li>
                                         <li *ngIf="authService.hasRole(['ROLE_ADMIN'])">
-                                            <a routerLink="impuestos/FormImpuesto" class="nav-link px-0"> <span class="d-none d-sm-inline">Nuevo Impuesto Contribucion</span></a>
+                                            <a routerLink="impuestos/FormImpuesto" class="nav-link px-0"><i class="bi bi-circle-fill"></i> <span class="d-none d-sm-inline">Nuevo Impuesto Contribucion</span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -52,7 +62,7 @@
                                     <ul class="collapse nav flex-column ms-1" id="submenuDerechos" data-bs-parent="#submenuContribucion">
                                         <li>
                                             <a href="#submenuDerechoG" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Derecho General</span></a>
+                                              <i class="bi bi-caret-right-fill"></i><span class="ms-1 d-none d-sm-inline">Derecho General</span></a>
                                             <ul class="collapse nav flex-column ms-1" id="submenuDerechoG" data-bs-parent="#submenuDerechos">
                                                 <li class="w-100">
                                                     <a routerLink="derechosGeneral" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Derechos Generales</span></a>
@@ -64,7 +74,7 @@
                                         </li>
                                         <li>
                                             <a href="#submenuDerechoL" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Derecho Licencia</span></a>
+                                              <i class="bi bi-caret-right-fill"></i><span class="ms-1 d-none d-sm-inline">Derecho Licencia</span></a>
                                             <ul class="collapse nav flex-column ms-1" id="submenuDerechoL" data-bs-parent="#submenuDerechos">
                                                 <li class="w-100">
                                                     <a routerLink="derechosLicencia" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Derechos Licencias</span></a>
@@ -82,7 +92,7 @@
                                     <ul class="collapse nav flex-column ms-1" id="submenuAprovechamiento" data-bs-parent="#submenuContribucion">
                                         <li>
                                             <a href="#submenuMulta" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Aprovechamiento Multa</span></a>
+                                              <i class="bi bi-caret-right-fill"></i><span class="ms-1 d-none d-sm-inline">Aprovechamiento Multa</span></a>
                                             <ul class="collapse nav flex-column ms-1" id="submenuMulta" data-bs-parent="#submenuAprovechamiento">
                                                 <li class="w-100">
                                                     <a routerLink="multa" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa General</span></a>
@@ -94,7 +104,7 @@
                                         </li>
                                         <li>
                                             <a href="#submenuVehicular" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Multa Vehicular</span></a>
+                                              <i class="bi bi-caret-right-fill"></i><span class="ms-1 d-none d-sm-inline">Multa Vehicular</span></a>
                                             <ul class="collapse nav flex-column ms-1" id="submenuVehicular" data-bs-parent="#submenuAprovechamiento">
                                                 <li class="w-100">
                                                     <a routerLink="multaVehicular" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa Vehicular</span></a>
@@ -106,7 +116,7 @@
                                         </li>
                                         <li>
                                             <a href="#submenuEbriedad" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                                <i class="bi bi-list"></i> <span class="ms-1 d-none d-sm-inline">Multa Ebriedad</span></a>
+                                              <i class="bi bi-caret-right-fill"></i><span class="ms-1 d-none d-sm-inline">Multa Ebriedad</span></a>
                                             <ul class="collapse nav flex-column ms-1" id="submenuEbriedad" data-bs-parent="#submenuAprovechamiento">
                                                 <li class="w-100">
                                                     <a routerLink="multaEbriedad" class="nav-link px-0"> <span class="d-none d-sm-inline">lista Multa Ebriedad</span></a>
