@@ -1,28 +1,31 @@
 <div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
   <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="term" [(ngModel)]="termino">
-</div> 
+</div>
+<div class="d-flex flex-row-reverse">
+  <a href="http://localhost:8080/api/reportes/listaContribuyenteMoral/exportarPDF" class="btn btn-danger btn-sm ml-auto"><i class="bi bi-printer"></i> Descargar lista</a>
+</div>
 <table class="table  table-Light table-bordered table-striped">
       <thead class="table-estilo text-white">
         <tr >
             <th>RMC</th>
-            <th>Direccion</th>  
+            <th>Direccion</th>
             <th>Razón Social</th>
             <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])"><i class="bi bi-pencil"></i></th>
             <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-trash"></i></th>
         </tr>
       </thead>
-      <tbody> 
+      <tbody>
         <tr class="table-white " *ngFor="let contribuyente of contribuyentesM | filtroContribuyentemoral:termino">
             <td class="">{{contribuyente.rfc_contribuyente}}</td>
             <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>
             <td>{{contribuyente.razon_social}}</td>
             <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])">
               <button type="button" name="editar" [routerLink]="['/contribuyentes/contribuyenteM/form',contribuyente.rfc_contribuyente]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
-            </td> 
-            <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">  
+            </td>
+            <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
               <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribuyenteM(contribuyente)'><i class="bi bi-trash"></i></button>
             </td>
-        </tr> 
-      </tbody> 
+        </tr>
+      </tbody>
 </table>
 <app-paginador-cmoral *ngIf="paginador" [paginador]="paginador"></app-paginador-cmoral>

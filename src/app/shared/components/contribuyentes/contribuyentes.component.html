@@ -2,35 +2,38 @@
   <ng-container *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
     <button class="btn btn-rounded btn-primary" type="button" routerLink="contribuyenteF/form" *ngIf="isChecked else blockBotonMoral" >  Añadir contribuyente Fisica</button>
   </ng-container>
-  
+
   <ng-template #blockBotonMoral>
-    <button class="btn btn-rounded btn-primary" type="button" routerLink="contribuyenteM/form" >Añadir contribuyente Moral</button>  
+    <button class="btn btn-rounded btn-primary" type="button" routerLink="contribuyenteM/form" >Añadir contribuyente Moral</button>
 </ng-template>
-</div> 
+</div>
 <div  class="form-check form-switch" >
-  <input  class="form-check-input" type="checkbox" role="switch" id="tipoContribuyente" (change)="onChange($event)" checked="checked" [checked]="isChecked"> 
+  <input  class="form-check-input" type="checkbox" role="switch" id="tipoContribuyente" (change)="onChange($event)" checked="checked" [checked]="isChecked">
   <label  *ngIf="isChecked" class="form-check-label" for="flexSwitchCheckDefault">Mostrando Personas Fisicas</label>
   <label *ngIf="!isChecked" class="form-check-label" for="flexSwitchCheckDefault">Mostrando personas Morales</label>
-</div> 
+</div>
 -->
 <div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
   <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="term" [(ngModel)]="term">
+</div>
+<div class="d-flex flex-row-reverse">
+  <a href="http://localhost:8080/api/reportes/listaContribuyenteFisica/exportarPDF" class="btn btn-danger btn-sm ml-auto"><i class="bi bi-printer"></i> Descargar lista</a>
 </div>
   <table class="table  table-Light table-bordered table-striped" >
     <thead class="table-estilo text-white">
       <tr >
           <th>RMC</th>
           <th>CURP</th>
-          <th>Direccion</th>  
+          <th>Direccion</th>
           <th>Nombre</th>
           <th>Fecha Nacimiento</th>
           <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])"><i class="bi bi-pencil"></i></th>
           <th *ngIf="authService.hasRole(['ROLE_ADMIN'])"><i class="bi bi-trash"></i></th>
       </tr>
     </thead>
-    <tbody> 
+    <tbody>
       <tr class="table-white " *ngFor="let contribuyente of contribuyentes | filtro:term">
-           
+
           <td class="">{{contribuyente.rfc_contribuyente}}</td>
           <td class="">{{contribuyente.curp}}</td>
           <td>{{contribuyente.calle}} {{contribuyente.numero}} {{contribuyente.colonia}} {{contribuyente.codigo_postal}}</td>
@@ -38,8 +41,8 @@
           <td>{{contribuyente.fecha}}</td>
           <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE','ROLE_TESORERO'])">
             <button type="button" name="editar" [routerLink]="['/contribuyentes/contribuyenteF/form',contribuyente.rfc_contribuyente]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
-          </td> 
-          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">  
+          </td>
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
             <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribuyente(contribuyente)'><i class="bi bi-trash"></i></button>
           </td>
       </tr>
@@ -47,14 +50,14 @@
   </table>
   <div >
     <app-paginador-contribuyentes *ngIf="paginador" [paginador]="paginador"></app-paginador-contribuyentes>
-</div>  
+</div>
 
 <!--<ng-template #blockTablaMoral>
   <table class="table  table-Light table-bordered table-striped">
     <thead class="table-estilo text-white">
       <tr >
           <th>RMC</th>
-          <th>Direccion</th>  
+          <th>Direccion</th>
           <th>Razón Social</th>
           <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Editar</th>
           <th *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">Eliminar</th>
@@ -67,12 +70,12 @@
           <td>{{contribuyente.razon_social}}</td>
           <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
             <button type="button" name="editar" [routerLink]="['contribuyenteM/form',contribuyente.id_contribuyente]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
-          </td> 
-          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">  
+          </td>
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_PRESIDENTE'])">
             <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribuyenteM(contribuyente)'>Eliminar</button>
           </td>
-      </tr> 
-    </tbody> 
+      </tr>
+    </tbody>
   </table>
   <app-paginador-contribuyentes *ngIf="paginador" [paginador]="paginador"></app-paginador-contribuyentes>
 </ng-template> -->

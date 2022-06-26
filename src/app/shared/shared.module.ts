@@ -65,11 +65,12 @@ import { GenerarFacturaComponent } from './components/linea-captura/generar-fact
 import { CapturaFolioComponent } from './components/captura-folio/captura-folio.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { ReportesContribucionesComponent } from './components/contribuciones/reportes-contribuciones/reportes-contribuciones.component';
+import { ReportesContribuyentesComponent } from './components/contribuyentes/reportes-contribuyentes/reportes-contribuyentes.component';
 
 
 @NgModule({
   declarations: [...fromComponents.components, ContribuyentesComponent, FormComponent, FormMoralComponent, ContribucionesComponent, PaginadorComponent, PaginadorContribuyentesComponent, FormContribucionesComponent, EmpleadosComponent, EmpleadoFormComponent,PaginadorEmpleadoComponent, UsuariosComponent, InicioComponent, ContribuyenteMoralComponent, PaginadorCmoralComponent, PalacioMunicipalComponent, PaginadorPalaciomunicipalComponent, FormPalacioComponent, UsersComponent, PaginadorUserComponent, FormUserComponent, RolesComponent, ContribucionImpuestoComponent, ContribucionDerechosComponent, DerechosGeneralComponent, DerechosLicenciaComponent, MultaVehicularComponent, MultaComponent, MultaEbriedadComponent, OtrosProductosComponent,
-    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe,FiltroContribuyentemoralPipe,FiltroEmpleadoPipe,FiltroPalacioPipe,FiltroUsuarioPipe,FiltroContribucionesPipe, ChangePasswordComponent,SendEmailComponent, LineaCapturaComponent, GenerarFacturaComponent, CapturaFolioComponent, ReportesComponent, ReportesContribucionesComponent],
+    FormImpuestoComponent, PaginadorImpuestoComponent, FormLicenciaComponent, PaginadorLicenciaComponent,FormDerechoGeneralComponent,PaginadorDerechoGeneralComponent, FormVehicularComponent, PaginadorVehicularComponent, FormMultaComponent, PaginadorMultaComponent, FormEbriedadComponent, PaginadorEbriedadComponent, FormOtrosProductosComponent, PaginadorOtrosProductosComponent,FiltroContribuyentePipe,FiltroContribuyentemoralPipe,FiltroEmpleadoPipe,FiltroPalacioPipe,FiltroUsuarioPipe,FiltroContribucionesPipe, ChangePasswordComponent,SendEmailComponent, LineaCapturaComponent, GenerarFacturaComponent, CapturaFolioComponent, ReportesComponent, ReportesContribucionesComponent, ReportesContribuyentesComponent],
   imports: [
     AlertModule,
     FormsModule,

@@ -1,11 +1,14 @@
 <div class="form-inline my-2 my-lg-0 align-items-center justify-content-center ">
   <input class="form-control mr-sm-2 busqueda" type="search" placeholder="buscar" aria-label="Search" name="termProducto" [(ngModel)]="termProducto">
 </div>
+<div class="d-flex flex-row-reverse">
+  <a href="http://localhost:8080/api/reportes/listaContribucionOtrosProductos/exportarPDF" class="btn btn-danger btn-sm ml-auto"><i class="bi bi-printer"></i> Descargar lista</a>
+</div>
 <table class="table  table-Light table-bordered table-striped" >
     <thead class="table-estilo text-white">
       <tr >
           <th>Codigo</th>
-          <th>Concepto</th>   
+          <th>Concepto</th>
           <th>Tipo Pago</th>
           <th>Descripcion</th>
           <th>Tipo</th>
@@ -20,17 +23,17 @@
           <td>{{contribucion.codigo_contribucion}} </td>
           <td>{{contribucion.concepto_contribucion}}</td>
           <td>{{contribucion.tipo_pago}}</td>
-          <td>{{contribucion.descripcion}}</td> 
-          <td>{{contribucion.catalogo_otros_productos}}</td> 
-          <td>{{contribucion.speriodicidad}}</td> 
-          <td>{{contribucion.cantidad}}</td> 
+          <td>{{contribucion.descripcion}}</td>
+          <td>{{contribucion.catalogo_otros_productos}}</td>
+          <td>{{contribucion.speriodicidad}}</td>
+          <td>{{contribucion.cantidad}}</td>
           <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
             <button type="button" name="editar" [routerLink]="['/otrosProductos/FormOtrosProductos',contribucion.codigo_contribucion]" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button>
-          </td> 
-          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">  
+          </td>
+          <td *ngIf="authService.hasRole(['ROLE_ADMIN'])">
             <button type="button" name="eliminar"  class="btn btn-danger btn-sm" (click)='eliminarContribucion(contribucion)'><i class="bi bi-trash"></i></button>
-          </td> 
+          </td>
       </tr>
     </tbody>
-  </table> 
+  </table>
   <app-paginador-otros-productos *ngIf="paginador" [paginador]="paginador"></app-paginador-otros-productos>

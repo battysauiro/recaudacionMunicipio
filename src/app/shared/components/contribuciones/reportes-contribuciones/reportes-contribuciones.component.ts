@@ -28,6 +28,8 @@ export class ReportesContribucionesComponent implements OnInit {
       map(value => typeof value === 'string' ? value : value.codigo_contribucion),
       mergeMap(value => value ? this._filterContribucion(value) : []),
     );
+
+
   }
 
   private _filterContribucion(value: string): Observable<Contribucion[]> {
