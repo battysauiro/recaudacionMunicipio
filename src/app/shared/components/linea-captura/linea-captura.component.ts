@@ -410,10 +410,10 @@ export class LineaCapturaComponent implements OnInit {
             body: [
               [{ text: 'IDS ADMINISTRACION S.C.\n"Servicios Legales, Contables y Administrativos"\nCalle Huertos los Olivos #107, Fraccionaminento Trinidad de los Huertos\n C.P. 68020            R.F.C. IAD1604299M9', style: 'tableHeader', colSpan: 2, alignment: 'center' }, {}, { text: 'Folio:\n' + String(this.factura.folio), style: 'tableHeader', alignment: 'center' }],
               [{ text: 'Fecha: ' + this.factura.fecha, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}], //{ text: 'Header 2', style: 'tableHeader', alignment: 'center' }, { text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
-              [{ text: 'Cajero: ' + this.factura.usuario_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
               [{ text: 'Contribuyente: ' + this.factura.contribuyente_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
-              [{ text: 'R.M.C: ' + this.factura.contribuyente_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, true]},{},{}],
+              [{ text: 'R.M.C: ' + this.factura.rmc, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, true]},{},{}],
               [{ border:[true, true, true, false], text: 'INFORMACION DE PAGO', style: 'tableHeader', alignment: 'center', colSpan: 3},''],
+              [{ text: 'Cajero: ' + this.factura.usuario_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
               [{ colSpan: 3, border:[true, false, true, false], text: 'Concepto: ' + this.contribucionAux.concepto_contribucion, style: 'tableHeader', alignment: 'left'}, '',''],
               [{ colSpan: 3, border:[true, false, true, true], text: 'Total: $ ' + String(this.factura.total), style: 'tableHeader', alignment: 'rigth'}, '',''],
             ]

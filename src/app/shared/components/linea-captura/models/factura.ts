@@ -4,6 +4,7 @@ export class Factura {
     folio : number;
     usuario_id : string;
     contribuyente_id : string;
+    rmc :string;
     fecha : string;
     descuento : number;
     total : number;
