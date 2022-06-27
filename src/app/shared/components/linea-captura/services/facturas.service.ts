@@ -17,6 +17,8 @@ export class FacturasService {
 
   private urlEndPoint: string ="http://localhost:8080/api/facturas";
   private urlExisteContribucion: string ="http://localhost:8080/api/facturas-contribuyente";
+  private urlExisteFactura: string ="http://localhost:8080/api/obtenerFactura";
+  private urlpagoPendiente: string ="http://localhost:8080/api/facturas-Pendientecontribuyente";
   private urlContribucion: string ="http://localhost:8080/api/contribucion";
   private urlContribuyenteFisica: string ="http://localhost:8080/api/contribuyenteFisica";
   private urlContribuyenteMoral: string ="http://localhost:8080/api/contribuyenteMoral";
@@ -34,7 +36,7 @@ export class FacturasService {
   }
 
   getFactura(id:number):Observable<Factura>{
-    return this.httpCliente.get<Factura>(this.urlEndPoint+'/'+id);
+    return this.httpCliente.get<Factura>(this.urlEndPoint+'/'+id,{headers:this.agregarAuthorizationHeader()});
   }
 
   filtrarContribucion(term:string):Observable<Contribucion[]>{
@@ -60,5 +62,20 @@ export class FacturasService {
   //verifica si una contribucion ya ha sido pagada antes por el contribuyente
   existeContribucion(id_contribuyente:string,codigo_contribucion:string):Observable<boolean>{
     return this.httpCliente.get<boolean>(this.urlExisteContribucion+'/'+id_contribuyente+'/'+codigo_contribucion,{headers:this.agregarAuthorizationHeader()});
+  }
+
+  //verifica si ya paso un mes de generar su captura de pago
+  pagoPendiente(id_contribuyente:string,codigo_contribucion:string):Observable<boolean>{
+    return this.httpCliente.get<boolean>(this.urlpagoPendiente+'/'+id_contribuyente+'/'+codigo_contribucion,{headers:this.agregarAuthorizationHeader()});
+  }
+
+  //busca si la linea de captura existe, si es asi regreasara el DTO
+  obtenerFacturaContribucion(rmc:string,codigo:string):Observable<Factura>{
+    return this.httpCliente.get<Factura>(this.urlExisteFactura+'/'+rmc+'/'+codigo,{headers:this.agregarAuthorizationHeader()});
+  }
+
+  //actualiza su estado de pago a pagado y regreasa un DTO
+  actualizarPago(factura:Factura):Observable<Factura>{
+    return this.httpCliente.put<Factura>(this.urlEndPoint+'/actualizarPago/'+factura.folio,factura,{headers:this.agregarAuthorizationHeader()});
   }
 }

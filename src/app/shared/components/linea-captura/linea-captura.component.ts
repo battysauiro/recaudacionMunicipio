@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'app/alerts/alert.service';
 import { AuthService } from 'app/usuarios/auth.service';
 import { Observable } from 'rxjs';
@@ -33,6 +33,8 @@ import { FacturasService } from './services/facturas.service';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import swal from 'sweetalert2';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-linea-captura',
@@ -59,6 +61,7 @@ export class LineaCapturaComponent implements OnInit {
     keepAfterRouteChange: true
   };
   factura = new Factura();
+  facturaAux :Factura;//= new Factura();
   contribuyenteFisica = new ContribuyenteFisica();
   contribuyenteMoral = new ContribuyenteMoral();
   //contribuciones
@@ -94,7 +97,8 @@ export class LineaCapturaComponent implements OnInit {
     private cDLicenciasService: CDerechosLicenciaServiceService,
     private cAMultaService: CAprovechamientoMultaServiceService,
     private cAMVehicularService: CAprovechamientoVehicularServiceService,
-    private cOtrosProductosService: COtrosProductosServiceService) { }
+    private cOtrosProductosService: COtrosProductosServiceService,
+    private router:Router) { }
 
   ngOnInit(): void {
     if (this.checked) {
@@ -227,114 +231,140 @@ export class LineaCapturaComponent implements OnInit {
   }
 
   seleccionarContribucion(event: MatAutocompleteSelectedEvent): void {
+
+
     let contribucion = event.option.value as Contribucion;
     this.contribucionAux= contribucion;
     this.tipoMoneda="$";
     this.uma=1;
     this.mensaje="";
-    if(contribucion.nivelContribucion===1){
-      this.cImpuestoService.ObtenerCImpuesto(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
-        this.actualizarTotal();
-        this.tipoMoneda="$";
-      });
-    }
 
-    if(contribucion.nivelContribucion===2){
-      this.cDerechoGService.ObtenerCDerechoG(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
-        if(contribucion.id_tipo_pago==1){
-          this.tipoMoneda="UMA";
-          this.uma=96.22;
+    this.facturasService.pagoPendiente(this.contribuyente.rfc_contribuyente,contribucion.codigo_contribucion).subscribe(pago=>{
+      if(!pago){
+        if(contribucion.nivelContribucion===1){
+          this.cImpuestoService.ObtenerCImpuesto(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
+            this.actualizarTotal();
+            this.tipoMoneda="$";
+          });
         }
-        this.actualizarTotal();
-      });
-    }
 
-    if(contribucion.nivelContribucion===3){
-      this.cDLicenciasService.ObtenerCDerechoLicencia(contribucion.codigo_contribucion).subscribe(contribucion=>{
-        this.facturasService.existeContribucion(this.contribuyente.rfc_contribuyente,contribucion.codigo_contribucion).subscribe(existe=>{
-          if(existe){
-            this.costo=contribucion.refrendo;
-            console.log(this.costo+"--------------------- existeeee");
-            this.auxRefrendo=contribucion.refrendo;
-            this.auxExpedicion=contribucion.expedicion;
-            this.checkedLicencia=false;
+        if(contribucion.nivelContribucion===2){
+          this.cDerechoGService.ObtenerCDerechoG(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
+            if(contribucion.id_tipo_pago==1){
+              this.tipoMoneda="UMA";
+              this.uma=96.22;
+            }
             this.actualizarTotal();
-          }
-          else{
-            this.costo=contribucion.expedicion;
-            console.log(this.costo+"--------------------- esta en exp");
-            this.auxExpedicion=contribucion.expedicion;
-            this.auxRefrendo=contribucion.refrendo;
-            this.checkedLicencia=true;
+          });
+        }
+
+        if(contribucion.nivelContribucion===3){
+          this.cDLicenciasService.ObtenerCDerechoLicencia(contribucion.codigo_contribucion).subscribe(contribucion=>{
+            this.facturasService.existeContribucion(this.contribuyente.rfc_contribuyente,contribucion.codigo_contribucion).subscribe(existe=>{
+              if(existe){
+                this.costo=contribucion.refrendo;
+                console.log(this.costo+"--------------------- existeeee");
+                this.auxRefrendo=contribucion.refrendo;
+                this.auxExpedicion=contribucion.expedicion;
+                this.checkedLicencia=false;
+                this.actualizarTotal();
+              }
+              else{
+                this.costo=contribucion.expedicion;
+                console.log(this.costo+"--------------------- esta en exp");
+                this.auxExpedicion=contribucion.expedicion;
+                this.auxRefrendo=contribucion.refrendo;
+                this.checkedLicencia=true;
+                this.actualizarTotal();
+              }
+            })
+
+            if(contribucion.id_tipo_pago==1){
+              this.tipoMoneda="UMA";
+              this.uma=96.22;
+            }
+            this.esLicencia=true;
+            console.log("esta aqui en actalizar el total "+ this.costo);
             this.actualizarTotal();
-          }
+          });
+        }
+
+        if(contribucion.nivelContribucion===4){
+          this.cAMultaService.ObtenerCMulta(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
+            if(contribucion.id_tipo_pago==1){
+              this.tipoMoneda="UMA";
+              this.uma=96.22;
+            }
+            this.actualizarTotal();
+          });
+        }
+
+        if(contribucion.nivelContribucion===5){
+          this.cEbriedadService.ObtenerCMebriedad(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.uma_min;
+            this.uma=96.22;
+            this.actualizarTotal();
+            //this.total=this.costo*96.22;
+            this.tipoMoneda="UMA";
+            this.mensaje="Sugerencias: El uma minimo a cobrar es "+contribucion.uma_min+" y el maximo es "+contribucion.uma_max;
+          });
+        }
+
+        if(contribucion.nivelContribucion===6){
+          this.cAMVehicularService.ObtenerCMvehicular(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.uma_min;
+            if(contribucion.id_tipo_pago==1){
+              this.tipoMoneda="UMA";
+              this.mensaje="Sugerencias: El uma minimo a cobrar es "+contribucion.uma_min+" y el maximo es "+contribucion.uma_max;
+              this.uma=96.22;
+            }
+            this.actualizarTotal();
+          });
+        }
+
+        if(contribucion.nivelContribucion===7){
+          this.cOtrosProductosService.ObtenerCOtrosProductos(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
+            if(contribucion.id_tipo_pago==1){
+              this.tipoMoneda="UMA";
+              this.uma=96.22;
+            }
+            this.actualizarTotal();
+          });
+        }
+
+        this.factura.usuario_id=this.authService.usuario.username;
+        console.log(this.authService.usuario.username);
+        this.factura.contribuyente_id=this.contribuyente.rfc_contribuyente;
+        let nuevaContribucion = new ItemFactura();
+        //nuevaContribucion.precio = this.costo;
+        nuevaContribucion.cantidad = 1;
+        nuevaContribucion.contribucion = contribucion;
+        nuevaContribucion.idContribucion = contribucion.codigo_contribucion;
+        this.factura.items=[];
+        this.factura.items.push(nuevaContribucion);
+
+        this.autoCompleteContribucion.setValue('');
+        event.option.focus();
+        event.option.deselect();
+
+      }
+      else{
+        this.facturasService.obtenerFacturaContribucion(this.contribuyente.rfc_contribuyente,contribucion.codigo_contribucion).subscribe(factura=>{
+          this.cargarFacturaAux(factura);
+          this.facturaAux=factura;
+          swal({
+            title: 'linea de pago encontrada',
+            text: ``,
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Descargar de nuevo'
+          }).then((result) => {
+            if (result.value) {
+              this.descargarPDF();
+            }
+          })
         })
 
-        if(contribucion.id_tipo_pago==1){
-          this.tipoMoneda="UMA";
-          this.uma=96.22;
-        }
-        this.esLicencia=true;
-        console.log("esta aqui en actalizar el total "+ this.costo);
-        this.actualizarTotal();
-      });
-    }
-
-    if(contribucion.nivelContribucion===4){
-      this.cAMultaService.ObtenerCMulta(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
-        if(contribucion.id_tipo_pago==1){
-          this.tipoMoneda="UMA";
-          this.uma=96.22;
-        }
-        this.actualizarTotal();
-      });
-    }
-
-    if(contribucion.nivelContribucion===5){
-      this.cEbriedadService.ObtenerCMebriedad(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.uma_min;
-        this.uma=96.22;
-        this.actualizarTotal();
-        //this.total=this.costo*96.22;
-        this.tipoMoneda="UMA";
-        this.mensaje="Sugerencias: El uma minimo a cobrar es "+contribucion.uma_min+" y el maximo es "+contribucion.uma_max;
-      });
-    }
-
-    if(contribucion.nivelContribucion===6){
-      this.cAMVehicularService.ObtenerCMvehicular(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.uma_min;
-        if(contribucion.id_tipo_pago==1){
-          this.tipoMoneda="UMA";
-          this.mensaje="Sugerencias: El uma minimo a cobrar es "+contribucion.uma_min+" y el maximo es "+contribucion.uma_max;
-          this.uma=96.22;
-        }
-        this.actualizarTotal();
-      });
-    }
-
-    if(contribucion.nivelContribucion===7){
-      this.cOtrosProductosService.ObtenerCOtrosProductos(contribucion.codigo_contribucion).subscribe(contribucion=>{this.costo=contribucion.cantidad;
-        if(contribucion.id_tipo_pago==1){
-          this.tipoMoneda="UMA";
-          this.uma=96.22;
-        }
-        this.actualizarTotal();
-      });
-    }
-
-    this.factura.usuario_id=this.authService.usuario.username;
-    console.log(this.authService.usuario.username);
-    this.factura.contribuyente_id=this.contribuyente.rfc_contribuyente;
-    let nuevaContribucion = new ItemFactura();
-    //nuevaContribucion.precio = this.costo;
-    nuevaContribucion.cantidad = 1;
-    nuevaContribucion.contribucion = contribucion;
-    nuevaContribucion.idContribucion = contribucion.codigo_contribucion;
-    this.factura.items=[];
-    this.factura.items.push(nuevaContribucion);
-
-    this.autoCompleteContribucion.setValue('');
-    event.option.focus();
-    event.option.deselect();
+      }
+    })
 
     /**
     if(contribucion.nivelContribucion==1){
@@ -349,8 +379,13 @@ export class LineaCapturaComponent implements OnInit {
     contribucionDLicencias = new ContribucionDerechoslicencia();
   }*/
   }
+  cargarFacturaAux(factura:Factura){
+    console.log(factura);
+    this.facturaAux=factura;
+  }
 
   eliminar(){
+    this.esLicencia=false;
     this.factura.items=[];
   }
 
@@ -371,9 +406,19 @@ export class LineaCapturaComponent implements OnInit {
       this.itemFacturaAux=factura.items.pop();
       console.log(this.itemFacturaAux);
       this.createPDF();
-      console.log("esta es la nueva facturaaaaaaaaaaaaaaaaaaaaaa");
-      console.log(this.factura);
-      this.alertService.success('Se ha creado la linea de pago', this.options);
+      swal({
+        title: 'Finalizar tramite?',
+        text: `¿Desea terminar el tramite o realizar otro cobro?!`,
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Terminar tramite!',
+        cancelButtonText: 'continuar cobrando'
+      }).then((result) => {
+        if (result.value) {
+          this.router.navigate(['/captura']);
+        }
+      })
+      //this.alertService.success('Se ha creado la linea de pago', this.options);
     });
   }
 
@@ -424,6 +469,49 @@ export class LineaCapturaComponent implements OnInit {
 
     const pdf = pdfMake.createPdf(pdfDefinition);
     pdf.open();
+
+  }
+
+  descargarPDF(){
+    //this.generarFactura();
+    console.log(this.facturaAux);
+    console.log("entra aquiiiiiiiiiiiiii en descargar");
+    const pdfDefinition: any = {
+      content: [
+        {
+          text: 'CAPTURA DE PAGO',
+          bold: true,
+          fontSize: 20,
+          alignment: 'center',
+          margin: [0, 0, 0, 20]
+        },
+
+        //segundo
+        {
+          style: 'tableExample',
+          color: '#444',
+          table: {
+            widths: [400, 'auto', 'auto'],
+            alignment: 'center',
+            headerRows: 2,
+            // keepWithHeaderRows: 1,
+            body: [
+              [{ text: 'IDS ADMINISTRACION S.C.\n"Servicios Legales, Contables y Administrativos"\nCalle Huertos los Olivos #107, Fraccionaminento Trinidad de los Huertos\n C.P. 68020            R.F.C. IAD1604299M9', style: 'tableHeader', colSpan: 2, alignment: 'center' }, {}, { text: 'Folio:\n' + String(this.facturaAux.folio), style: 'tableHeader', alignment: 'center' }],
+              [{ text: 'Fecha: ' + this.facturaAux.fecha, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}], //{ text: 'Header 2', style: 'tableHeader', alignment: 'center' }, { text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
+              [{ text: 'Contribuyente: ' + this.facturaAux.contribuyente_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
+              [{ text: 'R.M.C: ' + this.facturaAux.rmc, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, true]},{},{}],
+              [{ border:[true, true, true, false], text: 'INFORMACION DE PAGO', style: 'tableHeader', alignment: 'center', colSpan: 3},''],
+              [{ text: 'Cajero: ' + this.facturaAux.usuario_id, style: 'tableHeader', alignment: 'left', colSpan: 3, border:[true, false, true, false]},{},{}],
+              [{ colSpan: 3, border:[true, false, true, false], text: 'Concepto: ' + this.contribucionAux.concepto_contribucion, style: 'tableHeader', alignment: 'left'}, '',''],
+              [{ colSpan: 3, border:[true, false, true, true], text: 'Total: $ ' + String(this.facturaAux.total), style: 'tableHeader', alignment: 'rigth'}, '',''],
+            ]
+          }
+        }
+      ]
+    }
+
+    const pdf = pdfMake.createPdf(pdfDefinition);
+    pdf.download();
 
   }
 }

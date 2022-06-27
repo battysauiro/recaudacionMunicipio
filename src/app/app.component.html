@@ -21,7 +21,7 @@
                             </a>
                         </li>
                         <li class="nav-item" *ngIf="authService.hasRole(['ROLE_ADMIN','ROLE_TESORERO','ROLE_PRESIDENTE'])">
-                            <a routerLink="registroFolio-captura" class="nav-link align-middle px-0">
+                            <a (click)="limpiarVentana()" class="nav-link align-middle px-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <i class="bi bi-book-fill"></i> <span class="ms-1 d-none d-sm-inline">Registrar Folio</span>
                             </a>
                         </li>
@@ -38,6 +38,7 @@
                               </li>
                           </ul>
                       </li>
+
 
 
                         <li>
@@ -209,3 +210,64 @@
         </div>
     </div>
 </ng-template>
+
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="staticBackdropLabel">Registar Pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3"><input type="text" [(ngModel)]="folio" class="form-control" placeholder="Ingrese el folio"></div>
+            <div class="col-md-4"><button type="button" (click)="buscarFactura()" class="btn btn-primary">Buscar Folio</button></div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-5 "><div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Fecha solicitud</span>
+              <input type="text" [(ngModel)]="factura.fecha" class="form-control"  aria-label="fecha" aria-describedby="basic-addon1" disabled>
+            </div></div>
+            <div class="col-md-5 "><div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Estado del pago</span>
+              <input type="text" [(ngModel)]="estadopago" class="form-control"  aria-label="fecha" aria-describedby="basic-addon1" disabled>
+            </div></div>
+          </div>
+          <div class="row pt-2">
+            <div class="col-md-6"><div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Nombre: </span>
+              <input type="text" [(ngModel)]="factura.usuario_id" class="form-control" aria-label="nombre" aria-describedby="basic-addon1" disabled>
+            </div></div>
+            <div class="col-md-4"><div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">RMC</span>
+              <input type="text" class="form-control"  [(ngModel)]="factura.rmc" aria-label="rmc" aria-describedby="basic-addon1" disabled>
+            </div></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-10"><div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Concepto</span>
+              <input type="text" [(ngModel)]="concepto" class="form-control"  aria-label="concepto" aria-describedby="basic-addon1" disabled>
+            </div></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Total: $</span>
+              <input type="text" class="form-control"  [(ngModel)]="factura.total" aria-label="total" aria-describedby="basic-addon1" disabled>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="cobraryDescargarPDF()" [disabled]="factura.folio===undefined || pagado">Cobrar y descargar formato </button>
+      </div>
+    </div>
+  </div>
+</div>
