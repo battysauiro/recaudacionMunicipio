@@ -1,6 +1,7 @@
 
 //import { ItemFactura } from './models/item-factura';
 //import { FacturasService } from './services/facturas.service';
+//comenatrio para ver si ya estoy subiendo los cambios a mi rama
 import { Component, OnInit } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';

@@ -415,6 +415,9 @@ export class LineaCapturaComponent implements OnInit {
         cancelButtonText: 'continuar cobrando'
       }).then((result) => {
         if (result.value) {
+          this.rfcContribuyente="";
+          this.nombreContribuyente="";
+          this.direccionContribuyente="";
           this.router.navigate(['/captura']);
         }
       })
