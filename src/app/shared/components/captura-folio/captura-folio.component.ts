@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Factura } from '../linea-captura/models/factura';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -15,15 +17,28 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class CapturaFolioComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    this.downloadPDF();
+    console.log("entra o no entra");
+  }
+
+  public downloadPDF(): void {
+    const doc = new jsPDF();
+
+    doc.text('Hello world BATTI mi trabajo aquí esta hecho BAI', 10, 10);
+    //doc.save('hello-world.pdf');
+  }
 
   factura = new Factura();
 
   ngOnInit(): void {
   }
 
+  
   createPDF(){
     //this.generarFactura();
+
+/**
     const pdfDefinition: any = {
       content: [
         {
@@ -63,7 +78,7 @@ export class CapturaFolioComponent implements OnInit {
     }
 
     const pdf = pdfMake.createPdf(pdfDefinition);
-    pdf.open();
+    pdf.open();*/
 
   }
 }

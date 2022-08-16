@@ -99,7 +99,7 @@ const routes: Routes = [
   {path:'pagoContribucion',component:LineaCapturaComponent,canActivate:[AuthGuard]},
   {path:'generarLinea-captura',component:GenerarFacturaComponent,canActivate:[AuthGuard]},
   {path:'registroFolio-captura',component:CapturaFolioComponent,canActivate:[AuthGuard]},
-  {path:'inicio',component:InicioComponent,canActivate:[AuthGuard]},
+  {path:'inicio',component:CapturaFolioComponent,canActivate:[AuthGuard]},
   {path:'reportes',component:ReportesContribucionesComponent,canActivate:[AuthGuard]},
   {path:'reportes-contribuyente',component:ReportesContribuyentesComponent,canActivate:[AuthGuard]}
 ];

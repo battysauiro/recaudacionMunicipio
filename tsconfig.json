@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true, //importaciones desde módulos de exportación según tutorial para usar canvas html
     "baseUrl": "./src",//se cambio
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

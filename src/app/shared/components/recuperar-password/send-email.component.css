@@ -5,7 +5,7 @@
 }
 
 .main-container{
-    background-color: #909497;
+    background-color: #740432;
     background-size: cover;
     height: 100vh;
 }
@@ -16,8 +16,8 @@
     height: 380px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background: #ffffff;
+    transform: translate(50%, -50%);
+    background: #FFFFFF;
     border-radius: 25px;
     text-align: center;
 }
@@ -30,7 +30,7 @@
     line-height: 145px;
     align-items: center;
     font-family: "Sansation", sans-serif;
-    color: #2874A6;
+    color: #740432;
 }
 
 .logo{
@@ -45,9 +45,9 @@ input[type="password"]{
     outline: none;
     background: none;
     font-size: 20px;
-    color: #2874A6;
+    color: #740432;
     padding: 20px 10px 20px 5px;
-    border: 2px solid #2874A6;
+    border: 2px solid #740432;
     width: 280px;
     height: 45px;
     margin: 15px;
@@ -59,7 +59,7 @@ input[type="password"]{
 }
 
 ::placeholder{
-    color: #2874A6;
+    color: #909497;
     font-size: 18px;
 }
 
@@ -74,15 +74,15 @@ button{
     font-size: 16px;
     line-height: 28px;
     cursor: pointer;
-    color: #2874A6;
+    color: #c8c6bb;
     border: none;
-    background: #F9DB5C;
+    background: #740432;
     border-radius: 25px;
 }
 
 button:hover{
     cursor: pointer;
-    background: #2874A6;
+    background: #a3585b;
     color: #ECF0F1;
 }
 
