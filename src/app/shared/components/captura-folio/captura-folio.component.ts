@@ -8,16 +8,17 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Factura } from '../linea-captura/models/factura';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-captura-folio',
   templateUrl: './captura-folio.component.html',
-  styleUrls: ['./captura-folio.component.css']
+  styleUrls: ['./linea-capturascss.component.scss','./captura-folio.component.css']
 })
 export class CapturaFolioComponent implements OnInit {
 
-  constructor() { 
+  constructor(private router:Router) { 
     this.downloadPDF();
     console.log("entra o no entra");
   }
@@ -34,7 +35,10 @@ export class CapturaFolioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  irCobroContribucion(): void{
+    this.router.navigate(['/captura']);
+  }
+
   createPDF(){
     //this.generarFactura();
 

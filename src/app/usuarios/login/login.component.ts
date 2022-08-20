@@ -61,4 +61,8 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  irAdeudos(): void{
+    this.router.navigate(['/vista-adeudos']);
+  }
+
 }

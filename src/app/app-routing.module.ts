@@ -37,6 +37,7 @@ import { SendEmailComponent } from '@shared/components/recuperar-password/send-e
 import { ReportesComponent } from '@shared/components/reportes/reportes.component';
 import { FormUserComponent } from '@shared/components/users/form-user/form-user.component';
 import { UsersComponent } from '@shared/components/users/users.component';
+import { VistaAdeudosComponent } from '@shared/components/vista-adeudos/vista-adeudos.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './usuarios/guards/auth.guard';
 import { LoginComponent } from './usuarios/login/login.component';
@@ -101,7 +102,8 @@ const routes: Routes = [
   {path:'registroFolio-captura',component:CapturaFolioComponent,canActivate:[AuthGuard]},
   {path:'inicio',component:CapturaFolioComponent,canActivate:[AuthGuard]},
   {path:'reportes',component:ReportesContribucionesComponent,canActivate:[AuthGuard]},
-  {path:'reportes-contribuyente',component:ReportesContribuyentesComponent,canActivate:[AuthGuard]}
+  {path:'reportes-contribuyente',component:ReportesContribuyentesComponent,canActivate:[AuthGuard]},
+  {path:'vista-adeudos',component:VistaAdeudosComponent}
 ];
 
 @NgModule({
